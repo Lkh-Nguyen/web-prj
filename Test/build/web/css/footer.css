@@ -1,0 +1,116 @@
+footer{
+    clear: both;
+}
+.footer1{
+    height: 140px;
+    background-color: rgb(15, 29, 47);  
+    border-bottom: solid 2px rgb(38, 53, 71);
+}
+.footer2{
+    clear: both;
+    height: 105px;
+    background-color: rgb(15, 29, 47);  
+    text-align: center;
+    padding-top: 20px;
+}
+.footer2 img{
+    margin-right: 30px;
+}
+.footer2 img:hover{
+    border-radius: 10px;
+    border: solid 2px orangered;
+}
+
+/* footer 4 */
+.footer4{
+    clear: both;
+    padding-left: 20%;
+    background-color: rgb(3, 18, 36);
+}
+.footer4 p{
+      color: rgb(116, 129, 153);
+      font-size: 20;
+      font-weight: 500;
+      margin-top: 30px;
+      margin-bottom: 80px;
+}
+.footer4_img img{
+    width: 35.7%;
+    border-radius: 100%;
+}
+
+/* footer 4 */
+
+/* footer 3 */
+  .footer3{
+    clear: both;
+      padding-left: 20%;
+      padding-right:20%;
+      background-color: rgb(3, 18, 36);
+      border-bottom: solid 2px rgb(38, 53, 71);
+      padding-top: 30px;
+  }
+
+  .footer3_address h1{
+      color: white;
+      font-size: 400%;
+      font-weight: bold;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  .footer3_address h2{
+      letter-spacing: 7px;
+      color: white;
+      margin-top: -15px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+  }
+  .footer3_address p{
+      margin-top: 20px;
+      font-size: 15px;
+      color: white;
+      font-weight: 400;
+  }
+  .footer3_metizcinema h1{
+      margin-top: 28px;
+      margin-bottom: 35px;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+  }
+  .metizcinema_list1 a{
+      color: rgb(97, 119, 152);
+      font-size: 14px;
+      font-weight: 500;
+      font-weight: bold;
+  }
+  .metizcinema_list1 a:hover{
+      color: orangered;
+      text-decoration: none;
+  }
+  .metizcinema_list1 p{
+      margin-top: 15px;
+  }
+  .hello{
+      margin-top: 10px;
+      margin-left: 80px;
+      width: 25%;
+  }
+  .hello img{
+      width: 50%;
+  }
+  .hello a:hover{
+      color: orangered;
+      text-decoration: none;
+  }
+  .footer3_list{
+      color: white;
+  }
+  .footer3_list p{
+      margin-top: -5px;
+      font-size: 15px;
+  }
+  .footer3_infor{
+      margin-top: 50px;
+      margin-bottom: 30px;
+  }
