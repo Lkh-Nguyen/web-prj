@@ -17,8 +17,14 @@
         <link rel="stylesheet" href="css/footer.css">
     </head>
     <body>
+<<<<<<< HEAD
         <%@include file="includeSmall/header.jsp" %>
         <%@include file="includeSmall/login.jsp" %>
         <%@include file="includeSmall/footer.jsp" %>
+=======
+        <%@include file="include/header.jsp" %>
+        <%@include file="include/login.jsp" %>
+        <%@include file="include/footer.jsp" %>
+>>>>>>> 46f53f83b2289bbbfc312cdae60e035413a39c5a
     </body>
 </html>

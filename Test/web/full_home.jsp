@@ -21,9 +21,16 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  
     </head>
     <body>
+<<<<<<< HEAD
         <%@include file="includeSmall/header.jsp" %>
         <%@include file="includeSmall/banner.jsp" %>
         <%@include file="includeSmall/UuDai.jsp" %>
         <%@include file="includeSmall/footer.jsp" %>
+=======
+        <%@include file="include/header.jsp" %>
+        <%@include file="include/banner.jsp" %>
+        <%@include file="include/UuDai.jsp" %>
+        <%@include file="include/footer.jsp" %>
+>>>>>>> 46f53f83b2289bbbfc312cdae60e035413a39c5a
     </body>
 </html>
