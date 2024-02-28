@@ -18,8 +18,8 @@
         
     </head>
     <body>
-        <%@include file="header.jsp" %>
-        <%@include file="register.jsp" %>
-        <%@include file="footer.jsp" %>
+        <%@include file="include/header.jsp" %>
+        <%@include file="include/register.jsp" %>
+        <%@include file="include/footer.jsp" %>
     </body>
 </html>

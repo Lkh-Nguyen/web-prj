@@ -17,8 +17,8 @@
         <link rel="stylesheet" href="css/footer.css">
     </head>
     <body>
-        <%@include file="header.jsp" %>
-        <%@include file="change_Password.jsp" %>
-        <%@include file="footer.jsp" %>
+        <%@include file="include/header.jsp" %>
+        <%@include file="include/change_Password.jsp" %>
+        <%@include file="include/footer.jsp" %>
     </body>
 </html>
