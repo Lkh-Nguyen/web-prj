@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-4 matkhau_login">
                             <p>Mật Khẩu</p>
-                            <input type="password" name="password" id="password" placeholder="Nhập Mật Khẩu Ở Đây" value="${param.password}" required>
+                            <input type="password" name="password" id="password" placeholder="Nhập Mật Khẩu Ở Đây" value="${param.password}" required minlength="8">
                         </div>
                     </div>
                     <div class="remember_me">

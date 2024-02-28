@@ -82,7 +82,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-4 update">
                                 <p>Email</p>
-<input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${customer.email}">
+<input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${customer.email}" readonly>
                             </div>
                         </div>
                         <div class ="row">
@@ -98,7 +98,7 @@
                                 <p>Xác Nhận Mật Khẩu</p>
                                 <input type="password" name="repassword" placeholder="Nhập Lại Mật Khẩu" 
                                        value="${requestScope.updateStatus == 'Cập nhật thành công!' ? '' : param.repassword}" 
-                                       required>
+                                       required minlength="8">
                                 <h5 style="color: red">${requestScope.repasswordError}</h5>
                             </div>
                         </div>
