@@ -1,4 +1,4 @@
-CREATE TABLE Users (
+CREATE TABLE [User] (
     ID INT PRIMARY KEY IDENTITY(1,1),
     Name NVARCHAR(255) NOT NULL,
     Gender NVARCHAR(10) CHECK (Gender IN ('Male', 'Female')) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE Users (
     CONSTRAINT CHK_Password_Length CHECK (LEN(Password) >= 8) -- Minimum password length
 );
 
-INSERT INTO Users (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) 
+INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) 
 VALUES 
 ('John Doe', 'Male', '1990-05-15', '123456789012', '1234567890', 'john@example.com', 'password123', '123 Main St, Cityville', 1),
 ('Jane Smith', 'Female', '1985-08-20', '987654321098', '0987654321', 'jane@example.com', 'securepassword', '456 Elm St, Townsville', 1),
@@ -61,7 +61,7 @@ CREATE TABLE Ticket (
     TDate DATE NOT NULL,
     FilmDetailId INT NOT NULL,
     ScreenSeatId INT NOT NULL, -- Reference to the ScreenSeat table
-    FOREIGN KEY (UserId) REFERENCES Users(Id),
+    FOREIGN KEY (UserId) REFERENCES [User](Id),
     FOREIGN KEY (FilmDetailId) REFERENCES FilmDetail(Id),
     FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id) -- Foreign key to represent the seat reserved
 );

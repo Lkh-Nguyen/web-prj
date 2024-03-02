@@ -24,7 +24,7 @@ public class UserDB implements DatabaseInfo {
         Connection con = getConnect();
         try {
             User u = null;
-            PreparedStatement st = con.prepareStatement("SELECT * FROM Users WHERE Email = ?");
+            PreparedStatement st = con.prepareStatement("SELECT * FROM [User] WHERE Email = ?");
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
 
@@ -64,7 +64,7 @@ public class UserDB implements DatabaseInfo {
     public static boolean insertCustomer(User u) {
         Connection con = getConnect();
         try {
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO Users (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)");
 
             // Set parameters
             pstmt.setString(1, u.getName());
@@ -109,7 +109,7 @@ public class UserDB implements DatabaseInfo {
     }
 
     public static boolean updateUser(User oldUser, User newUser) {
-        String sql = "UPDATE Users SET Name=?, Gender=?, DateOfBirth=?, CMND=?, PhoneNumber=?, Email=?, Password=?, Address=? WHERE Email=?";
+        String sql = "UPDATE [User] SET Name=?, Gender=?, DateOfBirth=?, CMND=?, PhoneNumber=?, Email=?, Password=?, Address=? WHERE Email=?";
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -160,7 +160,7 @@ public class UserDB implements DatabaseInfo {
     }
 
     public static boolean changePassword(User currentUser, String newPassword) {
-        String sql = "UPDATE Users SET Password=? WHERE Email=?";
+        String sql = "UPDATE [User] SET Password=? WHERE Email=?";
         Connection con = null;
         PreparedStatement pstmt = null;
 
