@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Model.Customer;
-import Database.CustomerDB;
+import Model.User;
+import Database.UserDB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -92,14 +92,14 @@ public class RegisterServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace(); // Handle parsing exception appropriately
         }
-        
+
         boolean hasError = false;
         //Password and Repassword not match
         if (!password.equals(repassword)) {
             request.setAttribute("repasswordError", "Mật khẩu không khớp!");
             hasError = true;
         } //Email existed
-        if (CustomerDB.getCustomer(email) != null) {
+        if (UserDB.getUser(email) != null) {
             request.setAttribute("emailError", "Email đã tồn tại!");
             hasError = true;
         }
@@ -109,17 +109,19 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("full_register.jsp").forward(request, response);
         }
 
+        // Create a new User object with role set to 1
+        User u = new User(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address);
+        u.setRole(1); // Set the role to 1
 
-        Customer c = new Customer(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address);
-        // Assuming con is your database connection
-        boolean success = CustomerDB.insertCustomer(c);
+        // Insert the user into the database
+        boolean success = UserDB.insertCustomer(u);
         if (success) {
             request.setAttribute("registerStatus", "Đăng ký thành công!");
         } else {
             request.setAttribute("registerStatus", "Đăng ký không thành công!");
         }
 
-        //Always send redirect back to register page
+        // Always send redirect back to register page
         request.getRequestDispatcher("full_register.jsp").forward(request, response);
     }
 

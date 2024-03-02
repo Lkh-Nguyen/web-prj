@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Database.CustomerDB;
-import Model.Customer;
+import Database.UserDB;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -76,7 +76,7 @@ public class ChangePassServlet extends HttpServlet {
         String newpass = request.getParameter("newpassword");
         String re_newpass = request.getParameter("re_newpassword");
         HttpSession session = request.getSession();
-        Customer cu = (Customer) session.getAttribute("customer");
+        User cu = (User) session.getAttribute("user");
 
         if (!cu.getPassword().equals(pass)) {
             request.setAttribute("pass_error", "Mật khẩu cũ không đúng");
@@ -87,10 +87,10 @@ public class ChangePassServlet extends HttpServlet {
         } else if (!newpass.equalsIgnoreCase(re_newpass)) {
             request.setAttribute("re_newpass_error", "Mật khẩu mới không trùng khớp");
             request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        } else if (CustomerDB.changePassword(cu, newpass)) {
+        } else if (UserDB.changePassword(cu, newpass)) {
             request.setAttribute("updateStatus", "Cập nhật mật khẩu thành công!");
             cu.setPassword(newpass);
-            session.setAttribute("customer", cu);
+            session.setAttribute("user", cu);
             request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
         } else {
             request.setAttribute("updateStatus", "Cập nhật mật khẩu không thành công!");

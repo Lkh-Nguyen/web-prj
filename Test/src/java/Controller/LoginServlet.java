@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import Model.Customer;
-import Database.CustomerDB;
+import Model.User;
+import Database.UserDB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -61,17 +61,17 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rememberMe = request.getParameter("rememberMe");
-        // Use CustomerDB to get customer details based on email
-        Customer customer = CustomerDB.getCustomer(email);
+        // Use UserDB to get customer details based on email
+        User user = UserDB.getUser(email);
 
-        if (customer == null || !customer.getPassword().equals(password)) {
+        if (user == null || !user.getPassword().equals(password)) {
             // If email or password is incorrect, set error message and forward to login page
             request.setAttribute("errorMessage", "Invalid email or password !");
             request.getRequestDispatcher("full_login.jsp").forward(request, response);
         } else {
             // If email and password match, create session
             HttpSession session = request.getSession();
-            session.setAttribute("customer", customer);
+            session.setAttribute("user", user);
             //RememberMe box 
             Cookie cEmail = new Cookie("cEmail", email);
             Cookie cRememberMe = new Cookie("cRememberMe", rememberMe);

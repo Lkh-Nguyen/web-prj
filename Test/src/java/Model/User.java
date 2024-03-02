@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 
-public class Customer implements Serializable{
+public class User implements Serializable {
+
     private int id;
     private String name;
     private String gender;
@@ -14,17 +15,28 @@ public class Customer implements Serializable{
     private String email;
     private String password;
     private String address;
+    private int role;
 
     // Constructors, getters, and setters
-
-    public Customer(){
+    public User() {
         // Default constructor
     }
-    
-    
+
     //Full constructor
-    public Customer(String name, String gender, Date dateOfBirth, String cmnd,
-                    String phoneNumber, String email, String password, String address) {
+    public User(String name, String gender, Date dateOfBirth, String cmnd, String phoneNumber, String email, String password, String address, int role) {
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.cmnd = cmnd;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.role = role;
+    }
+
+    //No role
+    public User(String name, String gender, Date dateOfBirth, String cmnd, String phoneNumber, String email, String password, String address) {
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -35,20 +47,7 @@ public class Customer implements Serializable{
         this.address = address;
     }
 
-    //Without cmnd and address
-    public Customer(String name, String gender, Date dateOfBirth, String phoneNumber, String email, String password) {
-        this.name = name;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-    }
-    
-    
-
     // Getters and Setters for each field
-
     public int getId() {
         return id;
     }
@@ -120,20 +119,18 @@ public class Customer implements Serializable{
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + formatDateOfBirth() +
-                ", cmnd='" + cmnd + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "User{" + "id=" + id + ", name=" + name + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", cmnd=" + cmnd + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", address=" + address + ", role=" + role + '}';
     }
 
     private String formatDateOfBirth() {

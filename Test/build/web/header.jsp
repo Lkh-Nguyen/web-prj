@@ -40,11 +40,11 @@
                                 <li class="dropdown"><a class="dropdown-toggle" href="#">TIN TỨC PHIM</a></li>
                                 <li class="dropdown"><a class="dropdown-toggle" href="#">THÀNH VIÊN</a></li>
                                 <ul class="nav navbar-nav navbar-right col-md-4 sign">   
-                                    <c:set var="customer" value="${sessionScope.customer}" scope="session"/>
+                                    <c:set var="user" value="${sessionScope.user}" scope="session"/>
                                     <c:choose>
-                                        <c:when test="${not empty customer}">
+                                        <c:when test="${not empty user}">
                                             <li>
-                                                <a href="full_updateAccount.jsp">${customer.name}</a></li>
+                                                <a href="full_updateAccount.jsp">${user.name}</a></li>
                                             <li><span>/</span></li>
                                             <li>
                                                 <a href="LogoutServlet">ĐĂNG XUẤT</a>
