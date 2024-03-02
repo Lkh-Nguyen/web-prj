@@ -22,7 +22,7 @@ VALUES
 CREATE TABLE Film (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Url NVARCHAR(MAX) NOT NULL,
-    Name NVARCHAR(MAX) NOT NULL,
+    Name NVARCHAR(255) NOT NULL UNIQUE,
     Type NVARCHAR(MAX) NOT NULL,
     Duration INT NOT NULL,
     StartDate DATE NOT NULL,
@@ -32,17 +32,20 @@ CREATE TABLE Film (
     Rate NVARCHAR(50) NOT NULL
 );
 
+
 CREATE TABLE Screen (
     Id INT PRIMARY KEY IDENTITY(1,1),
-    Name NVARCHAR(64) NOT NULL
+    Name NVARCHAR(64) NOT NULL UNIQUE
 );
 
 CREATE TABLE ScreenSeat (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,
     ScreenId INT NOT NULL,
-    FOREIGN KEY (ScreenId) REFERENCES Screen (Id)
+    FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
+    CONSTRAINT UC_ScreenSeat_Name UNIQUE (Name, ScreenId)
 );
+
 
 CREATE TABLE FilmDetail (
     Id INT PRIMARY KEY IDENTITY(1,1),
@@ -51,8 +54,10 @@ CREATE TABLE FilmDetail (
     FilmSlot INT NOT NULL,
     MovieDate DATE NOT NULL,
     FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
-    FOREIGN KEY (FilmId) REFERENCES Film (Id)
+    FOREIGN KEY (FilmId) REFERENCES Film (Id),
+    CONSTRAINT UC_FilmDetail UNIQUE (ScreenId, FilmSlot, MovieDate) -- Unique constraint to ensure a film can't be shown on the same screen, slot, and date
 );
+
 
 CREATE TABLE Ticket (
     TId INT IDENTITY(1,1) PRIMARY KEY,
@@ -60,8 +65,14 @@ CREATE TABLE Ticket (
     Price FLOAT NOT NULL,
     TDate DATE NOT NULL,
     FilmDetailId INT NOT NULL,
-    ScreenSeatId INT NOT NULL, -- Reference to the ScreenSeat table
+    ScreenSeatId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES [User](Id),
     FOREIGN KEY (FilmDetailId) REFERENCES FilmDetail(Id),
-    FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id) -- Foreign key to represent the seat reserved
+    FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id),
+    CONSTRAINT UC_Ticket UNIQUE (FilmDetailId, ScreenSeatId)
 );
+
+
+
+
+
