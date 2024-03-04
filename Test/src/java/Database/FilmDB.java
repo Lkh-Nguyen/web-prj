@@ -38,7 +38,7 @@ public class FilmDB implements DatabaseInfo {
 
         try {
             con = getConnect();
-            String query = "SELECT * FROM films"; // Assuming 'films' is the name of your table
+            String query = "SELECT * FROM Film"; // Assuming 'films' is the name of your table
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
@@ -48,7 +48,7 @@ public class FilmDB implements DatabaseInfo {
                 String name = rs.getString("name");
                 String type = rs.getString("type");
                 int duration = rs.getInt("duration");
-                Date startDate = rs.getDate("start_date");
+                Date startDate = rs.getDate("startDate");
                 String actor = rs.getString("actor");
                 String detail = rs.getString("detail");
                 String trailer = rs.getString("trailer"); // trailer can be null
@@ -77,4 +77,7 @@ public class FilmDB implements DatabaseInfo {
         return films;
     }
 
+    public static void main(String[] args) {
+           System.out.println(getAllFilms());
+    }
 }

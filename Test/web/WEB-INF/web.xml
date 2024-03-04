@@ -29,10 +29,6 @@
         <servlet-class>Controller.ChangePassServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FilmServlet</servlet-name>
-        <servlet-class>Controller.FilmServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>Controller.HomeServlet</servlet-class>
     </servlet>
@@ -55,10 +51,6 @@
     <servlet-mapping>
         <servlet-name>ChangePassServlet</servlet-name>
         <url-pattern>/changePass</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FilmServlet</servlet-name>
-        <url-pattern>/FilmServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
