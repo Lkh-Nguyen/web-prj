@@ -29,8 +29,8 @@
                         </tr>
 
                         <tr class="list1">
-                            <td class="listName1"><a href="full_changePass.jsp">THAY ĐỔI MẬT KHẨU</a></td>
-                            <td class="listIcon1"><a href="full_changePass.jsp"><i class='bx bxs-lock-open-alt'></i></a></td>
+                            <td class="listName1"><a href="changePass">THAY ĐỔI MẬT KHẨU</a></td>
+                            <td class="listIcon1"><a href="changePass"><i class='bx bxs-lock-open-alt'></i></a></td>
                         </tr>
                         <tr class="list1">
                             <td class="listName1"><a href="full_inforCard.jsp">THÔNG TIN THẺ THÀNH VIÊN</a></td>

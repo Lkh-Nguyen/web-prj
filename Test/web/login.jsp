@@ -17,10 +17,10 @@
         <div id="login">
             <div>
                 <button id="bt_login"><a href="#">ĐĂNG NHẬP</a></button>
-                <button id="bt_register"><a href="full_register.jsp">ĐĂNG KÝ</a></button>
+                <button id="bt_register"><a href="register">ĐĂNG KÝ</a></button>
             </div>
             <c:set var="cookie" value="${pageContext.request.cookies} "/>
-            <form action="LoginServlet" method="post">
+            <form action="login" method="post">
                 <div class="form_login">
                     <div class ="row">
                         <div class="col-md-4 email_login">

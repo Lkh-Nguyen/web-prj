@@ -24,8 +24,8 @@
                 <div class="left_list">
                     <table>
                         <tr class="list2">
-                            <td class="listName1"><a href="full_updateAccount.jsp">THÔNG TIN TÀI KHOẢN</a></td>
-                            <td class="listIcon1"><a href="full_updateAccount.jsp"><i class='bx bx-user' ></i></a></td>
+                            <td class="listName1"><a href="updateAccount">THÔNG TIN TÀI KHOẢN</a></td>
+                            <td class="listIcon1"><a href="updateAccount.jsp"><i class='bx bx-user' ></i></a></td>
                         </tr>
 
                         <tr class="list0">

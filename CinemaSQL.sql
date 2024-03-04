@@ -64,10 +64,10 @@ CREATE TABLE FilmDetail (
 
 
 CREATE TABLE Ticket (
-    TId INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     UserId INT NOT NULL,
     Price FLOAT NOT NULL,
-    TDate DATE NOT NULL,
+    Date DATE NOT NULL,
     FilmDetailId INT NOT NULL,
     ScreenSeatId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES [User](Id),

@@ -44,19 +44,19 @@
                                     <c:choose>
                                         <c:when test="${not empty user}">
                                             <li>
-                                                <a href="full_updateAccount.jsp">${user.name}</a></li>
+                                                <a href="updateAccount">${user.name}</a></li>
                                             <li><span>/</span></li>
                                             <li>
-                                                <a href="LogoutServlet">ĐĂNG XUẤT</a>
+                                                <a href="logout">ĐĂNG XUẤT</a>
                                             </li>
                                         </c:when>
                                         <c:otherwise>
                                             <li>
-                                                <a href="full_login.jsp">ĐĂNG NHẬP</a>
+                                                <a href="login">ĐĂNG NHẬP</a>
                                             </li>
                                             <li><span>/</span></li>
                                             <li>
-                                                <a href="full_register.jsp">ĐĂNG KÝ</a>
+                                                <a href="register">ĐĂNG KÝ</a>
                                             </li>
                                         </c:otherwise>
                                     </c:choose>

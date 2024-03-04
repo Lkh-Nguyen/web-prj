@@ -15,11 +15,11 @@
     <body>
         <div id="register">
             <div>
-                <button id="bt_login"><a href="full_login.jsp">ĐĂNG NHẬP</a></button>
+                <button id="bt_login"><a href="login">ĐĂNG NHẬP</a></button>
                 <button id="bt_register"><a href="#">ĐĂNG KÝ</a></button>
             </div>
 
-            <form action="RegisterServlet" method="post">
+            <form action="register" method="post">
                 <div class="form_register">
                     <div class ="row">
                         <div class="col-md-4 register">

@@ -4,21 +4,18 @@
  */
 package Controller;
 
-import Database.UserDB;
-import Model.User;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
- * @author MSI
+ * @author ASUS
  */
-public class ChangePassServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +34,10 @@ public class ChangePassServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassServlet</title>");
+            out.println("<title>Servlet HomeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangePassServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +55,7 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
+        request.getRequestDispatcher("full_home.jsp").forward(request, response);
     }
 
     /**
@@ -72,31 +69,7 @@ public class ChangePassServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pass = request.getParameter("password");
-        String newpass = request.getParameter("newpassword");
-        String re_newpass = request.getParameter("re_newpassword");
-        HttpSession session = request.getSession();
-        User cu = (User) session.getAttribute("user");
-
-        if (!cu.getPassword().equals(pass)) {
-            request.setAttribute("pass_error", "Mật khẩu cũ không đúng");
-            request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        } else if (pass.equalsIgnoreCase(newpass)) {
-            request.setAttribute("newpass_error", "Mật khẩu mới không được trùng với mật khẩu cũ");
-            request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        } else if (!newpass.equalsIgnoreCase(re_newpass)) {
-            request.setAttribute("re_newpass_error", "Mật khẩu mới không trùng khớp");
-            request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        } else if (UserDB.changePassword(cu, newpass)) {
-            request.setAttribute("updateStatus", "Cập nhật mật khẩu thành công!");
-            cu.setPassword(newpass);
-            session.setAttribute("user", cu);
-            request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        } else {
-            request.setAttribute("updateStatus", "Cập nhật mật khẩu không thành công!");
-            request.getRequestDispatcher("full_changePass.jsp").forward(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

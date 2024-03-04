@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
  *
  * @author ASUS
  */
-public class UpdateServlet extends HttpServlet {
+public class UpdateAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
