@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="/css/styledetail.css"> -->
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between; /* Để cách đều hai bên */
+        align-items: center;
+        padding: 20px;
+        margin-left: calc(245px + auto); /* Tính toán margin-left với auto */
+        margin-right: calc(245px + auto); /* Tính toán margin-right với auto */
+      }
+
+      .image {
+        flex: 0.5;
+        margin-left: 20px;
+      }
+
+      .image img {
+        max-width: 75%;
+        height: auto;
+      }
+
+      .content {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .content p {
+        display: table-row;
+      }
+
+      .content p strong {
+        display: table-cell;
+        width: 150px;
+        /* Độ rộng của cột chứa các nhãn */
+        font-weight: bold;
+      }
+
+      .content p span {
+        display: table-cell;
+        padding-left: 10px;
+        /* Khoảng cách giữa nhãn và nội dung */
+      }
+
+      .order-btn {
+        display: block;
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 10px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        /* Bóng đổ */
+      }
+
+      .order-btn:hover {
+        background-color: #ff6600;
+      }
+
+      .sub-button {
+        height: 35px;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 65px;
+        width: 15%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        /* Bóng đổ */
+      }
+
+      .sub-button:first-child {
+        margin-left: 0;
+      }
+
+      .sub-button:hover {
+        background-color: #ff6600; /* Màu cam khi hover */
+      }
+
+      .sub-button:active {
+        background-color: #ff6600; /* Màu cam khi nhấn vào */
+        color: white; /* Thêm màu chữ trắng khi nhấn */
+      }
+
+      .hidden-container {
+        display: flex;
+        justify-content: center;
+        /* căn giữa theo chiều ngang */
+        align-items: center;
+        /* căn giữa theo chiều dọc */
+        /* chiều cao 100% của màn hình */
+      }
+
+      .hidden.active {
+        display: none;
+        background-color: #ff6600;
+        color: white;
+      }
+
+      .hidden {
+        margin-top: 20px;
+      }
+
+      .hidden h2 {
+        margin-left: 43%;
+      }
+      .hidden p {
+        display: flex;
+        justify-content: center;
+        margin-left: 16%;
+        max-width: 70%;
+        word-wrap: break-word;
+        word-break: break-all;
+        flex-wrap: wrap;
+        font-size: 1rem;
+        hyphens: auto;
+      }
+      #comment {
+        width: 100%;
+        height: 100px; /* Điều chỉnh chiều cao khung comment */
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none; /* Ngăn chặn việc resize khung comment */
+      }
+
+      #comment:focus {
+        outline: none;
+        border-color: #007bff; /* Đổi màu viền khi focus vào khung comment */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiển thị shadow khi focus */
+      }
+
+      #comment::placeholder {
+        color: #999; /* Màu placeholder */
+      }
+
+      .image-buttons {
+        margin: 10px 0;
+      }
+
+      .like-btn {
+        border: 1px solid white;
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img
+          id="movieImage"
+          src="https://metiz.vn/media/poster_film/poster_social_1_.jpg"
+          alt="Ảnh của bạn"
+        />
+        <div class="image-buttons">
+          <button class="like-btn">
+            <i class="fas fa-thumbs-up"></i> Like
+          </button>
+          <button class="like-btn"><i class="fas fa-share"></i> Chia sẻ</button>
+        </div>
+      </div>
+      <div class="content">
+        <h2>BÀ THÍM BÁO THÙ (T16)</h2>
+        <p>
+          <strong>Diễn viên:</strong> Ra Mi Ran, Gong Myung, Yeom Hye Ran, Ahn
+          Eun Jin,...
+        </p>
+        <p><strong>Thể loại:</strong> Hành động, Hài</p>
+        <p><strong>Ngày phát hành:</strong> 01-03-2024</p>
+        <p><strong>Thời lượng:</strong> 112 phút</p>
+        <p><strong>Phụ đề:</strong> Tiếng Việt</p>
+        <p>
+          <strong>Rated:</strong> C16 - PHIM CẤM PHỔ BIẾN ĐẾN KHÁN GIẢ DƯỚI 16
+          TUỔI
+        </p>
+        <div class="sub-buttons">
+          <button class="sub-button" onclick="showDetail()">CHI TIẾT</button>
+          <button class="sub-button" onclick="showTrailer()">TRAILER</button>
+          <button class="sub-button" onclick="showReview()">ĐÁNH GIÁ</button>
+        </div>
+      </div>
+      <div><button class="order-btn">ĐẶT VÉ</button></div>
+    </div>
+    <div class="hidden-container" id="hiddenDetail">
+      <div id="detail" class="hidden">
+        <!-- Nội dung chi tiết -->
+        <p>
+          Kẻ lừa tiền “quay xe”, cầu cứu sự trợ giúp từ chính nạn nhân mà mình
+          đã lừa đảo! Đang chật vật vay mượn khắp nơi để tiếp tục duy trì cửa
+          tiệm giặt ủi sau hoả hoạn, Duk Hee nhận được cú điện thoại từ Son, tự
+          xưng là nhân viên ngân hàng với lời hứa hẹn sẽ cấp cho cô một khoản
+          vay với lãi suất ưu đãi. Tuy nhiên, Son yêu cầu Duk Hee phải gửi trước
+          cho anh ta một khoản tiền gọi là “phí vay mượn”. Sau khi chuyển tiền,
+          người phụ nữ tội nghiệp mới bàng hoàng nhận ra mình vừa trở thành nạn
+          nhân của một kẻ chuyên lừa đảo qua điện thoại di động. Cú lừa này đã
+          khiến Duk Hee mất toàn bộ tài sản và đối mặt với nguy cơ bị tống ra
+          đường cùng hai đứa con. Giận dữ, oán trách nhưng Duk Hee nghĩ rằng cô
+          sẽ không thể tìm được danh tính của Son. Cho tới một ngày nọ, Son bỗng
+          chủ động liên lạc với Duk Hee và đưa ra một lời cầu cứu thảm thiết…
+        </p>
+      </div>
+    </div>
+
+    <div class="hidden-container" id="hiddenTrailer">
+      <div id="trailer" class="hidden" style="display: none">
+        <!-- Video trailer -->
+        <iframe
+          width="500"
+          height="300"
+          src="https://www.youtube.com/embed/NP8yQ2pU8qg"
+          title='Phim "Bà Thím Báo Thù" Trailer | Khởi Chiếu 01.03.2024'
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="hidden-container" id="hiddenReview">
+      <div id="review" class="hidden" style="display: none">
+        <!-- Form đánh giá -->
+        <textarea id="comment" placeholder="Nhập ý kiến của bạn"></textarea>
+        <button onclick="postComment()">Đăng ý kiến</button>
+      </div>
+    </div>
+    <script>
+      function showDetail() {
+        document.getElementById("detail").style.display = "block";
+        document.getElementById("trailer").style.display = "none";
+        document.getElementById("review").style.display = "none";
+
+        document.getElementById("hiddenDetail").classList.add("active");
+        document.getElementById("hiddenTrailer").classList.remove("active");
+        document.getElementById("hiddenReview").classList.remove("active");
+      }
+
+      function showTrailer() {
+        document.getElementById("detail").style.display = "none";
+        document.getElementById("trailer").style.display = "block";
+        document.getElementById("review").style.display = "none";
+
+        document.getElementById("hiddenDetail").classList.remove("active");
+        document.getElementById("hiddenTrailer").classList.add("active");
+        document.getElementById("hiddenReview").classList.remove("active");
+      }
+
+      function showReview() {
+        document.getElementById("detail").style.display = "none";
+        document.getElementById("trailer").style.display = "none";
+        document.getElementById("review").style.display = "block";
+
+        document.getElementById("hiddenDetail").classList.remove("active");
+        document.getElementById("hiddenTrailer").classList.remove("active");
+        document.getElementById("hiddenReview").classList.add("active");
+      }
+
+      function postComment() {
+        var comment = document.getElementById("comment").value;
+        // Xử lý đăng comment ở đây
+        alert("Bạn đã đăng comment: " + comment);
+      }
+
+      function addComment() {
+        const commentInput = document.getElementById("comment");
+        const commentText = commentInput.value.trim();
+
+        if (commentText !== "") {
+          const commentContainer = document.getElementById("comments");
+          const newComment = document.createElement("div");
+          newComment.classList.add("comment");
+          newComment.innerText = commentText;
+          commentContainer.appendChild(newComment);
+
+          commentInput.value = "";
+        }
+      }
+      function displayComments() {
+        var commentSection = document.getElementById("commentSection");
+        commentSection.innerHTML = "";
+
+        comments.forEach(function (comment, index) {
+          var commentDiv = document.createElement("div");
+          commentDiv.classList.add("comment");
+          commentDiv.innerHTML =
+            "<strong>Ý kiến " + (index + 1) + ":</strong> " + comment;
+          commentSection.appendChild(commentDiv);
+        });
+      }
+
+      // Gọi hàm để hiển thị các ý kiến đã có khi trang load
+      displayComments();
+    </script>
+  </body>
+</html>

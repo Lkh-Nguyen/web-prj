@@ -40,4 +40,8 @@
         <servlet-name>ChangePassServlet</servlet-name>
         <url-pattern>/ChangePassServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilmServlet</servlet-name>
+        <url-pattern>/FilmServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

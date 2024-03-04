@@ -32,6 +32,10 @@ CREATE TABLE Film (
     Rate NVARCHAR(50) NOT NULL
 );
 
+INSERT INTO Film (Url, Name, Type, Duration, StartDate, Actor, Detail, Trailer, Rate)
+VALUES 
+('nameFilm/mai.jpg', 'Film1', 'Action', 120, '2024-03-01', 'Actor1, Actor2', 'Details about Film1', 'trailer_url1', 'C18'),
+('nameFilm/mai1.jpg', 'Film2', 'Drama', 150, '2024-03-02', 'Actor3, Actor4', 'Details about Film2', 'trailer_url2', 'C16');
 
 CREATE TABLE Screen (
     Id INT PRIMARY KEY IDENTITY(1,1),
