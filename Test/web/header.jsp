@@ -22,7 +22,7 @@
                 <nav class="navbar"  role="navigation">
                     <div class="row">		
                         <div class="col-md-2 logo">	
-                            <a href="full_home.jsp"><img src="images/logonew.jpg" alt="Cinema logo"/></a>
+                            <a href="home"><img src="images/logonew.jpg" alt="Cinema logo"/></a>
                         </div>		
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

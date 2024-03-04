@@ -25,7 +25,7 @@
                     <table>
                         <tr class="list2">
                             <td class="listName1"><a href="updateAccount">THÔNG TIN TÀI KHOẢN</a></td>
-                            <td class="listIcon1"><a href="updateAccount.jsp"><i class='bx bx-user' ></i></a></td>
+                            <td class="listIcon1"><a href="updateAccount"><i class='bx bx-user' ></i></a></td>
                         </tr>
 
                         <tr class="list0">
@@ -33,13 +33,13 @@
                             <td class="listIcon0"><a href="#"><i class='bx bxs-lock-open-alt'></i></a></td>
                         </tr>
                         <tr class="list1">
-                            <td class="listName1"><a href="full_inforCard.jsp">THÔNG TIN THẺ THÀNH VIÊN</a></td>
-                            <td class="listIcon1"><a href="full_inforCard.jsp"><i class='bx bxs-id-card' ></i></i></a></td>
+                            <td class="listName1"><a href="inforCard">THÔNG TIN THẺ THÀNH VIÊN</a></td>
+                            <td class="listIcon1"><a href="inforCard"><i class='bx bxs-id-card' ></i></i></a></td>
                         </tr>
 
                         <tr class="list1">
-                            <td class="listName1"><a href="full_historyOnline.jsp">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
-                            <td class="listIcon1"><a href="full_historyOnline.jsp"><i class='bx bx-history' ></i></a></td>
+                            <td class="listName1"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
+                            <td class="listIcon1"><a href="historyOnline"><i class='bx bx-history' ></i></a></td>
                         </tr>
                     </table>
                 </div>

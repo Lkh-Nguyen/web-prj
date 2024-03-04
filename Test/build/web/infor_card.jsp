@@ -22,13 +22,13 @@
             <div class="left_list">
                 <table>
                     <tr class="list2">
-                        <td class="listName1"><a href="full_updateAccount.jsp">THÔNG TIN TÀI KHOẢN</a></td>
-                        <td class="listIcon1"><a href="full_updateAccount.jsp"><i class='bx bx-user' ></i></a></td>
+                        <td class="listName1"><a href="updateAccount">THÔNG TIN TÀI KHOẢN</a></td>
+                        <td class="listIcon1"><a href="updateAccount"><i class='bx bx-user' ></i></a></td>
                     </tr>
                 
                     <tr class="list1">
-                        <td class="listName1"><a href="full_changePass.jsp">THAY ĐỔI MẬT KHẨU</a></td>
-                        <td class="listIcon1"><a href="full_changePass.jsp"><i class='bx bxs-lock-open-alt'></i></a></td>
+                        <td class="listName1"><a href="changePass">THAY ĐỔI MẬT KHẨU</a></td>
+                        <td class="listIcon1"><a href="changePass"><i class='bx bxs-lock-open-alt'></i></a></td>
                     </tr>
                     <tr class="list0">
                         <td class="listName0"><a href="#">THÔNG TIN THẺ THÀNH VIÊN</a></td>
@@ -36,8 +36,8 @@
                     </tr>
            
                     <tr class="list1">
-                        <td class="listName1"><a href="full_historyOnline.jsp">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
-                        <td class="listIcon1"><a href="full_historyOnline.jsp"><i class='bx bx-history' ></i></a></td>
+                        <td class="listName1"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
+                        <td class="listIcon1"><a href="historyOnline"><i class='bx bx-history' ></i></a></td>
                     </tr>
                 </table>
             </div>

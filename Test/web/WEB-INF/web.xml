@@ -32,6 +32,14 @@
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>Controller.HomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InforCardServlet</servlet-name>
+        <servlet-class>Controller.InforCardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HistoryOnlineServlet</servlet-name>
+        <servlet-class>Controller.HistoryOnlineServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -55,5 +63,13 @@
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InforCardServlet</servlet-name>
+        <url-pattern>/inforCard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryOnlineServlet</servlet-name>
+        <url-pattern>/historyOnline</url-pattern>
     </servlet-mapping>
 </web-app>
