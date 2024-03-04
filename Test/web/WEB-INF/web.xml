@@ -20,6 +20,10 @@
         <servlet-name>ChangePassServlet</servlet-name>
         <servlet-class>Controller.ChangePassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FilmServlet</servlet-name>
+        <servlet-class>Controller.FilmServlet</servlet-class>
+    </servlet>    
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>

@@ -5,6 +5,7 @@
 
 package Controller;
 
+import Database.FilmDB;
 import Database.UserDB;
 import Model.Film;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class FilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        List<Film> list = UserDB.listAllFilms();
+        List<Film> list = FilmDB.getAllFilms();
         request.setAttribute("list", list);
         request.getRequestDispatcher("film.jsp").forward(request, response);
     } 

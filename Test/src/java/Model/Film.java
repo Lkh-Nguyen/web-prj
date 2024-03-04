@@ -8,7 +8,7 @@ package Model;
  *
  * @author DUYAN
  */
-import java.util.Date;
+import java.sql.Date;
 
 public class Film {
     private int id;
