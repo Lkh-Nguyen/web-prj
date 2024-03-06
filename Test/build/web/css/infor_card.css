@@ -1,0 +1,112 @@
+
+.infor_account{
+    margin-left: 24.1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+}
+
+.inforAccount_left{
+    width: 240px;
+    border: 1px solid rgb(235, 77, 0);
+    border-radius: 5px;
+    height: 280px;
+    margin-right: 4%;
+}
+.left_h1{
+    border: 1px solid rgb(211, 211, 211);
+    text-align: center;
+    padding-bottom: 5%;
+    margin-bottom: 3%;
+}
+.left_h1 h1{
+    font-size: 125%;
+}
+.inforAccount_left table{
+    width: 100%;
+}
+
+
+
+   
+.list0{
+    background-color: rgb(235, 77, 0);
+    height: 50px;
+}
+.listName0 a{ 
+    color: white;
+    padding-left: 15px; 
+    text-decoration: none;
+    font-size: 13px;
+}
+.listIcon0 i{
+    color: white;
+    font-size: 20px;
+}
+
+.list2{
+    background-color: white;
+    height: 50px;
+    border-bottom: 2px solid rgb(211, 211, 211);
+}
+.list2:hover{
+    background-color: rgb(235, 77, 0);
+    color: white;
+    
+}
+.list2:hover .listName1 a{  
+        color: white;
+        text-decoration: none;
+    }
+.list2:hover .listIcon1 i{
+        color: white;
+    }
+.list1{
+    background-color: white;
+    height: 50px;
+    border-top: 2px solid rgb(211, 211, 211);
+}
+.list1:hover{
+    background-color: rgb(235, 77, 0);
+    color: white;
+}
+.list1:hover     .listName1 a{  
+        color: white;
+        text-decoration: none;
+    }
+.list1:hover    .listIcon1 i{
+        color: white;
+    }
+.listName1 a{  
+    color: black;
+    text-decoration: none;
+    padding-left: 15px; 
+    font-size: 13px;
+}
+
+.listIcon1 i{
+    color: black;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+.inforAccount_right{
+    width: 600px;
+}
+
+.right_header{
+    background-color: rgb(126, 142, 170);
+    margin-top: -3.3%;
+}
+
+.right_header h1{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+}
+
+
