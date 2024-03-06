@@ -10,6 +10,14 @@ public class Ticket {
     private FilmDetail filmDetail;
     private ScreenSeat screenSeat;
 
+    public Ticket(User user, float price, Date date, FilmDetail filmDetail, ScreenSeat screenSeat) {
+        this.user = user;
+        this.price = price;
+        this.date = date;
+        this.filmDetail = filmDetail;
+        this.screenSeat = screenSeat;
+    }
+
     public Ticket(int id, User user, float price, Date date, FilmDetail filmDetail, ScreenSeat screenSeat) {
         this.id = id;
         this.user = user;

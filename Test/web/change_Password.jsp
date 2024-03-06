@@ -41,6 +41,10 @@
                             <td class="listName1"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
                             <td class="listIcon1"><a href="historyOnline"><i class='bx bx-history' ></i></a></td>
                         </tr>
+                        <tr class="list1">
+                            <td class="listName1"><a href="adminFunction">CHỨC NĂNG ADMIN </a></td>
+                            <td class="listIcon1"><a href="adminFunction"><i class='bx bx-data'></i></a></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -62,7 +66,7 @@
                             <div class="col-md-4 changepass">
                                 <p>Mật Khẩu Mới</p>
                                 <input type="password" name="newpassword" placeholder="Mật Khẩu Mới" required minlength="8">
-                                 <h5 style="color: red">${requestScope.newpass_error}</h5>
+                                <h5 style="color: red">${requestScope.newpass_error}</h5>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-4 changepass">
@@ -75,9 +79,9 @@
                         <div id="submit_changepass">
                             <input type="submit" value="LƯU LẠI">
                         </div><br/><!-- comment -->
-                             <h5 style="color: red">${requestScope.updateStatus}</h5>   
-                             
-                             
+                        <h5 style="color: red">${requestScope.updateStatus}</h5>   
+
+
                     </div>
                 </form>
             </div>

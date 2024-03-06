@@ -84,6 +84,8 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
         String address = request.getParameter("address");
+        String roleString = request.getParameter("role");
+        int role = 0;
         //Parsing String to java.util.Date
         java.sql.Date dateOfBirth = null;
         try {
@@ -92,47 +94,52 @@ public class RegisterServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace(); // Handle parsing exception appropriately
         }
-
-        boolean hasError = false;
-        //Password and Repassword not match
-        if (!password.equals(repassword)) {
-            request.setAttribute("repasswordError", "Mật khẩu không khớp!");
-            hasError = true;
-        } //Email existed
-        if (UserDB.getUser(email) != null) {
-            request.setAttribute("emailError", "Email đã tồn tại!");
-            hasError = true;
+        //Role
+        if ("Guest".equals(roleString)) {
+            role = 1;
+        } else if ("Admin".equals(roleString)) {
+            role = 2;
         }
+            boolean hasError = false;
+            //Password and Repassword not match
+            if (!password.equals(repassword)) {
+                request.setAttribute("repasswordError", "Mật khẩu không khớp!");
+                hasError = true;
+            } //Email existed
+            if (UserDB.getUser(email) != null) {
+                request.setAttribute("emailError", "Email đã tồn tại!");
+                hasError = true;
+            }
 
-        //Has Error
-        if (hasError) {
+            //Has Error
+            if (hasError) {
+                request.getRequestDispatcher("full_register.jsp").forward(request, response);
+            }
+
+            // Create a new User object with role set to 1
+            User u = new User(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address,role);
+            // Insert the user into the database
+            boolean success = UserDB.insertUser(u);
+            if (success) {
+                request.setAttribute("registerStatus", "Đăng ký thành công!");
+            } else {
+                request.setAttribute("registerStatus", "Đăng ký không thành công!");
+            }
+
+            // Always send redirect back to register page
             request.getRequestDispatcher("full_register.jsp").forward(request, response);
         }
 
-        // Create a new User object with role set to 1
-        User u = new User(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address);
-        u.setRole(1); // Set the role to 1
-
-        // Insert the user into the database
-        boolean success = UserDB.insertCustomer(u);
-        if (success) {
-            request.setAttribute("registerStatus", "Đăng ký thành công!");
-        } else {
-            request.setAttribute("registerStatus", "Đăng ký không thành công!");
-        }
-
-        // Always send redirect back to register page
-        request.getRequestDispatcher("full_register.jsp").forward(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }

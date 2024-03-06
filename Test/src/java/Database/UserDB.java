@@ -61,10 +61,10 @@ public class UserDB implements DatabaseInfo {
         return null;
     }
 
-    public static boolean insertCustomer(User u) {
+    public static boolean insertUser(User u) {
         Connection con = getConnect();
         try {
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // Set parameters
             pstmt.setString(1, u.getName());
@@ -83,6 +83,7 @@ public class UserDB implements DatabaseInfo {
             } else {
                 pstmt.setString(8, u.getAddress());
             }
+            pstmt.setInt(9, u.getRole());
 
             // Execute the SQL statement
             int rowsInserted = pstmt.executeUpdate();

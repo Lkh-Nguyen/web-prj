@@ -17,7 +17,9 @@ INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Passwor
 VALUES 
 ('John Doe', 'Male', '1990-05-15', '123456789012', '1234567890', 'john@example.com', 'password123', '123 Main St, Cityville', 1),
 ('Jane Smith', 'Female', '1985-08-20', '987654321098', '0987654321', 'jane@example.com', 'securepassword', '456 Elm St, Townsville', 1),
-('Alice Johnson', 'Female', '1992-10-08', '456789012345', '5551234567', 'alice@example.com', 'strongPassword123', '789 Oak St, Villagetown', 2);
+('Alice Johnson', 'Female', '1992-10-08', '456789012345', '5551234567', 'alice@example.com', 'strongPassword123', '789 Oak St, Villagetown', 2),
+('Hoàng Công Minh', 'Male', '2004-09-23', '046204001781', '0763905056', 'congminh23092004@gmail.com', NULL, '23092004', 2),
+('Meabu', 'Male', '2004-09-23', NULL, '0763905056', 'never1sts@gmail.com', 'bin123456', NULL, 1);
 
 CREATE TABLE Film (
     Id INT IDENTITY(1,1) PRIMARY KEY,

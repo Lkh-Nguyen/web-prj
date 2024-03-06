@@ -1,7 +1,7 @@
-    <%-- 
-    Document   : register
-    Created on : Jan 28, 2024, 10:03:26 PM
-    Author     : HELLO
+<%-- 
+Document   : register
+Created on : Jan 28, 2024, 10:03:26 PM
+Author     : HELLO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -50,7 +50,7 @@
                         <!-- Receive error message here -->
                         <div class="col-md-4 register">
                             <p>Email</p>
-                           <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${param.email}">
+                            <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${param.email}">
                             <h5 style="color:red">${requestScope.emailError}</h5>
                         </div>
                     </div>
@@ -65,11 +65,27 @@
                             <h5 style="color:red">${requestScope.repasswordError}</h5>
                         </div>
                     </div>
-
-                    <div class="address_register">
-                        <p>Địa Chỉ</p>
-                        <textarea id="address" name="address" rows="4" cols="31" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="address_register">
+                                <p>Địa Chỉ</p>
+                                <textarea id="address" name="address" rows="4" cols="31" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="col-md-12 register_radio">
+                                <p>Vai Trò</p>
+                                <label class="radio-container">
+                                    <input type="radio" name="role" value="Guest" ${param.role == null || param.role == 'Guest' ? 'checked' : ''}>Guest
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="role" value="Admin" ${param.role == 'Admin' ? 'checked' : ''}>Admin 
+                                    <span class="checkmark"></span>
+                                </label>         
+                            </div>
+                        </div>
+                    </div>                   
                     <div class="row">
                         <div class="checkbox">
                             <label> <input type="checkbox" name="check" required>Tôi đã đọc và đồng ý với các <a href="#">điều khoản</a></label>
@@ -80,6 +96,7 @@
                     </div>
                     <h5 style="color:red">${requestScope.registerStatus}</h5>
                 </div>
+
             </form>
         </div>
     </body>

@@ -41,6 +41,11 @@
                             <td class="listName1"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
                             <td class="listIcon1"><a href="historyOnline"><i class='bx bx-history' ></i></a></td>
                         </tr>
+                        <tr class="list1">
+                            <td class="listName1"><a href="adminFunction">CHỨC NĂNG ADMIN </a></td>
+                            <td class="listIcon1"><a href="adminFunction"><i class='bx bx-data'></i></a></td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -82,7 +87,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-4 update">
                                 <p>Email</p>
-<input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${user.email}" readonly>
+                                <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${user.email}" readonly>
                             </div>
                         </div>
                         <div class ="row">
