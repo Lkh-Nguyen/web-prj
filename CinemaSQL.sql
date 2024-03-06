@@ -104,10 +104,18 @@ VALUES
 	N'Đoàn Nhất Trung',
 	N'Phụ đề Tiếng Việt'
 	);
+
 CREATE TABLE Screen (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name NVARCHAR(64) NOT NULL UNIQUE
 );
+
+INSERT INTO Screen (Name)
+VALUES
+    ('Screen 1'),
+    ('Screen 2'),
+    ('Screen 3'),
+    ('Screen 4');
 
 CREATE TABLE ScreenSeat (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -117,18 +125,75 @@ CREATE TABLE ScreenSeat (
     CONSTRAINT UC_ScreenSeat_Name UNIQUE (Name, ScreenId)
 );
 
+-- Insert seats for Screen 1
+INSERT INTO ScreenSeat (Name, ScreenId)
+SELECT CONCAT(ColumnLetter, Number) AS Name, 1 AS ScreenId
+FROM (
+    SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
+    FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
+    CROSS JOIN (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Ones(Number)
+) AS Seats;
+
+-- Insert seats for Screen 2
+INSERT INTO ScreenSeat (Name, ScreenId)
+SELECT CONCAT(ColumnLetter, Number) AS Name, 2 AS ScreenId
+FROM (
+    SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
+    FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
+    CROSS JOIN (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Ones(Number)
+) AS Seats;
+
+-- Insert seats for Screen 3
+INSERT INTO ScreenSeat (Name, ScreenId)
+SELECT CONCAT(ColumnLetter, Number) AS Name, 3 AS ScreenId
+FROM (
+    SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
+    FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
+    CROSS JOIN (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Ones(Number)
+) AS Seats;
+
+-- Insert seats for Screen 4
+INSERT INTO ScreenSeat (Name, ScreenId)
+SELECT CONCAT(ColumnLetter, Number) AS Name, 4 AS ScreenId
+FROM (
+    SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
+    FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
+    CROSS JOIN (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Ones(Number)
+) AS Seats;
+
+
+
+CREATE TABLE Slot (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    startTime TIME NOT NULL,
+    endTime TIME NOT NULL
+);
+
+INSERT INTO Slot (startTime, endTime)
+VALUES
+    ('09:00', '10:30'),
+    ('10:30', '12:00'),
+    ('13:00', '14:30'),
+    ('15:00', '16:30');
 
 CREATE TABLE FilmDetail (
     Id INT PRIMARY KEY IDENTITY(1,1),
     ScreenId INT NOT NULL,
     FilmId INT NOT NULL,
-    FilmSlot INT NOT NULL,
+    FilmSlotId INT NOT NULL,
     MovieDate DATE NOT NULL,
     FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
     FOREIGN KEY (FilmId) REFERENCES Film (Id),
-    CONSTRAINT UC_FilmDetail UNIQUE (ScreenId, FilmSlot, MovieDate) -- Unique constraint to ensure a film can't be shown on the same screen, slot, and date
+    FOREIGN KEY (FilmSlotId) REFERENCES Slot (Id),
+    CONSTRAINT UC_FilmDetail UNIQUE (ScreenId, FilmSlotId, MovieDate) -- Unique constraint to ensure a film can't be shown on the same screen, slot, and date
 );
 
+INSERT INTO FilmDetail (ScreenId, FilmId, FilmSlotId, MovieDate)
+VALUES 
+    (1, 1, 1, '2024-03-06'), -- Screen 1 showing Film 1 on Slot 1 on 2024-03-06
+    (2, 2, 2, '2024-03-06'), -- Screen 2 showing Film 2 on Slot 2 on 2024-03-06
+    (3, 3, 3, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
+    (4, 4, 4, '2024-03-06'); -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
 
 CREATE TABLE Ticket (
     Id INT IDENTITY(1,1) PRIMARY KEY,

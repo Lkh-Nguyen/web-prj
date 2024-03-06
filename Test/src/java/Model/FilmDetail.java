@@ -6,10 +6,10 @@ public class FilmDetail {
     private int id;
     private Screen screen;
     private Film film;
-    private int filmSlot;
+    private Slot filmSlot; // Change type to Slot
     private Date movieDate;
 
-    public FilmDetail(int id, Screen screen, Film film, int filmSlot, Date movieDate) {
+    public FilmDetail(int id, Screen screen, Film film, Slot filmSlot, Date movieDate) {
         this.id = id;
         this.screen = screen;
         this.film = film;
@@ -45,11 +45,11 @@ public class FilmDetail {
         this.film = film;
     }
 
-    public int getFilmSlot() {
+    public Slot getFilmSlot() { // Change return type to Slot
         return filmSlot;
     }
 
-    public void setFilmSlot(int filmSlot) {
+    public void setFilmSlot(Slot filmSlot) { // Change parameter type to Slot
         this.filmSlot = filmSlot;
     }
 
