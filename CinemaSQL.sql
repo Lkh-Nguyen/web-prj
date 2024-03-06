@@ -30,8 +30,8 @@ CREATE TABLE Film (
     Detail NVARCHAR(MAX) NOT NULL,
     Trailer NVARCHAR(MAX),
     Rate NVARCHAR(50) NOT NULL,
-	[language] NVARCHAR(MAX) NOT NULL,
 	director NVARCHAR(MAX) NOT NULL,
+	[language] NVARCHAR(MAX) NOT NULL,
 );
 
 INSERT INTO Film
@@ -43,10 +43,10 @@ VALUES
 	'2024-02-10', 
 	N'Phương Anh Đào, Tuấn Trần, Trấn Thành, Hồng Đào, Uyển n, Ngọc Giàu, Việt Anh, Quốc Khánh, Quỳnh Lý, Khả Như, Anh Đức, Thanh Hằng, Ngọc Nga, Lộ Lộ, Kiều Linh, Ngọc Nguyễn, Quỳnh Anh, Anh Thư.',
 	N'MAI xoay quanh câu chuyện về cuộc đời của một người phụ nữ cùng tên với bộ phim. Trên First-look Poster, Phương Anh Đào tạo ấn tượng mạnh với cái nhìn tĩnh lặng, xuyên thấu, đặc biệt, trên bờ môi nữ diễn viên là hình ảnh cô đang nằm nghiêng trên mặt nước. Được phủ một màn sương mờ ảo, poster đậm chất nghệ thuật của Mai gây tò mò với lời tựa: “Quá khứ chưa ngủ yên, ngày mai liệu sẽ đến?”.',
-	'https://www.youtube.com/embed/NP8yQ2pU8qg',
+	'https://www.youtube.com/embed/VweAKEjYw8c',
 	'C18',
 	N'Trấn Thành',
-	N'Phụ đề Tiếng Anh',
+	N'Phụ đề Tiếng Anh'
 	);
 INSERT INTO Film
 VALUES 
@@ -105,7 +105,7 @@ VALUES
 	N'Phụ đề Tiếng Việt'
 	);
 CREATE TABLE Screen (
-    Id INT PRIMARY KEY ID	ENTITY(1,1),
+    Id INT PRIMARY KEY IDENTITY(1,1),
     Name NVARCHAR(64) NOT NULL UNIQUE
 );
 
