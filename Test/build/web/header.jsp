@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/header.css">
-        
         <title>JSP Page</title>
     </head>
     <body>
@@ -36,7 +35,7 @@
                             </div>
                             <div class="collapse navbar-collapse row main-nav">
                                 <ul class="nav navbar-nav dropdown col-md-8 sub-nav">
-                                    <li class="dropdown"><a class="dropdown-toggle" href="#">LỊCH CHIẾU</a></li>
+                                    <li class="dropdown"><a class="dropdown-toggle" href="full_film_calendar.jsp">LỊCH CHIẾU</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" href="FilmServlet">PHIM</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" href="#">ƯU ĐÃI</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" href="#">TIN TỨC PHIM</a></li>
