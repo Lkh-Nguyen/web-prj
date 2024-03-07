@@ -9,6 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="Model.FilmDetail"%>
 <%@page import="Database.FilmDetailDB"%>
+<%@page import="Database.TicketDB"%>
 <%
     // Fetch filmDetailID from request parameter
     int filmDetailID = Integer.parseInt(request.getParameter("fdID"));
@@ -17,6 +18,7 @@
     FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID);
     // Set filmDetail as a request attribute for further use
     request.setAttribute("filmDetail", filmDetail);
+    List<String> bookedSeats = TicketDB.getBookedSeats(filmDetailID);
 %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +30,12 @@
 
     </head>
     <body>
+        <h2>Booked Seats:</h2>
+        <ul>
+            <% for (String seat : bookedSeats) { %>
+            <li><%= seat %></li>
+                <% } %>
+        </ul>     
         <div class="full_seat">
             <h1 id="choose_seat">CHỌN GHẾ</h1>
             <div class="row">

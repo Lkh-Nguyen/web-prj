@@ -249,6 +249,10 @@ CREATE TABLE Bill (
     FOREIGN KEY (UserId) REFERENCES [User](Id)
 );
 
+INSERT INTO Bill (UserId, Date, TotalPrice)
+VALUES
+(1, GETDATE(), 100.00); -- Assuming UserId is 1 and TotalPrice is 100.00
+
 CREATE TABLE Ticket (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     BillId INT NOT NULL,
@@ -259,6 +263,14 @@ CREATE TABLE Ticket (
     FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id),
     CONSTRAINT UC_Ticket UNIQUE (FilmDetailId, ScreenSeatId)
 );
+
+INSERT INTO Ticket (BillId, FilmDetailId, ScreenSeatId)
+VALUES
+(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'A1')),
+(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'A2')),
+(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'B3')),
+(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'C4')),
+(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'D5'));
 
 
 
