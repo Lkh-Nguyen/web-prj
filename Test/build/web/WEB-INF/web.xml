@@ -45,10 +45,6 @@
         <servlet-class>Controller.FilmServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FilmDetailServlet</servlet-name>
-        <servlet-class>Controller.FilmDetailServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminFunctionServlet</servlet-name>
         <servlet-class>Controller.AdminFunctionServlet</servlet-class>
     </servlet>
@@ -90,11 +86,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FilmServlet</servlet-name>
-        <url-pattern>/FilmServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FilmDetailServlet</servlet-name>
-        <url-pattern>/FilmDetailServlet</url-pattern>
+        <url-pattern>/film</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminFunctionServlet</servlet-name>

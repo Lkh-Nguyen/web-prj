@@ -59,9 +59,17 @@ public class FilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Film> list = FilmDB.getAllFilms();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("full_film.jsp").forward(request, response);
+        String idString = request.getParameter("id");
+        if (idString==null){
+            List<Film> list = FilmDB.getAllFilms();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("full_film.jsp").forward(request, response);
+        }else{
+            int id = Integer.parseInt(idString);
+            Film film = FilmDB.getFilm(id);
+            request.setAttribute("film", film);
+            request.getRequestDispatcher("full_film_detail.jsp").forward(request, response);
+        }
     }
 
     /**

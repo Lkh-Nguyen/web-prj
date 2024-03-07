@@ -6,6 +6,18 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="Model.FilmDetail"%>
+<%@page import="Database.FilmDetailDB"%>
+<%
+    // Fetch filmDetailID from request parameter
+    int filmDetailID = Integer.parseInt(request.getParameter("fdID"));
+
+    // Retrieve FilmDetail object from the database
+    FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID);
+    // Set filmDetail as a request attribute for further use
+    request.setAttribute("filmDetail", filmDetail);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,96 +25,96 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-       
+
     </head>
     <body>
         <div class="full_seat">
             <h1 id="choose_seat">CHỌN GHẾ</h1>
             <div class="row">
                 <div class="col-md-8 chair_left">
-                        <div class="screen">
-                            <p style="padding-top: 2px">Màn Hình</p>
-                        </div>
-                            <c:forEach var="i" begin="1" end="10" step="1">
-                                <div class="seats">
+                    <div class="screen">
+                        <p style="padding-top: 2px">Màn Hình</p>
+                    </div>
+                    <c:forEach var="i" begin="1" end="10" step="1">
+                        <div class="seats">
+                            <c:choose>
+                                <c:when test="${i == 1}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">A</b>
+                                </c:when>
+                                <c:when test="${i == 2}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">B</b>
+                                </c:when>
+                                <c:when test="${i == 3}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">C</b>
+                                </c:when>
+                                <c:when test="${i == 4}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">D</b>
+                                </c:when>
+                                <c:when test="${i == 5}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">E</b>
+                                </c:when>
+                                <c:when test="${i == 6}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">F</b>
+                                </c:when>
+                                <c:when test="${i == 7}">
+                                    <b style="margin-top:  12px;padding-right: 9px;font-size: 15px">G</b>
+                                </c:when>
+                                <c:when test="${i == 8}">
+                                    <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">H</b>
+                                </c:when>
+                                <c:when test="${i == 9}">
+                                    <b style="margin-top:  12px;padding-right: 16px;font-size: 15px">I</b>
+                                </c:when>
+                                <c:when test="${i == 10}">
+                                    <b style="margin-top:  12px;padding-right: 11px;font-size: 15px">J</b>
+                                </c:when>
+                            </c:choose>
+                            <c:forEach var="j" begin="1" end="10" step="1">
                                 <c:choose>
                                     <c:when test="${i == 1}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">A</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'A${j}')">A${j}</div>
                                     </c:when>
                                     <c:when test="${i == 2}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">B</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'B${j}')">B${j}</div>
                                     </c:when>
                                     <c:when test="${i == 3}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">C</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'C${j}')">C${j}</div>
                                     </c:when>
                                     <c:when test="${i == 4}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">D</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'D${j}')">D${j}</div>
                                     </c:when>
                                     <c:when test="${i == 5}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">E</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'E${j}')" >E${j}</div>
                                     </c:when>
                                     <c:when test="${i == 6}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">F</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'F${j}')">F${j}</div>
                                     </c:when>
                                     <c:when test="${i == 7}">
-                                        <b style="margin-top:  12px;padding-right: 9px;font-size: 15px">G</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'G${j}')">G${j}</div>
                                     </c:when>
                                     <c:when test="${i == 8}">
-                                        <b style="margin-top:  12px;padding-right: 10px;font-size: 15px">H</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'H${j}')">H${j}</div>
                                     </c:when>
                                     <c:when test="${i == 9}">
-                                        <b style="margin-top:  12px;padding-right: 16px;font-size: 15px">I</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'I${j}')">I${j}</div>
                                     </c:when>
                                     <c:when test="${i == 10}">
-                                        <b style="margin-top:  12px;padding-right: 11px;font-size: 15px">J</b>
+                                        <div class="seat" onclick="toggleSeat(this, 'J${j}')">J${j}</div>
                                     </c:when>
                                 </c:choose>
-                                <c:forEach var="j" begin="1" end="10" step="1">
-                                    <c:choose>
-                                        <c:when test="${i == 1}">
-                                            <div class="seat" onclick="toggleSeat(this, 'A${j}')">A${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 2}">
-                                            <div class="seat" onclick="toggleSeat(this, 'B${j}')">B${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 3}">
-                                            <div class="seat" onclick="toggleSeat(this, 'C${j}')">C${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 4}">
-                                            <div class="seat" onclick="toggleSeat(this, 'D${j}')">D${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 5}">
-                                            <div class="seat" onclick="toggleSeat(this, 'E${j}')" >E${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 6}">
-                                            <div class="seat" onclick="toggleSeat(this, 'F${j}')">F${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 7}">
-                                            <div class="seat" onclick="toggleSeat(this, 'G${j}')">G${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 8}">
-                                            <div class="seat" onclick="toggleSeat(this, 'H${j}')">H${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 9}">
-                                            <div class="seat" onclick="toggleSeat(this, 'I${j}')">I${j}</div>
-                                        </c:when>
-                                        <c:when test="${i == 10}">
-                                            <div class="seat" onclick="toggleSeat(this, 'J${j}')">J${j}</div>
-                                        </c:when>
-                                    </c:choose>
-                                </c:forEach>
-                                </div>
                             </c:forEach>
+                        </div>
+                    </c:forEach>
                     <form action="" method="">
                         <input type="hidden" name="listSeat" value="" id="listSeat">
                         <input type="submit" value="Đặt vé" id="bt_datve">
                     </form>
                 </div>
                 <div class="col-md-3 chair_right">
-                    <img src="nameFilm/mai.jpg">
-                    <p>Phim: <b> BÀ THÍM BÁO THÙ (T16)</b></p>
-                    <p>Ngày: <b> 06/03/2024</b></p>
-                    <p>Thời gian: <b> 19:00-20:52</b></p>
+                    <img src="${filmDetail.film.url}">
+                    <p>Phim: <b><c:out value="${filmDetail.film.name}" /></b></p>
+                    <p>Ngày: <b><c:out value="${filmDetail.movieDate}" /></b></p>
+                    <p>Thời gian: <b>${filmDetail.getFilmSlot().getStartTime()} - ${filmDetail.getFilmSlot().getEndTime()}</b></p>
                     <p>Ghế: <b id="string_seat"></b></p>
                     <p>Số vé: <b id="number_ve">0</b> </p>
                     <p>Tổng tiền: <b id="sum_money">0</b> VNĐ</p>
@@ -126,36 +138,36 @@
                 <a href=""><i class='bx bx-arrow-back'></i> Đổi suất chiếu</a>
             </div>
         </div>
-<script>
-  const selectedSeats = [];
+        <script>
+            const selectedSeats = [];
 
-  function toggleSeat(seatElement, seatLabel) {
-    if (seatElement.classList.contains('selected')) {
-      const index = selectedSeats.indexOf(seatLabel);
-      if (index !== -1) {
-        selectedSeats.splice(index, 1);
-      }
-    } else {
-      selectedSeats.push(seatLabel);
-    }
+            function toggleSeat(seatElement, seatLabel) {
+                if (seatElement.classList.contains('selected')) {
+                    const index = selectedSeats.indexOf(seatLabel);
+                    if (index !== -1) {
+                        selectedSeats.splice(index, 1);
+                    }
+                } else {
+                    selectedSeats.push(seatLabel);
+                }
 
-    seatElement.classList.toggle('selected');
-    updateSelectedSeatsInfo();
-  }
+                seatElement.classList.toggle('selected');
+                updateSelectedSeatsInfo();
+            }
 
-  function updateSelectedSeatsInfo() {
-    const string_seat = document.getElementById('string_seat');
-    string_seat.innerHTML = selectedSeats;
-    var number_ve = document.getElementById("number_ve");
-    number_ve.innerHTML = selectedSeats.length;
-    var sum_money = document.getElementById("sum_money");
-    var money = selectedSeats.length * 45000;
-    sum_money.innerHTML = money;
-    var listSeat = document.getElementById("listSeat");
-    listSeat.value= selectedSeats;
-  }
-  
+            function updateSelectedSeatsInfo() {
+                const string_seat = document.getElementById('string_seat');
+                string_seat.innerHTML = selectedSeats;
+                var number_ve = document.getElementById("number_ve");
+                number_ve.innerHTML = selectedSeats.length;
+                var sum_money = document.getElementById("sum_money");
+                var money = selectedSeats.length * 45000;
+                sum_money.innerHTML = money;
+                var listSeat = document.getElementById("listSeat");
+                listSeat.value = selectedSeats;
+            }
 
-</script>
+
+        </script>
     </body>
 </html>

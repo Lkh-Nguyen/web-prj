@@ -18,7 +18,7 @@ VALUES
 ('John Doe', 'Male', '1990-05-15', '123456789012', '1234567890', 'john@example.com', 'password123', '123 Main St, Cityville', 1),
 ('Jane Smith', 'Female', '1985-08-20', '987654321098', '0987654321', 'jane@example.com', 'securepassword', '456 Elm St, Townsville', 1),
 ('Alice Johnson', 'Female', '1992-10-08', '456789012345', '5551234567', 'alice@example.com', 'strongPassword123', '789 Oak St, Villagetown', 2),
-('Hoàng Công Minh', 'Male', '2004-09-23', '046204001781', '0763905056', 'congminh23092004@gmail.com', NULL, '23092004', 2),
+('Hoàng Công Minh', 'Male', '2004-09-23', '046204001781', '0763905056', 'congminh23092004@gmail.com','23092004',NULL, 2),
 ('Meabu', 'Male', '2004-09-23', NULL, '0763905056', 'never1sts@gmail.com', 'bin123456', NULL, 1);
 
 CREATE TABLE Film (
@@ -122,14 +122,27 @@ VALUES
 CREATE TABLE ScreenSeat (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,
+    Type NVARCHAR(50) NOT NULL, -- Type of the seat (e.g., double, vip, standard)
+    Price DECIMAL(10, 2) NOT NULL, -- Price of the seat
     ScreenId INT NOT NULL,
     FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
     CONSTRAINT UC_ScreenSeat_Name UNIQUE (Name, ScreenId)
 );
 
+
 -- Insert seats for Screen 1
-INSERT INTO ScreenSeat (Name, ScreenId)
-SELECT CONCAT(ColumnLetter, Number) AS Name, 1 AS ScreenId
+INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
+SELECT 
+    CONCAT(ColumnLetter, Number) AS Name,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        ELSE 'Standard'
+    END AS Type,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        ELSE 45000
+    END AS Price,
+    1 AS ScreenId
 FROM (
     SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
     FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
@@ -137,8 +150,18 @@ FROM (
 ) AS Seats;
 
 -- Insert seats for Screen 2
-INSERT INTO ScreenSeat (Name, ScreenId)
-SELECT CONCAT(ColumnLetter, Number) AS Name, 2 AS ScreenId
+INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
+SELECT 
+    CONCAT(ColumnLetter, Number) AS Name,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        ELSE 'Standard'
+    END AS Type,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        ELSE 45000
+    END AS Price,
+    2 AS ScreenId
 FROM (
     SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
     FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
@@ -146,8 +169,18 @@ FROM (
 ) AS Seats;
 
 -- Insert seats for Screen 3
-INSERT INTO ScreenSeat (Name, ScreenId)
-SELECT CONCAT(ColumnLetter, Number) AS Name, 3 AS ScreenId
+INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
+SELECT 
+    CONCAT(ColumnLetter, Number) AS Name,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        ELSE 'Standard'
+    END AS Type,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        ELSE 45000
+    END AS Price,
+    3 AS ScreenId
 FROM (
     SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
     FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
@@ -155,13 +188,24 @@ FROM (
 ) AS Seats;
 
 -- Insert seats for Screen 4
-INSERT INTO ScreenSeat (Name, ScreenId)
-SELECT CONCAT(ColumnLetter, Number) AS Name, 4 AS ScreenId
+INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
+SELECT 
+    CONCAT(ColumnLetter, Number) AS Name,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        ELSE 'Standard'
+    END AS Type,
+    CASE 
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        ELSE 45000
+    END AS Price,
+    4 AS ScreenId
 FROM (
     SELECT CHAR(64 + Ones.Number) AS ColumnLetter, Tens.Number
     FROM (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Tens(Number)
     CROSS JOIN (VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS Ones(Number)
 ) AS Seats;
+
 
 
 
@@ -197,18 +241,27 @@ VALUES
     (3, 3, 3, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
     (4, 4, 4, '2024-03-06'); -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
 
-CREATE TABLE Ticket (
+CREATE TABLE Bill (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     UserId INT NOT NULL,
-    Price FLOAT NOT NULL,
     Date DATE NOT NULL,
+    TotalPrice FLOAT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES [User](Id)
+);
+
+CREATE TABLE Ticket (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    BillId INT NOT NULL,
     FilmDetailId INT NOT NULL,
     ScreenSeatId INT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES [User](Id),
+    FOREIGN KEY (BillId) REFERENCES Bill(Id),
     FOREIGN KEY (FilmDetailId) REFERENCES FilmDetail(Id),
     FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id),
     CONSTRAINT UC_Ticket UNIQUE (FilmDetailId, ScreenSeatId)
 );
+
+
+
 
 
 

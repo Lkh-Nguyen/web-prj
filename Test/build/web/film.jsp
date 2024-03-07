@@ -25,7 +25,7 @@
                     </c:if>
                     <c:set var="i" value="${i+1}"/>
                     <div class="col-md-3 infor">
-                        <a href="FilmDetailServlet?id=${c.id}"><img src="${c.url}" alt=""></a>
+                        <a href="film?id=${c.id}"><img src="${c.url}" alt=""></a>
                         <h1>${c.name}</h1>
                         
                         <p style="margin-bottom: 1px ;">THỂ LOẠI: ${c.type}</br>

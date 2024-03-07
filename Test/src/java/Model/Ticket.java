@@ -1,33 +1,22 @@
 package Model;
 
-import java.sql.Date;
-
 public class Ticket {
     private int id;
-    private User user;
-    private float price;
-    private Date date; // Changed from tDate to date
+    private Bill bill;
     private FilmDetail filmDetail;
     private ScreenSeat screenSeat;
 
-    public Ticket(User user, float price, Date date, FilmDetail filmDetail, ScreenSeat screenSeat) {
-        this.user = user;
-        this.price = price;
-        this.date = date;
+    public Ticket(Bill bill, FilmDetail filmDetail, ScreenSeat screenSeat) {
+        this.bill = bill;
         this.filmDetail = filmDetail;
         this.screenSeat = screenSeat;
     }
 
-    public Ticket(int id, User user, float price, Date date, FilmDetail filmDetail, ScreenSeat screenSeat) {
+    public Ticket(int id, Bill bill, FilmDetail filmDetail, ScreenSeat screenSeat) {
         this.id = id;
-        this.user = user;
-        this.price = price;
-        this.date = date;
+        this.bill = bill;
         this.filmDetail = filmDetail;
         this.screenSeat = screenSeat;
-    }
-
-    public Ticket() {
     }
 
     // Getters and Setters
@@ -39,28 +28,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Bill getBill() {
+        return bill;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     public FilmDetail getFilmDetail() {
@@ -83,9 +56,7 @@ public class Ticket {
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
-                ", user=" + user +
-                ", price=" + price +
-                ", date=" + date +
+                ", bill=" + bill +
                 ", filmDetail=" + filmDetail +
                 ", screenSeat=" + screenSeat +
                 '}';

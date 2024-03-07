@@ -14,6 +14,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ASUS
@@ -37,7 +40,7 @@ public class BookingTicketServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookingTicketServlet</title>");            
+            out.println("<title>Servlet BookingTicketServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BookingTicketServlet at " + request.getContextPath() + "</h1>");
@@ -81,15 +84,30 @@ public class BookingTicketServlet extends HttpServlet {
         Date currentDate = new Date(System.currentTimeMillis());
         //Get film detail
         int filmDetailID = Integer.parseInt(request.getParameter("fdid"));
-        FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID);
+        FilmDetail filmDetail = (FilmDetail) request.getAttribute("filmDetail");
         //Get seat
         String[] listSeat = request.getParameter("listSeat").split(",");
         Screen screen = filmDetail.getScreen();
-        for (String seatName:listSeat){
-            ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(seatName,screen);
-            Ticket t = new Ticket(user, price, currentDate, filmDetail, screenSeat);
-            TicketDB.insertTicket(t);
+
+        // Create a new bill first
+        Bill bill = new Bill(currentDate, 0.0f, user); // Initial total price is 0.0
+        BillDB.insertBill(bill); // Insert the bill into the database
+
+        // Retrieve the ID of the newly inserted bill
+        int newBillId = BillDB.getLastInsertedBillId(); // Implement this method in BillDB
+
+        // Update the bill ID for all tickets and add to arrayList
+        List<Ticket> ticketList = new ArrayList<>();
+        for (String seatName : listSeat) {
+            ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(seatName, screen.getId());
+            Ticket t = new Ticket(bill, filmDetail, screenSeat);
+            ticketList.add(t);
         }
+        
+        //Send ticket list for user to buy more service
+        request.setAttribute("ticketList",ticketList);
+        
+        request.getRequestDispatcher("").forward(request, response);
     }
 
     /**
