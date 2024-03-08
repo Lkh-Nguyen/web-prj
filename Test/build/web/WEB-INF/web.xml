@@ -4,10 +4,34 @@
         <filter-name>HomeFilter</filter-name>
         <filter-class>Filter.HomeFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>Filter.LoginFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>BookingFilter</filter-name>
+        <filter-class>Filter.BookingFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/home.jsp</url-pattern>
+    </filter-mapping>    
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/updateAccount</url-pattern>
+        <url-pattern>/changePass</url-pattern>
+        <url-pattern>/inforCard</url-pattern>
+        <url-pattern>/historyOnline</url-pattern>
+        <url-pattern>/changePass</url-pattern>
+        <url-pattern>/adminFunction</url-pattern>
+        <url-pattern>/booking</url-pattern>
+    </filter-mapping>    
+    <filter-mapping>
+        <filter-name>BookingFilter</filter-name>
+        <url-pattern>/booking</url-pattern>
     </filter-mapping>
+
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Controller.LoginServlet</servlet-class>
