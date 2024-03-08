@@ -99,10 +99,24 @@
                                         </c:choose>
                                     </c:when>
                                     <c:when test="${i == 7}">
-                                        <div class="seat" onclick="toggleSeat(this, 'G${j}')" id="G${j}">G${j}</div>
+                                        <c:choose>
+                                            <c:when test="${j>=3 && j<=8}">
+                                                <div class="seat4" onclick="toggleSeat1(this, 'G${j}')" id="G${j}">G${j}</div>
+                                            </c:when>
+                                            <c:when test="${j<=2 || j>8}">
+                                                <div class="seat" onclick="toggleSeat(this, 'G${j}')" id="G${j}">G${j}</div>
+                                            </c:when>
+                                        </c:choose>
                                     </c:when>
                                     <c:when test="${i == 8}">
-                                        <div class="seat" onclick="toggleSeat(this, 'H${j}')" id="H${j}">H${j}</div>
+                                        <c:choose>
+                                            <c:when test="${j>=3 && j<=8}">
+                                                <div class="seat4" onclick="toggleSeat1(this, 'H${j}')" id="H${j}">H${j}</div>
+                                            </c:when>
+                                            <c:when test="${j<=2 || j>8}">
+                                                <div class="seat" onclick="toggleSeat(this, 'H${j}')" id="H${j}">H${j}</div>
+                                            </c:when>
+                                        </c:choose>
                                     </c:when>
                                     <c:when test="${i == 9}">
                                         <div class="seat" onclick="toggleSeat(this, 'I${j}')" id="I${j}">I${j}</div>

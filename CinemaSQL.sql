@@ -15,7 +15,7 @@
 
 INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) 
 VALUES 
-('Le Kim Hoang Nguyen', 'Male', '2004-09-23', NULL, '0763905056', 'lkh@gmail.com', '01234567', NULL, 1);
+('Le Kim Hoang Nguyen', 'Male', '2004-09-23', NULL, '0763905056', 'lkh@gmail.com', '01234567', NULL, 1),
 ('John Doe', 'Male', '1990-05-15', '123456789012', '1234567890', 'john@example.com', 'password123', '123 Main St, Cityville', 1),
 ('Jane Smith', 'Female', '1985-08-20', '987654321098', '0987654321', 'jane@example.com', 'securepassword', '456 Elm St, Townsville', 1),
 ('Alice Johnson', 'Female', '1992-10-08', '456789012345', '5551234567', 'alice@example.com', 'strongPassword123', '789 Oak St, Villagetown', 2),
@@ -136,11 +136,15 @@ INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
 SELECT 
     CONCAT(ColumnLetter, Number) AS Name,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 'VIP'
         ELSE 'Standard'
     END AS Type,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 55000
         ELSE 45000
     END AS Price,
     1 AS ScreenId
@@ -155,11 +159,15 @@ INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
 SELECT 
     CONCAT(ColumnLetter, Number) AS Name,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 'VIP'
         ELSE 'Standard'
     END AS Type,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 55000
         ELSE 45000
     END AS Price,
     2 AS ScreenId
@@ -174,11 +182,15 @@ INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
 SELECT 
     CONCAT(ColumnLetter, Number) AS Name,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 'VIP'
         ELSE 'Standard'
     END AS Type,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 55000
         ELSE 45000
     END AS Price,
     3 AS ScreenId
@@ -193,11 +205,15 @@ INSERT INTO ScreenSeat (Name, Type, Price, ScreenId)
 SELECT 
     CONCAT(ColumnLetter, Number) AS Name,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 'VIP'
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 'VIP'
         ELSE 'Standard'
     END AS Type,
     CASE 
-        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' THEN 55000
+        WHEN CONCAT(ColumnLetter, Number) BETWEEN 'F3' AND 'F8' OR 
+             (ColumnLetter = 'G' AND Number BETWEEN 3 AND 8) OR 
+             (ColumnLetter = 'H' AND Number BETWEEN 3 AND 8) THEN 55000
         ELSE 45000
     END AS Price,
     4 AS ScreenId
@@ -213,15 +229,24 @@ FROM (
 CREATE TABLE Slot (
     id INT IDENTITY(1,1) PRIMARY KEY,
     startTime TIME NOT NULL,
-    endTime TIME NOT NULL
+    endTime TIME NOT NULL,
+    CONSTRAINT UC_StartEndTime UNIQUE (startTime, endTime)
 );
+
 
 INSERT INTO Slot (startTime, endTime)
 VALUES
     ('09:00', '10:30'),
-    ('10:30', '12:00'),
-    ('13:00', '14:30'),
-    ('15:00', '16:30');
+    ('10:15', '11:45'),
+    ('11:30', '13:00'),
+    ('12:45', '14:15'),
+    ('13:45', '15:15'),
+    ('14:45', '16:15'),
+    ('15:45', '17:15'),
+    ('16:45', '18:15'),
+    ('17:45', '19:15'),
+    ('18:45', '20:15');
+
 
 CREATE TABLE FilmDetail (
     Id INT PRIMARY KEY IDENTITY(1,1),
