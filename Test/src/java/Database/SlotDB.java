@@ -28,7 +28,7 @@ public class SlotDB implements DatabaseInfo {
                 String query = "SELECT startTime, endTime FROM Slot WHERE id = ?";
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setInt(1, slotID);
-                ResultSet rs = statement.executeQuery();
+                java.sql.ResultSet rs = statement.executeQuery();
                 if (rs.next()) {
                     LocalTime startTime = rs.getTime("startTime").toLocalTime();
                     LocalTime endTime = rs.getTime("endTime").toLocalTime();

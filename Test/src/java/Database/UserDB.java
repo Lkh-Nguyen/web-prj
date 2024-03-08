@@ -26,7 +26,7 @@ public class UserDB implements DatabaseInfo {
             User u = null;
             PreparedStatement st = con.prepareStatement("SELECT * FROM [User] WHERE Email = ?");
             st.setString(1, email);
-            ResultSet rs = st.executeQuery();
+            java.sql.ResultSet rs = st.executeQuery();
 
             if (rs.next()) {
                 u = new User();

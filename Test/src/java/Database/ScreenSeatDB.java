@@ -27,7 +27,7 @@ public class ScreenSeatDB implements DatabaseInfo {
         ScreenSeat screenSeat = null;
         Connection con = null;
         PreparedStatement pst = null;
-        ResultSet rs = null;
+        java.sql.ResultSet rs = null;
 
         try {
             con = getConnect();
@@ -69,7 +69,7 @@ public class ScreenSeatDB implements DatabaseInfo {
         List<ScreenSeat> seatList = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
-        ResultSet rs = null;
+        java.sql.ResultSet rs = null;
 
         try {
             con = getConnect();
