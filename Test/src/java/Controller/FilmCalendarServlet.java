@@ -4,24 +4,21 @@
  */
 package Controller;
 
-import Database.*;
-import Model.*;
+import Database.FilmDetailDB;
+import Model.FilmDetail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-public class BookingTicketServlet extends HttpServlet {
+public class FilmCalendarServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class BookingTicketServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookingTicketServlet</title>");
+            out.println("<title>Servlet FilmCalendarServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookingTicketServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FilmCalendarServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +58,17 @@ public class BookingTicketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String fidString = request.getParameter("fid");
+        List<FilmDetail> filmDetailList = null;
+        if (fidString == null) {
+            filmDetailList = FilmDetailDB.getFilmDetails(null, null, null, null);
+
+        } else {
+            int fid = Integer.parseInt(fidString);
+            filmDetailList = FilmDetailDB.getFilmDetails(fid, null, null, null);
+        }
+        request.setAttribute("filmDetailList", filmDetailList);
+        request.getRequestDispatcher("full_film_calendar.jsp").forward(request, response);
     }
 
     /**
@@ -75,39 +82,7 @@ public class BookingTicketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Get user ID
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        //Get price
-        float price = Float.parseFloat(request.getParameter("price"));
-        //Get current date
-        Date currentDate = new Date(System.currentTimeMillis());
-        //Get film detail
-        int filmDetailID = Integer.parseInt(request.getParameter("fdid"));
-        FilmDetail filmDetail = (FilmDetail) request.getAttribute("filmDetail");
-        //Get seat
-        String[] listSeat = request.getParameter("listSeat").split(",");
-        Screen screen = filmDetail.getScreen();
-
-        // Create a new bill first
-        Bill bill = new Bill(currentDate, 0.0f, user); // Initial total price is 0.0
-        BillDB.insertBill(bill); // Insert the bill into the database
-
-        // Retrieve the ID of the newly inserted bill
-        int newBillId = BillDB.getLastInsertedBillId(); // Implement this method in BillDB
-
-        // Update the bill ID for all tickets and add to arrayList
-        List<Ticket> ticketList = new ArrayList<>();
-        for (String seatName : listSeat) {
-            ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(seatName, screen.getId());
-            Ticket t = new Ticket(bill, filmDetail, screenSeat);
-            ticketList.add(t);
-        }
-        
-        //Send ticket list for user to buy more service
-        request.setAttribute("ticketList",ticketList);
-        
-        request.getRequestDispatcher("").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

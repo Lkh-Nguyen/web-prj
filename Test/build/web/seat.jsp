@@ -30,12 +30,6 @@
 
     </head>
     <body>
-        <h2>Booked Seats:</h2>
-        <ul>
-            <% for (String seat : bookedSeats) { %>
-            <li><%= seat %></li>
-                <% } %>
-        </ul>     
         <div class="full_seat">
             <h1 id="choose_seat">CHỌN GHẾ</h1>
             <div class="row">
@@ -80,41 +74,42 @@
                             <c:forEach var="j" begin="1" end="10" step="1">
                                 <c:choose>
                                     <c:when test="${i == 1}">
-                                        <div class="seat" onclick="toggleSeat(this, 'A${j}')">A${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'A${j}')" id="A${j}">A${j}</div>
                                     </c:when>
                                     <c:when test="${i == 2}">
-                                        <div class="seat" onclick="toggleSeat(this, 'B${j}')">B${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'B${j}')" id="B${j}">B${j}</div>
                                     </c:when>
                                     <c:when test="${i == 3}">
-                                        <div class="seat" onclick="toggleSeat(this, 'C${j}')">C${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'C${j}')" id="C${j}">C${j}</div>
                                     </c:when>
                                     <c:when test="${i == 4}">
-                                        <div class="seat" onclick="toggleSeat(this, 'D${j}')">D${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'D${j}')" id="D${j}">D${j}</div>
                                     </c:when>
                                     <c:when test="${i == 5}">
-                                        <div class="seat" onclick="toggleSeat(this, 'E${j}')" >E${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'E${j}')" id="E${j}">E${j}</div>
                                     </c:when>
                                     <c:when test="${i == 6}">
-                                        <div class="seat" onclick="toggleSeat(this, 'F${j}')">F${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'F${j}')" id="F${j}">F${j}</div>
                                     </c:when>
                                     <c:when test="${i == 7}">
-                                        <div class="seat" onclick="toggleSeat(this, 'G${j}')">G${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'G${j}')" id="G${j}">G${j}</div>
                                     </c:when>
                                     <c:when test="${i == 8}">
-                                        <div class="seat" onclick="toggleSeat(this, 'H${j}')">H${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'H${j}')" id="H${j}">H${j}</div>
                                     </c:when>
                                     <c:when test="${i == 9}">
-                                        <div class="seat" onclick="toggleSeat(this, 'I${j}')">I${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'I${j}')" id="I${j}">I${j}</div>
                                     </c:when>
                                     <c:when test="${i == 10}">
-                                        <div class="seat" onclick="toggleSeat(this, 'J${j}')">J${j}</div>
+                                        <div class="seat" onclick="toggleSeat(this, 'J${j}')" id="J${j}">J${j}</div>
                                     </c:when>
                                 </c:choose>
                             </c:forEach>
                         </div>
                     </c:forEach>
-                    <form action="" method="">
+                    <form action="booking?fdID=${param.fdID}" method="post">
                         <input type="hidden" name="listSeat" value="" id="listSeat">
+                        <input type="hidden" name="price" value="" id="price">
                         <input type="submit" value="Đặt vé" id="bt_datve">
                     </form>
                 </div>
@@ -147,6 +142,24 @@
             </div>
         </div>
         <script>
+            // Run the script when the page is loaded
+            window.onload = function () {
+                // Get the list of booked seats from JSP
+                var bookedSeats = [
+                    <% for (int i = 0; i < bookedSeats.size(); i++) { %>
+                        '<%= bookedSeats.get(i) %>'<% if (i < bookedSeats.size() - 1) { %>,<% } %>
+                    <% } %>
+                ];
+
+                // Loop through each booked seat and change its class
+                bookedSeats.forEach(function (seat) {
+                    var seatElement = document.getElementById(seat);
+                    if (seatElement) {
+                        seatElement.classList.remove('seat');
+                        seatElement.classList.add('seat3'); // Change the class to 'seat3'
+                    }
+                });
+            };
             const selectedSeats = [];
 
             function toggleSeat(seatElement, seatLabel) {
@@ -173,6 +186,8 @@
                 sum_money.innerHTML = money;
                 var listSeat = document.getElementById("listSeat");
                 listSeat.value = selectedSeats;
+                var price = document.getElementById("price");
+                price.value = money;
             }
 
 

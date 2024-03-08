@@ -68,7 +68,7 @@ Author     : HELLO
                         <button class="sub-button" onclick="showReview()">ĐÁNH GIÁ</button>
                     </div>
                 </div>
-                    <div><button class="order-btn"><a href="full_film_calendar.jsp">ĐẶT VÉ</a></button></div>
+                    <div><button class="order-btn"><a href="calendar?fid=${film.id}">ĐẶT VÉ</a></button></div> 
             </div>
             <div class="hidden-container" id="hiddenDetail">
                 <div id="detail" class="hidden1">

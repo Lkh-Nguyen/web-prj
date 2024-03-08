@@ -49,8 +49,12 @@
         <servlet-class>Controller.AdminFunctionServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BookingTicketServlet</servlet-name>
-        <servlet-class>Controller.BookingTicketServlet</servlet-class>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>Controller.BookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilmCalendarServlet</servlet-name>
+        <servlet-class>Controller.FilmCalendarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -93,7 +97,11 @@
         <url-pattern>/adminFunction</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BookingTicketServlet</servlet-name>
-        <url-pattern>/bookingTicket</url-pattern>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/booking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilmCalendarServlet</servlet-name>
+        <url-pattern>/calendar</url-pattern>
     </servlet-mapping>
 </web-app>
