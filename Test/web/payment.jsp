@@ -72,7 +72,7 @@
             background-color: orangered;
         }
         .cardForm {
-            width: 300px;
+            width: 400px;
             margin: 0 auto;
             text-align: center;
             margin-top: 20px;
