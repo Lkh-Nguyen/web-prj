@@ -61,8 +61,16 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fdid = request.getParameter("fdID");
-        request.getRequestDispatcher("full_seat.jsp?fdID=" + fdid).forward(request, response);
+        String fdIDString = request.getParameter("fdID");
+        int fdID = Integer.parseInt(fdIDString);
+        FilmDetail filmDetail = FilmDetailDB.getFilmDetail(fdID);
+        if (filmDetail == null) response.sendRedirect("home");
+        else{
+            List<String> bookedSeats = TicketDB.getBookedSeats(fdID);
+            request.setAttribute("filmDetail", filmDetail);
+            request.setAttribute("bookedSeats", bookedSeats);
+            request.getRequestDispatcher("full_seat.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -108,7 +116,7 @@ public class BookingServlet extends HttpServlet {
         //Send ticket list for user to buy more service
         request.setAttribute("ticketList",ticketList);
         
-        request.getRequestDispatcher("hello.jsp").forward(request, response);
+        request.getRequestDispatcher("full_service.jsp").forward(request, response);
     }
 
     /**

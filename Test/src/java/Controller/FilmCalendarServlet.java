@@ -61,11 +61,15 @@ public class FilmCalendarServlet extends HttpServlet {
         String fidString = request.getParameter("fid");
         List<FilmDetail> filmDetailList = null;
         if (fidString == null) {
-            filmDetailList = FilmDetailDB.getFilmDetails(null, null, null, null);
+            filmDetailList = FilmDetailDB.getFilmsFromDate(null);
 
         } else {
             int fid = Integer.parseInt(fidString);
-            filmDetailList = FilmDetailDB.getFilmDetails(fid, null, null, null);
+            filmDetailList = FilmDetailDB.getFilmsFromDate(fid);
+            if (filmDetailList.isEmpty()) {
+                response.sendRedirect("home");
+                return;
+            }
         }
         request.setAttribute("filmDetailList", filmDetailList);
         request.getRequestDispatcher("full_film_calendar.jsp").forward(request, response);

@@ -100,7 +100,7 @@
                                 start_time: movie.start_time,
                                 end_time: movie.end_time,
                                 room: movie.room,
-                                fdid: movie.fdid
+                                fdID: movie.fdID
                             });
                         } else {
                             movieGroups[movieKey] = {

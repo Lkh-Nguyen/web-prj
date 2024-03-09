@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Model.Bill;
+import Model.User;
 
 public class BillDB implements DatabaseInfo {
 
@@ -69,4 +70,50 @@ public class BillDB implements DatabaseInfo {
 
         return lastInsertedId;
     }
+    
+    public static Bill getBill(int billID) {
+        Bill bill = null;
+        Connection con = null;
+        PreparedStatement pst = null;
+        java.sql.ResultSet rs = null;
+
+        try {
+            con = getConnect();
+            String query = "SELECT * FROM Bill WHERE Id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, billID);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                // Retrieve bill details from the result set
+                java.sql.Date date = rs.getDate("Date");
+                float totalPrice = rs.getFloat("TotalPrice");
+                // Assuming you have a method to retrieve User by ID
+                // Replace getUserByID() with appropriate method
+                User user = UserDB.getUser(rs.getInt("UserID"));
+                // Create a Bill object
+                bill = new Bill(date, totalPrice, user);
+                bill.setId(billID);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            // Close resources in finally block
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
+        }
+
+        return bill;
+    }      
 }

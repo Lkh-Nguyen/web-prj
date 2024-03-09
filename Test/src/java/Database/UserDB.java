@@ -195,6 +195,47 @@ public class UserDB implements DatabaseInfo {
             }
         }
     }
+    
+    public static User getUser(int userID) {
+        Connection con = getConnect();
+        try {
+            User u = null;
+            PreparedStatement st = con.prepareStatement("SELECT * FROM [User] WHERE ID = ?");
+            st.setInt(1, userID);
+            java.sql.ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                u = new User();
+                u.setId(rs.getInt("ID"));
+                u.setName(rs.getString("Name"));
+                u.setGender(rs.getString("Gender"));
+                u.setDateOfBirth(rs.getDate("DateOfBirth"));
+                u.setCmnd(rs.getString("CMND"));
+                u.setPhoneNumber(rs.getString("PhoneNumber"));
+                u.setEmail(rs.getString("Email"));
+                u.setPassword(rs.getString("Password"));
+                u.setAddress(rs.getString("Address"));
+                u.setRole(rs.getInt("Role")); // Set the role
+            }
+
+            return u;
+        } catch (SQLException ex) {
+            // Handle exceptions appropriately (log or throw)
+            ex.printStackTrace();
+        } finally {
+            // Close resources in a finally block
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                // Handle exceptions appropriately (log or throw)
+                ex.printStackTrace();
+            }
+        }
+
+        return null;
+    }    
 
     public static void main(String[] args) {
 

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,33 +78,32 @@ public class FilmDetailDB implements DatabaseInfo {
         return filmDetail;
     }
 
-    public static List<FilmDetail> getFilmDetails(Integer filmID, Integer screenID, Integer filmSlotID, Date movieDate) {
+    public static List<FilmDetail> getFilmsFromDate(Integer fid) {
         List<FilmDetail> filmDetails = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
 
+        LocalDate today = LocalDate.now(); // Get today's date dynamically
+
         try {
             con = getConnect();
-            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM FilmDetail WHERE 1=1");
+            StringBuilder queryBuilder = new StringBuilder("SELECT * FROM FilmDetail WHERE ");
 
-            if (filmID != null) {
-                queryBuilder.append(" AND FilmId = ").append(filmID);
-            }
-            if (screenID != null) {
-                queryBuilder.append(" AND ScreenId = ").append(screenID);
-            }
-            if (filmSlotID != null) {
-                queryBuilder.append(" AND FilmSlotId = ").append(filmSlotID);
-            }
-            if (movieDate != null) {
-                queryBuilder.append(" AND MovieDate = ? ");
+            if (fid != null) {
+                queryBuilder.append("FilmId = ? ");
+            } else {
+                queryBuilder.append("MovieDate >= ? ");
             }
 
             pst = con.prepareStatement(queryBuilder.toString());
-            if (movieDate != null) {
-                pst.setDate(1, movieDate);
+
+            if (fid != null) {
+                pst.setInt(1, fid);
+            } else {
+                pst.setDate(1, Date.valueOf(today));
             }
+
             rs = pst.executeQuery();
 
             while (rs.next()) {

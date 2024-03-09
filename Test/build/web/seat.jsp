@@ -10,16 +10,7 @@
 <%@page import="Model.FilmDetail"%>
 <%@page import="Database.FilmDetailDB"%>
 <%@page import="Database.TicketDB"%>
-<%
-    // Fetch filmDetailID from request parameter
-    int filmDetailID = Integer.parseInt(request.getParameter("fdID"));
 
-    // Retrieve FilmDetail object from the database
-    FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID);
-    // Set filmDetail as a request attribute for further use
-    request.setAttribute("filmDetail", filmDetail);
-    List<String> bookedSeats = TicketDB.getBookedSeats(filmDetailID);
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -171,10 +162,11 @@
             window.onload = function () {
                 // Get the list of booked seats from JSP
                 var bookedSeats = [
-            <% for (int i = 0; i < bookedSeats.size(); i++) { %>
-                '<%= bookedSeats.get(i) %>'<% if (i < bookedSeats.size() - 1) { %>,<% } %>
-            <% } %>
+            <c:forEach var="seat" items="${bookedSeats}" varStatus="status">
+                '${seat}'<c:if test="${!status.last}">,</c:if>
+            </c:forEach>
                 ];
+
 
                 // Loop through each booked seat and change its class
                 bookedSeats.forEach(function (seat) {
