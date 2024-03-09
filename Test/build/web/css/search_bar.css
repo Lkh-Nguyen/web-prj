@@ -1,31 +1,27 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : Mar 9, 2024, 4:48:27 PM
-    Author     : DUYAN
-*/
-
 .searchBox {
     position: absolute;
-    top: 25%;
-    right:25%;
+    top: 23%;
+    right: 9%;
     transform: translate(25%, 25%);
-    background: #2f3640;
+    background: white;
+    border: solid 1px grey;
     height: 55px;
     border-radius: 40px;
     padding: 10px;
 }
 
-.searchBox:hover>.searchInput {
-    width: 240px;
+.searchBox > .searchInput {
+    width: 240px; /* Set initial width */
     padding: 0 6px;
 }
 
-.searchBox:hover>.searchButton {
+.searchBox:hover > .searchInput {
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
     background: white;
-    color: #2f3640;
+    color: red;
 }
 
 .searchButton {
@@ -47,27 +43,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     outline: none;
     float: left;
     padding: 0;
-    color: white;
+    color: black;
     font-size: 16px;
-    transition: 0.4s;
     line-height: 40px;
-    width: 0px;
 }
 
 @media screen and (max-width: 620px) {
-    .searchBox:hover>.searchInput {
+    .searchBox > .searchInput {
         width: 150px;
         padding: 0 6px;
     }
+    .searchInput {
+        transition: none; /* Remove transition on smaller screens */
+    }
 }
+
 
 .dropdown-content {
     display: none;
     position: absolute;
     top: 100%; 
-    background-color: #2f3640;
-    width: 95%;
-    max-height: 200px; 
+    border: solid 1px grey;
+    border-radius: 200px;
+    background-color: white;
+    width: 95%; 
     overflow-y: auto; 
     border-radius: 4%;
     z-index: 1;
@@ -81,10 +80,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     box-sizing: border-box;
 }
-
+.film-item{
+    border-bottom: solid 1px gray;
+}
 .dropdown-content a:hover {
     background-color: orangered;
     color: white;
 }
-
-

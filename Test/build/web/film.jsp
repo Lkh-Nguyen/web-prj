@@ -28,7 +28,7 @@
                 </button>
                 <div class="dropdown-content" id="dropdown-content">
                     <c:forEach var="film" items="${requestScope.list}">
-                        <a href="#" class="film-item">
+                        <a href="film?id=${film.id}" class="film-item">
                             <c:out value="${film.name}" />
                         </a>
                     </c:forEach>
