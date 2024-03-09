@@ -98,24 +98,25 @@ public class BookingServlet extends HttpServlet {
         String[] listSeat = request.getParameter("listSeat").split(",");
         Screen screen = filmDetail.getScreen();
 
-        // Create a new bill first
-        Bill bill = new Bill(currentDate, 0.0f, user); // Initial total price is 0.0
-        BillDB.insertBill(bill); // Insert the bill into the database
-
-        // Retrieve the ID of the newly inserted bill
-        int newBillId = BillDB.getLastInsertedBillId(); // Implement this method in BillDB
+//        // Create a new bill first
+//        Bill bill = new Bill(currentDate, 0.0f, user); // Initial total price is 0.0
+//        BillDB.insertBill(bill); // Insert the bill into the database
+//
+//        // Retrieve the ID of the newly inserted bill
+//        int newBillId = BillDB.getLastInsertedBillId(); // Implement this method in BillDB
 
         // Update the bill ID for all tickets and add to arrayList
         List<Ticket> ticketList = new ArrayList<>();
         for (String seatName : listSeat) {
             ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(seatName, screen.getId());
-            Ticket t = new Ticket(bill, filmDetail, screenSeat);
+            Ticket t = new Ticket(null, filmDetail, screenSeat);
             ticketList.add(t);
         }
         
         //Send ticket list for user to buy more service
-        request.setAttribute("ticketList",ticketList);
-        
+        session.setAttribute("ticketList",ticketList);
+        session.setAttribute("price",price);
+        session.setAttribute("filmDetail",filmDetail);
         request.getRequestDispatcher("full_service.jsp").forward(request, response);
     }
 

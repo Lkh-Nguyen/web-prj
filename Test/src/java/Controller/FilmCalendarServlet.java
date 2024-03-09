@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,17 +60,13 @@ public class FilmCalendarServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String fidString = request.getParameter("fid");
-        List<FilmDetail> filmDetailList = null;
+        List<FilmDetail> filmDetailList = new ArrayList<>();
         if (fidString == null) {
             filmDetailList = FilmDetailDB.getFilmsFromDate(null);
 
         } else {
             int fid = Integer.parseInt(fidString);
             filmDetailList = FilmDetailDB.getFilmsFromDate(fid);
-            if (filmDetailList.isEmpty()) {
-                response.sendRedirect("home");
-                return;
-            }
         }
         request.setAttribute("filmDetailList", filmDetailList);
         request.getRequestDispatcher("full_film_calendar.jsp").forward(request, response);
