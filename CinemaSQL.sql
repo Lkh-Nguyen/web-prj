@@ -457,13 +457,6 @@ CREATE TABLE Service (
     url NVARCHAR(255) NOT NULL
 );
 
-INSERT INTO Service (name, price, url)
-VALUES 
-('1 ly nước ngọt coca size L', 30000.00, 'URL_HERE'),
-('1 bắp rang bơ', 35000.00, 'URL_HERE'),
-('1 ly nước ngọt coca size L và 1 bắp rang bơ', 55000.00, 'URL_HERE'),
-('2 ly nước ngọt coca size L và 1 bắp rang bơ', 80000.00, 'URL_HERE');
-
 CREATE TABLE ServiceUsage (
     id INT IDENTITY(1,1) PRIMARY KEY,
     serviceID INT NOT NULL,
@@ -475,4 +468,11 @@ CREATE TABLE ServiceUsage (
 
 
 
+
+INSERT INTO Service (name, price, url)
+VALUES 
+(N'1 ly nước ngọt coca size L', 30000.00, 'nameService/nuoc.png'),
+(N'1 bắp rang bơ', 35000.00, 'nameService/bap.png'),
+(N'1 ly nước ngọt coca size L và 1 bắp rang bơ', 55000.00, 'nameService/combo3.png'),
+(N'2 ly nước ngọt coca size L và 1 bắp rang bơ', 80000.00, 'nameService/combo4.png');
 
