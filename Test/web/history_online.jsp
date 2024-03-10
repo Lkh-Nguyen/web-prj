@@ -135,7 +135,7 @@
                     movieElement.classList.add("movie");
 
                     movieElement.innerHTML =
-                            `<button class="button-ticket"><a href="historyTicket.html" target="_blank">
+                            `<button class="button-ticket"><a href="full_historyOnline_detail.jsp" target="_blank">
                     <div class="contain-movie">
                         <div class="movie-contain-img">
                             <img src="` + movie.image + `" alt="` + movie.title + `" class="movie-image">
