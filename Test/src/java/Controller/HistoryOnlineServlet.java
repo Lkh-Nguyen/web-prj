@@ -4,13 +4,22 @@
  */
 package Controller;
 
+import Database.BillDB;
+import Database.TicketDB;
+import Model.Bill;
+import Model.Ticket;
+import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -35,7 +44,7 @@ public class HistoryOnlineServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HistoryOnlineServlet</title>");            
+            out.println("<title>Servlet HistoryOnlineServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet HistoryOnlineServlet at " + request.getContextPath() + "</h1>");
@@ -56,6 +65,25 @@ public class HistoryOnlineServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        List<Bill> billList = BillDB.getBillsByUserID(user.getId());
+        // Create a map to associate each bill with its list of tickets
+        Map<Bill, List<Ticket>> billTicketMap = new HashMap<>();
+
+        // Iterate through each bill to fetch its associated tickets
+        for (Bill bill : billList) {
+            int billID = bill.getId();
+            // Get all tickets for the current bill
+            ArrayList<Ticket> tickets = TicketDB.getTicketsByBillID(billID);
+            // Associate the bill with its list of tickets in the map
+            billTicketMap.put(bill, tickets);
+        }
+
+        // Add billTicketMap to the request attribute
+        request.setAttribute("billTicketMap", billTicketMap);
+
+        // Forward the request to full_historyOnline.jsp
         request.getRequestDispatcher("full_historyOnline.jsp").forward(request, response);
     }
 
@@ -70,7 +98,7 @@ public class HistoryOnlineServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //Làm ở đây
     }
 
     /**

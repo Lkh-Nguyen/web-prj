@@ -61,4 +61,47 @@ public class ServiceUsageDB implements DatabaseInfo {
 
         return serviceUsages;
     }
+
+    public static void insertServiceUsage(ServiceUsage serviceUsage) {
+        try (Connection con = getConnect(); PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO ServiceUsage (serviceID, amount, billID) VALUES (?, ?, ?)")) {
+
+            ps.setInt(1, serviceUsage.getService().getId());
+            ps.setInt(2, serviceUsage.getAmount());
+            ps.setInt(3, serviceUsage.getBill().getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error inserting service usage: " + e);
+        }
+    }
+
+    public static List<ServiceUsage> getAllServiceUsagesByBillID(int billID) {
+        List<ServiceUsage> serviceUsages = new ArrayList<>();
+
+        try (Connection con = getConnect(); PreparedStatement ps = con.prepareStatement("SELECT * FROM ServiceUsage WHERE billID = ?")) {
+            ps.setInt(1, billID);
+            try (java.sql.ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    int serviceID = rs.getInt("serviceID");
+                    int amount = rs.getInt("amount");
+
+                    ServiceUsage serviceUsage = new ServiceUsage();
+                    serviceUsage.setId(id);
+                    Service service = ServiceDB.getServiceById(serviceID);
+                    serviceUsage.setService(service);
+                    serviceUsage.setAmount(amount);
+                    Bill bill = BillDB.getBill(billID);
+                    serviceUsage.setBill(bill);
+
+                    serviceUsages.add(serviceUsage);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
+        return serviceUsages;
+    }
 }

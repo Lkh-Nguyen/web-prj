@@ -15,10 +15,10 @@
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/home.jsp</url-pattern>
-    </filter-mapping>    
+    </filter-mapping>
     <filter-mapping>
         <filter-name>ErrorHandlingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/home.jsp</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
@@ -53,10 +53,6 @@
         <servlet-class>Controller.InforCardServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>HistoryOnlineServlet</servlet-name>
-        <servlet-class>Controller.HistoryOnlineServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>FilmServlet</servlet-name>
         <servlet-class>Controller.FilmServlet</servlet-class>
     </servlet>
@@ -71,6 +67,22 @@
     <servlet>
         <servlet-name>FilmCalendarServlet</servlet-name>
         <servlet-class>Controller.FilmCalendarServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>Controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServiceServlet</servlet-name>
+        <servlet-class>Controller.ServiceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HistoryOnlineServlet</servlet-name>
+        <servlet-class>Controller.HistoryOnlineServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BillDetailServlet</servlet-name>
+        <servlet-class>Controller.BillDetailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -101,10 +113,6 @@
         <url-pattern>/inforCard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>HistoryOnlineServlet</servlet-name>
-        <url-pattern>/historyOnline</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>FilmServlet</servlet-name>
         <url-pattern>/film</url-pattern>
     </servlet-mapping>
@@ -119,5 +127,21 @@
     <servlet-mapping>
         <servlet-name>FilmCalendarServlet</servlet-name>
         <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceServlet</servlet-name>
+        <url-pattern>/service</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryOnlineServlet</servlet-name>
+        <url-pattern>/historyOnline</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillDetailServlet</servlet-name>
+        <url-pattern>/billDetail</url-pattern>
     </servlet-mapping>
 </web-app>

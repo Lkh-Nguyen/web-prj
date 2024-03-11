@@ -107,6 +107,48 @@ public class ScreenSeatDB implements DatabaseInfo {
         return seatList;
     }
 
+    public static ScreenSeat getScreenSeat(int screenSeatID) {
+        ScreenSeat screenSeat = null;
+        Connection con = null;
+        PreparedStatement pst = null;
+        java.sql.ResultSet rs = null;
+
+        try {
+            con = getConnect();
+            String query = "SELECT * FROM ScreenSeat WHERE Id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, screenSeatID);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("Id");
+                String name = rs.getString("Name");
+                String type = rs.getString("Type");
+                double price = rs.getDouble("Price");
+                int screenID = rs.getInt("ScreenId");
+                Screen screen = ScreenDB.getScreen(screenID);
+                screenSeat = new ScreenSeat(id, name, type, price, screen);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
+        }
+        return screenSeat;
+    }
+
     public static void main(String[] args) {
 
         // Test getScreenSeat method

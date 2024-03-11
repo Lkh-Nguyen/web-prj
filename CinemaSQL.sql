@@ -427,10 +427,6 @@ CREATE TABLE Bill (
     FOREIGN KEY (UserId) REFERENCES [User](Id)
 );
 
-INSERT INTO Bill (UserId, Date, TotalPrice)
-VALUES
-(1, GETDATE(), 100.00); -- Assuming UserId is 1 and TotalPrice is 100.00
-
 CREATE TABLE Ticket (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     BillId INT NOT NULL,

@@ -124,6 +124,7 @@
                         <input type="hidden" name="price" value="" id="price">
                         <input type="submit" value="Đặt vé" id="bt_datve">
                     </form>
+                    <h5 style="color: red">${requestScope.errorMessage}</h5>
                 </div>
                 <div class="col-md-3 chair_right">
                     <img src="${filmDetail.film.url}">

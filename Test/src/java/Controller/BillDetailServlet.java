@@ -4,8 +4,14 @@
  */
 package Controller;
 
-import Database.*;
-import Model.*;
+import Database.BillDB;
+import Database.ServiceUsageDB;
+import Database.TicketDB;
+import Model.Bill;
+import Model.FilmDetail;
+import Model.ServiceUsage;
+import Model.Ticket;
+import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,15 +19,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author ASUS
  */
-public class BookingServlet extends HttpServlet {
+public class BillDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +44,10 @@ public class BookingServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookingTicketServlet</title>");
+            out.println("<title>Servlet BillDetailServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookingTicketServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BillDetailServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,17 +65,24 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fdIDString = request.getParameter("fdID");
-        int fdID = Integer.parseInt(fdIDString);
-        FilmDetail filmDetail = FilmDetailDB.getFilmDetail(fdID);
-        if (filmDetail == null) {
-            response.sendRedirect("home");
-        } else {
-            List<String> bookedSeats = TicketDB.getBookedSeats(fdID);
-            request.setAttribute("filmDetail", filmDetail);
-            request.setAttribute("bookedSeats", bookedSeats);
-            request.getRequestDispatcher("full_seat.jsp").forward(request, response);
+        String billIDString = request.getParameter("bID");
+        Integer billID = Integer.valueOf(billIDString);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Bill bill = BillDB.getBill(billID);
+        //Bill không phải của người dùng
+        if (user.getId() != bill.getUser().getId()) response.sendRedirect("home");
+        List<Ticket> ticketList = TicketDB.getTicketsByBillID(billID);
+        FilmDetail filmDetail = null;
+        if (ticketList !=null && !ticketList.isEmpty()){
+            filmDetail = ticketList.get(0).getFilmDetail();
         }
+        List<ServiceUsage> orderedService = ServiceUsageDB.getAllServiceUsagesByBillID(billID);
+        request.setAttribute("bill", bill);
+        request.setAttribute("filmDetail", filmDetail);
+        request.setAttribute("ticketList", ticketList);
+        request.setAttribute("orderedService", orderedService);
+        request.getRequestDispatcher("full_historyOnline_detail.jsp").forward(request, response);
     }
 
     /**
@@ -85,39 +96,7 @@ public class BookingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        //Get film detail
-        int filmDetailID = Integer.parseInt(request.getParameter("fdID"));
-        FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID);
-        //Get seat
-        String listSeatString = request.getParameter("listSeat");
-        if (listSeatString == null || listSeatString.isEmpty()) {
-            response.sendRedirect("booking?fdID=" + filmDetailID);
-            return;
-        }
-        String[] listSeat = listSeatString.split(",");
-        Screen screen = filmDetail.getScreen();
-
-        //Get price
-        int price = Integer.parseInt(request.getParameter("price"));
-
-        // Update the bill ID for all tickets and add to arrayList
-        List<Ticket> ticketList = new ArrayList<>();
-        List<ScreenSeat> seatList = new ArrayList<>();
-        for (String seatName : listSeat) {
-            ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(seatName, screen.getId());
-            seatList.add(screenSeat);
-            Ticket t = new Ticket(null, filmDetail, screenSeat);
-            ticketList.add(t);
-        }
-
-        //Send ticket list for user to buy more service
-        session.setAttribute("ticketList", ticketList);
-        session.setAttribute("price", price);
-        session.setAttribute("filmDetail", filmDetail);
-        session.setAttribute("listSeatString", listSeatString);
-        request.getRequestDispatcher("full_service.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
