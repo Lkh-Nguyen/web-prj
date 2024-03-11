@@ -15,13 +15,13 @@
         
     </head>
     <body>
-        <div class="Uudai" style="margin-top: 50%;">
+        <div class="Uudai" style="margin-top: 35%;">
       <div class="film-content row">
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-12">
                 <div class="img-container">
-                    <h3 class="title-content">Khuyến mãi hấp dẫn</h3>
+                    <h3 class="title-content">Khuyế n mãi hấp dẫn</h3>
                     <div class="detail-content">
                       <p>Khám phá ngay hàng trăm lợi ích dành cho bạn trong chuyên mục Khuyến mãi & Ưu đãi hấp dẫn của Metiz Cinema.</p>
                     </div>

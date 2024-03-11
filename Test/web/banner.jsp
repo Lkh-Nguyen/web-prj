@@ -16,7 +16,7 @@
     <body>
         <div class="container">
         <div class="main">
-            <img src="images/phim1.jpg" alt="" class="img-feature">
+            <img src="fim_review/Mai.jpg" alt="" class="img-feature">
             <div class="control prev">
                 <i class='bx bx-chevron-left'></i>
             </div>
@@ -25,11 +25,12 @@
             </div>
         </div>
         <div class="list-image">
-            <div><img src="images/phim1.jpg" alt="" class="list-image"></div>
-            <div><img src="images/phim5.jpg" alt="" class="list-image"></div>
-            <div><img src="images/phim2.jpg" alt="" class="list-image"></div>
-            <div><img src="images/phim3.jpg" alt="" class="list-image"></div>
-            <div><img src="images/phim4.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/Mai.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/dune2024BANNER.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/gap-lai-chi-bau11.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/kung_fu.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/qu-co-thua-ke-2-750_1709707251031.jpg" alt="" class="list-image"></div>
+            <div><img src="fim_review/quythaydauBANNER.jpg" alt="" class="list-image"></div>    
         </div>
     </div>
         <script>
