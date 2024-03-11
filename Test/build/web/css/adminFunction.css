@@ -27,15 +27,15 @@
 
 
 
-   
+
 .list0{
     background-color: rgb(235, 77, 0);
     height: 50px;
     border-top: 2px solid rgb(211, 211, 211);
 }
-.listName0 a{ 
+.listName0 a{
     color: white;
-    padding-left: 15px; 
+    padding-left: 15px;
     text-decoration: none;
     font-size: 13px;
 }
@@ -52,15 +52,15 @@
 .list2:hover{
     background-color: rgb(235, 77, 0);
     color: white;
-    
+
 }
-.list2:hover .listName1 a{  
-        color: white;
-        text-decoration: none;
-    }
+.list2:hover .listName1 a{
+    color: white;
+    text-decoration: none;
+}
 .list2:hover .listIcon1 i{
-        color: white;
-    }
+    color: white;
+}
 .list1{
     background-color: white;
     height: 50px;
@@ -70,17 +70,17 @@
     background-color: rgb(235, 77, 0);
     color: white;
 }
-.list1:hover     .listName1 a{  
-        color: white;
-        text-decoration: none;
-    }
+.list1:hover     .listName1 a{
+    color: white;
+    text-decoration: none;
+}
 .list1:hover    .listIcon1 i{
-        color: white;
-    }
-.listName1 a{  
+    color: white;
+}
+.listName1 a{
     color: black;
     text-decoration: none;
-    padding-left: 15px; 
+    padding-left: 15px;
     font-size: 13px;
 }
 
@@ -107,4 +107,37 @@
     font-weight: 400;
     font-size: 18px;
     text-align: center;
+}
+
+
+
+
+
+
+
+
+.block {
+    width: 400px;
+    height: 50px;
+    border: 1px solid #ccc;
+    margin: 10px 85px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+.block h2{
+    margin-top: 0px;
+}
+.block a {
+    letter-spacing: 5px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.block a:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color: orangered;
+    font-weight: bold;
 }

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/adminFunction.css">
-        
+
 
     </head>
     <body>
@@ -53,7 +53,31 @@
                     <h1>LỊCH SỬ GIAO DỊCH ONLINE</h1>
                 </div>
                 <div class="container" id="movieList">
-                    <!-- Danh sách phim sẽ được tạo bằng JavaScript và thêm vào đây -->
+                    <!-- Trong phần container của movieList -->
+                    <div class="block" id="userBlock">
+                        <h2><a href="userPage.jsp">USER</a></h2>
+                        <!-- Nội dung khối User -->
+                    </div>
+
+                    <div class="block" id="filmBlock">
+                        <h2><a href="filmPage.jsp">FILM</a></h2>
+                        <!-- Nội dung khối Film -->
+                    </div>
+
+                    <div class="block" id="filmDetailBlock">
+                        <h2><a href="filmDetailPage.jsp">FILM DETAIL</a></h2>
+                        <!-- Nội dung khối Film Detail -->
+                    </div>
+
+                    <div class="block" id="ticketBlock">
+                        <h2><a href="ticketPage.jsp">TICKET</a></h2>
+                        <!-- Nội dung khối Ticket -->
+                    </div>
+
+                    <div class="block" id="serviceBlock">
+                        <h2><a href="servicePage.jsp">SERVICE</a></h2>
+                        <!-- Nội dung khối Service -->
+                    </div>
                 </div>
 
             </div>     
