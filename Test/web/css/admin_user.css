@@ -112,30 +112,3 @@
 
 
 
-
-
-
-
-.block {
-    width: 400px;
-    height: 50px;
-    border: 1px solid #ccc;
-    margin: 10px 85px;
-    text-align: center;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-}
-.block h2{
-    margin-top: 0px;
-}
-.block a {
-    font-size: 15px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-.block a:hover {
-    text-decoration: none;
-    color: orangered;
-    font-weight: bold;
-}

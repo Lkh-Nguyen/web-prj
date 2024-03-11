@@ -50,32 +50,32 @@
             </div>
             <div class="inforAccount_right">
                 <div class="right_header">
-                    <h1>LỊCH SỬ GIAO DỊCH ONLINE</h1>
+                    <h1>CHỨC NĂNG ADMIN</h1>
                 </div>
                 <div class="container" id="movieList">
                     <!-- Trong phần container của movieList -->
                     <div class="block" id="userBlock">
-                        <h2><a href="userPage.jsp">USER</a></h2>
+                        <h2><a href="full_admin_user.jsp">QUẢN LÝ NGƯỜI DÙNG</a></h2>
                         <!-- Nội dung khối User -->
                     </div>
 
                     <div class="block" id="filmBlock">
-                        <h2><a href="filmPage.jsp">FILM</a></h2>
+                        <h2><a href="filmPage.jsp">QUẢN LÝ THÔNG TIN PHIM</a></h2>
                         <!-- Nội dung khối Film -->
                     </div>
 
                     <div class="block" id="filmDetailBlock">
-                        <h2><a href="filmDetailPage.jsp">FILM DETAIL</a></h2>
+                        <h2><a href="filmDetailPage.jsp">QUẢN LÝ LỊCH CHIẾU</a></h2>
                         <!-- Nội dung khối Film Detail -->
                     </div>
 
                     <div class="block" id="ticketBlock">
-                        <h2><a href="ticketPage.jsp">TICKET</a></h2>
+                        <h2><a href="ticketPage.jsp">QUẢN LÝ VÉ XEM PHIM</a></h2>
                         <!-- Nội dung khối Ticket -->
                     </div>
 
                     <div class="block" id="serviceBlock">
-                        <h2><a href="servicePage.jsp">SERVICE</a></h2>
+                        <h2><a href="servicePage.jsp">QUẢN LÝ DỊCH VỤ BẮP NƯỚC</a></h2>
                         <!-- Nội dung khối Service -->
                     </div>
                 </div>
