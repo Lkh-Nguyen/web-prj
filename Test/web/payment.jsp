@@ -56,7 +56,6 @@
                 padding-right: 70px;
             }
             .continue{
-                text-align: center;
                 margin-top: 20px;
             }
             .continue button{
@@ -162,6 +161,10 @@
             dialog button:hover {
                 background-color: orangered;
             }
+            button{
+                width: 140px;
+                height: 50px;
+            }
         </style>
     </head>
     <body>
@@ -214,12 +217,12 @@
         </div>
 
 
-        <div class="continue">
+        <div class="continue" style="margin-bottom: 30px;margin-left: 890px;">
             <button id="continueButton" onclick="showCardForm()">Tiếp tục</button>
             <p id="paymentWarning" style="color: red; display: none;">Vui lòng chọn phương thức thanh toán</p>
         </div>
         <!-- Form cho thanh toán bằng thẻ rạp -->
-        <div class="cardForm" id="cardForm" style="display: none;">
+        <div class="cardForm" id="cardForm" style="display: none; margin-bottom: 30px;">
             <h2>Thẻ Five Stars</h2> 
             <label for="cardNumber" class="cardForm-label">Số thẻ:</label>
             <input type="text" id="cardNumber" name="cardNumber" class="cardForm-input"><br>
@@ -233,7 +236,7 @@
             </div>
         </div>
         <!-- Form cho thanh toán bằng thẻ ATM -->
-        <div class="cardForm" id="atmForm" style="display: none;">
+        <div class="cardForm" id="atmForm" style="display: none; margin-bottom: 30px">
             <h2>Thẻ ATM</h2>
             <label for="atmCardNumber" class="cardForm-label">Số thẻ:</label>
             <input type="text" id="atmCardNumber" name="atmCardNumber" class="cardForm-input"><br>
@@ -247,16 +250,16 @@
             </div>
         </div>
         <!-- Form cho thanh toán qua Internet Banking/VISA -->
-        <div class="cardForm" id="internetBankingForm" style="display: none;">
+        <div class="cardForm" id="internetBankingForm" style="display: none; margin-bottom: 30px">
             <h2>Thanh toán qua Internet Banking/VISA</h2>
-            <img src="qr_code_image.jpg" alt="QR Code" style="width: 200px;">
+            <img src="nameService/qr.png" alt="QR Code" style="width: 200px;">
             <div class="cardForm-buttons">
                 <button onclick="hideCardForm()">Quay lại</button>
                 <button onclick="showConfirmationDialog()">Thanh toán</button>
             </div>
         </div>
         <!-- Dialog for confirmation -->
-        <form id="paymentForm" method="post" action="payment">
+        <form id="paymentForm" method="post" action="payment" s>
             <dialog id="confirmationDialog">
                 Bạn có chắc chắn thanh toán chưa?
                 <div>

@@ -51,8 +51,90 @@
                 <div class="right_header">
                     <h1>QUẢN LÝ NGƯỜI DÙNG</h1>
                 </div>
+                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị thông tin người dùng:</h1>
+                <div class="bottom-content">
+                    <!--Table-->
+                    <div class="contain-table">
+                        <table id="product-table-id" class="product-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Ten</th>
+                                <th>Giới tính</th>
+                                <th>CMND</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Địa chỉ</th>
+                                <th>Vai trò</th>
+                                <th>Chức năng</th>
+                            </tr>
+                            <form action="" method="">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Le Kim Hoàng Nguyên</td>
+                                    <td>Nam</td>
+                                    <td>0123456789</td>
+                                    <td>0934726073</td>
+                                    <td>lkh@gmail.com</td>
+                                    <td>123456789</td>
+                                    <td>650/7 Trần Cao Vân</td>
+                                    <td>User</th>
+                                    <td>
+                                        <input type="submit" value="Cập nhật" style="width: 100px">
+                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Hoàng Nguyên</td>
+                                    <td>Nam</td>
+                                    <td>0123456789</td>
+                                    <td>0934726073</td>
+                                    <td>lkh@gmail.com</td>
+                                    <td>123456789</td>
+                                    <td>650/7 Trần Cao Vân</td>
+                                    <td>User</th>
+                                    <td>
+                                        <input type="submit" value="Cập nhật" style="width: 100px">
+                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Hoàng Nguyên</td>
+                                    <td>Nam</td>
+                                    <td>0123456789</td>
+                                    <td>0934726073</td>
+                                    <td>lkh@gmail.com</td>
+                                    <td>123456789</td>
+                                    <td>650/7 Trần Cao Vân</td>
+                                    <td>User</th>
+                                    <td>
+                                        <input type="submit" value="Cập nhật" style="width: 100px">
+                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Hoàng Nguyên</td>
+                                    <td>Nam</td>
+                                    <td>0123456789</td>
+                                    <td>0934726073</td>
+                                    <td>lkh@gmail.com</td>
+                                    <td>123456789</td>
+                                    <td>650/7 Trần Cao Vân</td>
+                                    <td>User</th>
+                                    <td>
+                                        <input type="submit" value="Cập nhật" style="width: 100px">
+                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                    </td>
+                                </tr>
+                            </form>
+                        </table> 
+                    </div>
+                </div>
                 <div class="container" id="list"> 
-                    <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm người dùng:</h1>
+                    <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm hoặc chỉnh sửa người dùng:</h1>
                     <div id="register">
                         <form action="" method="post">
                             <div class="form_register">
@@ -114,7 +196,7 @@
                                                 <input type="radio" name="role" value="Guest" ${param.role == null || param.role == 'Guest' ? 'checked' : ''}>Guest
                                                 <span class="checkmark"></span>
                                             </label>
-                                                <label class="radio-container" style="margin-left: 40px">
+                                            <label class="radio-container" style="margin-left: 40px">
                                                 <input type="radio" name="role" value="Admin" ${param.role == 'Admin' ? 'checked' : ''}>Admin 
                                                 <span class="checkmark"></span>
                                             </label>         
@@ -122,94 +204,16 @@
                                     </div>
                                 </div>                   
                                 <div id="submit_register">
-                                    <input type="submit" value="quản lý người dùng">
+                                    <input type="submit" value="thêm người dùng">
                                 </div>
+                                 <div id="submit_register">
+                                    <input type="submit" value="cập nhật thông tin">
+                                </div>                
                             </div>
                         </form>
 
                     </div>
-                    <h1 style="margin-left: -80px;font-size: 25px;">Hiển thị thông tin người dùng:</h1>
-                    <div class="bottom-content">
-                        <!--Table-->
-                        <div class="contain-table">
-                            <table id="product-table-id" class="product-table">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Ten</th>
-                                    <th>Giới tính</th>
-                                    <th>CMND</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Vai trò</th>
-                                    <th>Chức năng</th>
-                                </tr>
-                                <form action="" method="">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Le Kim Hoàng Nguyên</td>
-                                        <td>Nam</td>
-                                        <td>0123456789</td>
-                                        <td>0934726073</td>
-                                        <td>lkh@gmail.com</td>
-                                        <td>123456789</td>
-                                        <td>650/7 Trần Cao Vân</td>
-                                        <td>User</th>
-                                        <td>
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Hoàng Nguyên</td>
-                                        <td>Nam</td>
-                                        <td>0123456789</td>
-                                        <td>0934726073</td>
-                                        <td>lkh@gmail.com</td>
-                                        <td>123456789</td>
-                                        <td>650/7 Trần Cao Vân</td>
-                                        <td>User</th>
-                                        <td>
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Hoàng Nguyên</td>
-                                        <td>Nam</td>
-                                        <td>0123456789</td>
-                                        <td>0934726073</td>
-                                        <td>lkh@gmail.com</td>
-                                        <td>123456789</td>
-                                        <td>650/7 Trần Cao Vân</td>
-                                        <td>User</th>
-                                        <td>
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Hoàng Nguyên</td>
-                                        <td>Nam</td>
-                                        <td>0123456789</td>
-                                        <td>0934726073</td>
-                                        <td>lkh@gmail.com</td>
-                                        <td>123456789</td>
-                                        <td>650/7 Trần Cao Vân</td>
-                                        <td>User</th>
-                                        <td>
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                        </td>
-                                    </tr>
-                                </form>
-                            </table> 
-                        </div>
-                    </div>
+
                 </div>     
             </div>
         </div>
