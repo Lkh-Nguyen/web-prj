@@ -122,7 +122,7 @@
                                     </div>
                                 </div>                   
                                 <div id="submit_register">
-                                    <input type="submit" value="Tạo người dùng mới">
+                                    <input type="submit" value="quản lý người dùng">
                                 </div>
                             </div>
                         </form>
