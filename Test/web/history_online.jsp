@@ -13,7 +13,7 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/history_online.css">
         <link rel="stylesheet" href="css/historyOnline_right.css">
-        
+
 
     </head>
     <body>
@@ -40,8 +40,8 @@
                         </tr>
 
                         <tr class="list0">
-                            <td class="listName0"><a href="#">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
-                            <td class="listIcon0"><a href="#"><i class='bx bx-history' ></i></a></td>
+                            <td class="listName0"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
+                            <td class="listIcon0"><a href="historyOnline"><i class='bx bx-history' ></i></a></td>
                         </tr>
                         <tr class="list1">
                             <td class="listName1"><a href="adminFunction">CHỨC NĂNG ADMIN </a></td>
@@ -60,46 +60,68 @@
 
             </div>     
         </div>
-        <c:set var="billList" var="${billList}">
+        <c:set var="billTicketMap" value="${requestScope.billTicketMap}" />
         <script>
-            const movies = [
-                {
-                    bill_id: "789",
-                    id_user: "1",
-                    date_put: "2024-03-05",
-                    title: "Mai",
-                    date: "2024-03-07",
-                    start_time: "10:00 AM",
-                    end_time: "11:30 AM",
-                    room: 'Phòng 1',
-                    bench: 'D07',
-                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
-                },
-                {
-                    bill_id: "789",
-                    id_user: "1",
-                    date_put: "2024-03-05",
-                    title: "Mai",
-                    date: "2024-03-07",
-                    start_time: "10:00 AM",
-                    end_time: "11:30 AM",
-                    room: 'Phòng 1',
-                    bench: 'D09',
-                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
-                },
-                {
-                    bill_id: "456",
-                    id_user: "1",
-                    date_put: "2024-03-07",
-                    title: "Fast and Furious",
-                    date: "2024-03-09",
-                    start_time: "10:00 AM",
-                    end_time: "11:30 AM",
-                    room: 'Phòng 1',
-                    bench: 'D08',
-                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
-                }                       // Thêm các phim khác vào đây
-            ];
+            const movies = [];
+            const billTicketMap = ${billTicketMap};
+            //Loop bill
+            <c:forEach var="entry" items="${billTicketMap}">
+                //Loop ticket
+                <c:set var="bill" value="${entry.key}"/>
+                <c:forEach var="ticket" items="${entry.value}">
+                    const example = {
+                        bill_id: "${bill.id}",
+                        id_user: "${bill.user.id}",
+                        date_put: "${bill.date}",
+                        title: "${ticket.filmDetail.film.name}",
+                        date: "${ticket.filmDetail.movieDate}",
+                        start_time:"${ticket.filmDetail.filmSlot.startTime}",
+                        end_time:"${ticket.filmDetail.filmSlot.endTime}",
+                        room: '${ticket.filmDetail.screen.name}',
+                        bench: '${ticket.screenSeat.name}',
+                        image: "${ticket.filmDetail.film.url}"
+                    };
+                    movies.push(example);
+                </c:forEach>
+            </c:forEach>
+//            const movies = [
+//                {
+//                    bill_id: "789",
+//                    id_user: "1",
+//                    date_put: "2024-03-05",
+//                    title: "Mai",
+//                    date: "2024-03-07",
+//                    start_time: "10:00 AM",
+//                    end_time: "11:30 AM",
+//                    room: 'Phòng 1',
+//                    bench: 'D07',
+//                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
+//                },
+//                {
+//                    bill_id: "789",
+//                    id_user: "1",
+//                    date_put: "2024-03-05",
+//                    title: "Mai",
+//                    date: "2024-03-07",
+//                    start_time: "10:00 AM",
+//                    end_time: "11:30 AM",
+//                    room: 'Phòng 1',
+//                    bench: 'D09',
+//                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
+//                },
+//                {
+//                    bill_id: "456",
+//                    id_user: "1",
+//                    date_put: "2024-03-07",
+//                    title: "Fast and Furious",
+//                    date: "2024-03-09",
+//                    start_time: "10:00 AM",
+//                    end_time: "11:30 AM",
+//                    room: 'Phòng 1',
+//                    bench: 'D08',
+//                    image: "https://th.bing.com/th/id/OIP.DMTjJ1YCM8M-VagUW2QMuQHaJQ?rs=1&pid=ImgDetMain"
+//                }                       // Thêm các phim khác vào đây
+//            ];
 
             const movieList = document.getElementById("movieList");
 

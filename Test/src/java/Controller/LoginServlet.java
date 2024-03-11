@@ -87,8 +87,8 @@ public class LoginServlet extends HttpServlet {
             }
             response.addCookie(cEmail);
             response.addCookie(cRememberMe);
-            //10 minutes
-            session.setMaxInactiveInterval(10 * 60);
+            //30 minutes
+            session.setMaxInactiveInterval(30 * 60);
             request.getRequestDispatcher("full_home.jsp").forward(request, response);
 
         }

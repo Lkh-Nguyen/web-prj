@@ -21,8 +21,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -93,17 +93,10 @@ public class PaymentServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         Integer price = (Integer) session.getAttribute("price");
         FilmDetail filmDetail = (FilmDetail) session.getAttribute("filmDetail");
-        ArrayList<Ticket> ticketList = (ArrayList<Ticket>) session.getAttribute("ticketList");
+        List<Ticket> ticketList = (List<Ticket>) session.getAttribute("ticketList");
         String listSeatString = (String) session.getAttribute("listSeatString");
         HashMap<Service, Integer> orderedService = (HashMap<Service, Integer>) session.getAttribute("orderedService");
 
-        // Print out session attribute values
-        System.out.println("User: " + user);
-        System.out.println("Price: " + price);
-        System.out.println("Film Detail: " + filmDetail);
-        System.out.println("Ticket List: " + ticketList);
-        System.out.println("List Seat String: " + listSeatString);
-        System.out.println("Ordered Service: " + orderedService);
         // Check if any required session attribute is missing or if the user is not logged in
         if (user == null || price == null || filmDetail == null || ticketList == null
                 || listSeatString == null || orderedService == null) {
@@ -119,6 +112,7 @@ public class PaymentServlet extends HttpServlet {
         BillDB.insertBill(bill);
         int newBillId = BillDB.getLastInsertedBillId();
         bill.setId(newBillId);
+        //Set bill for ticket
         for (Ticket t : ticketList) {
             t.setBill(bill);
             TicketDB.insertTicket(t);
@@ -143,7 +137,7 @@ public class PaymentServlet extends HttpServlet {
         request.setAttribute("ticketList", ticketList);
         request.setAttribute("listSeatString", listSeatString);
         request.setAttribute("orderedService", orderedService);
-
+        
         // Forward to the detail page
         request.getRequestDispatcher("full_historyOnline_detail.jsp").forward(request, response);
     }
