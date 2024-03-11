@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Database.ServiceDB" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,55 +41,58 @@
         </style>
     </head>
     <body>
+        <c:set  var="filmDetail" value="${sessionScope.filmDetail}" scope="session"/>
+        <c:set var="listService" value="<%= ServiceDB.getAllServices() %>" />
         <div class="full_FoodDrink">
             <h1 id="choose_FoodDrink">CHỌN ĐỒ ĂN VÀ NƯỚC UỐNG</h1>
             <div style="display:flex">
                 <div class="col-md-8 chair_left">
                     <c:set var="i" value="1"/>
-                    <c:forEach var="c" items="${requestScope.listService}">
+                    <c:forEach var="c" items="${listService}">
                         <input type="hidden"  value="${c.id}" id="id${i}">
                         <input type="hidden"  value="${c.price}" id="price${i}">
                         <div class="container" id="movieList" >
-                        <div class="contain-movie" >
-                            <div class="movie-contain-img">
-                                <img src="${c.url}" alt="" class="movie-image">
-                            </div>
-                            <div class="movie-details">
-                                <h2>Combo ${i}</h2>
-                                <p>${c.name}</p>
-                                <p style="font-weight: bold">Giá: <label>${c.price}</label> VNĐ</p>
-                                <div class="quantity-container">
+                            <div class="contain-movie" >
+                                <div class="movie-contain-img">
+                                    <img src="${c.url}" alt="" class="movie-image">
+                                </div>
+                                <div class="movie-details">
+                                    <h2>Combo ${i}</h2>
+                                    <p>${c.name}</p>
+                                    <p style="font-weight: bold">Giá: <label>${c.price}</label> VNĐ</p>
                                     <div class="quantity-container">
-                                        <button class="quantity-button" onclick="decreaseQuantity${i}()">-</button>
-                                        <span class="quantity-value" id="quantity${i}">0</span>
-                                        <button class="quantity-button" onclick="increaseQuantity${i}()">+</button>
+                                        <div class="quantity-container">
+                                            <button class="quantity-button" onclick="decreaseQuantity${i}()">-</button>
+                                            <span class="quantity-value" id="quantity${i}">0</span>
+                                            <button class="quantity-button" onclick="increaseQuantity${i}()">+</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <c:set var="i" value="${i+1}"/>
                         </div>
-                        <c:set var="i" value="${i+1}"/>
-                    </div>
                     </c:forEach>
-                  
+
 
                 </div>
 
                 <div class="col-md-3 chair_right">
-                    <img src="nameFilm/mai.jpg">
-                    <p>Phim: <b> BÀ THÍM BÁO THÙ (T16)</b></p>
-                    <p>Ngày: <b>2024-03-06</b></p>
-                    <p>Thời gian: <b>10:30 - 12:00</b></p>
-                    <p>Ghế: <b id="string_seat">G5,H2,B1,A10</b></p>
-                    <p>Số vé: <b id="number_ve">4</b> </p>
-                    <p>Tổng tiền: <b id="sum_money">10000</b> VNĐ</p>
-                    <input type="hidden"  value="10000" id="sum">
+                    <img src="${filmDetail.film.url}">
+                    <p>Phim: <b> ${filmDetail.film.name}</b></p>
+                    <p>Ngày: <b>${filmDetail.movieDate}</b></p>
+                    <p>Thời gian: <b>${filmDetail.getFilmSlot().getStartTime()} - ${filmDetail.getFilmSlot().getEndTime()}</b></p>
+                    <p>Ghế: <b id="string_seat">${sessionScope.listSeatString}</b></p>
+                    <p>Số vé: <b id="number_ve">${sessionScope.ticketList.size()}</b> </p>
+                    <p>Tổng tiền: <b id="sum_money">${sessionScope.price}</b> VNĐ</p>
+                    <input type="hidden"  value="${sessionScope.price}" id="sum">
                 </div>
-            </div>
-            <form action="booking" method="post">
+            </div>  
+            <form action="service" method="post">
                 <input type="hidden" name="listSeat" value="" id="listSeat">
                 <input type="hidden" name="price" value="" id="price">
+                <input type="hidden" name="listServiceSize" value="${listService.size()}">
                 <c:set var="i" value="1"/>
-                <c:forEach var="c" items="${requestScope.listService}">
+                <c:forEach var="c" items="${listService}">
                     <input type="hidden" name="full_FD${i}" value="" id="full_FD${i}">
                     <c:set var="i" value="${i+1}"/>
                 </c:forEach>
@@ -132,7 +136,7 @@
                 sumMoneyElement += quantity * price;
                 var id = document.getElementById('id${i}').value;
                 var number = document.getElementById('quantity${i}').textContent;
-                document.getElementById('full_FD${i}').value = id+":"+number;
+                document.getElementById('full_FD${i}').value = id + ":" + number;
             </c:forEach>
 
                 // Update the sum_money label with the calculated total sum

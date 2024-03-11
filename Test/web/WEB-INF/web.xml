@@ -15,7 +15,7 @@
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/home.jsp</url-pattern>
-    </filter-mapping>    
+    </filter-mapping>
     <filter-mapping>
         <filter-name>ErrorHandlingFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -72,6 +72,14 @@
         <servlet-name>FilmCalendarServlet</servlet-name>
         <servlet-class>Controller.FilmCalendarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>Controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServiceServlet</servlet-name>
+        <servlet-class>Controller.ServiceServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -119,5 +127,13 @@
     <servlet-mapping>
         <servlet-name>FilmCalendarServlet</servlet-name>
         <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceServlet</servlet-name>
+        <url-pattern>/service</url-pattern>
     </servlet-mapping>
 </web-app>

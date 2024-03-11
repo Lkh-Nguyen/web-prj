@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,6 +60,7 @@
 
             </div>     
         </div>
+        <c:set var="billList" var="${billList}">
         <script>
             const movies = [
                 {
@@ -141,7 +143,7 @@
                             <img src="` + movie.image + `" alt="` + movie.title + `" class="movie-image">
                         </div>
                         <div class="movie-details">
-                            <h1>Vé đã đặt - ` + id_user + `</h1>
+                            <h1>Hóa đơn - ` + id_user + `</h1>
                             <h2>Tên phim: ` + movie.title + `</h2>
                             <p class="movie-info">Ngày đặt: ` + movie.date_put + `</p>
                             <p class="movie-info">Thời gian: ` + movie.start_time + ` <span>đến</span> ` + movie.end_time + `</p>

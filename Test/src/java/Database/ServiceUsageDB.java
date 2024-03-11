@@ -61,4 +61,18 @@ public class ServiceUsageDB implements DatabaseInfo {
 
         return serviceUsages;
     }
+
+    public static void insertServiceUsage(ServiceUsage serviceUsage) {
+        try (Connection con = getConnect(); PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO ServiceUsage (serviceID, amount, billID) VALUES (?, ?, ?)")) {
+
+            ps.setInt(1, serviceUsage.getService().getId());
+            ps.setInt(2, serviceUsage.getAmount());
+            ps.setInt(3, serviceUsage.getBill().getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error inserting service usage: " + e);
+        }
+    }
 }

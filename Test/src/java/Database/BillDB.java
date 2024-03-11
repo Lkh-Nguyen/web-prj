@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Model.Bill;
 import Model.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BillDB implements DatabaseInfo {
 
@@ -32,7 +34,7 @@ public class BillDB implements DatabaseInfo {
             System.out.println("Error: " + e);
         }
     }
-    
+
     public static int getLastInsertedBillId() {
         Connection con = null;
         PreparedStatement pst = null;
@@ -70,7 +72,7 @@ public class BillDB implements DatabaseInfo {
 
         return lastInsertedId;
     }
-    
+
     public static Bill getBill(int billID) {
         Bill bill = null;
         Connection con = null;
@@ -115,5 +117,48 @@ public class BillDB implements DatabaseInfo {
         }
 
         return bill;
-    }      
+    }
+
+    public static List<Bill> getBillsByUserID(int userID) {
+        List<Bill> bills = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement pst = null;
+        java.sql.ResultSet rs = null;
+
+        try {
+            con = getConnect();
+            String query = "SELECT * FROM Bill WHERE UserID = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, userID);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int billID = rs.getInt("Id");
+                java.sql.Date date = rs.getDate("Date");
+                float totalPrice = rs.getFloat("TotalPrice");
+                User user = UserDB.getUser(userID); // Assuming you have a method to retrieve User by ID
+                Bill bill = new Bill(date, totalPrice, user);
+                bill.setId(billID);
+                bills.add(bill);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
+        }
+
+        return bills;
+    }
 }

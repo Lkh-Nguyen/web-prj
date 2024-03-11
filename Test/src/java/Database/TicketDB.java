@@ -1,5 +1,8 @@
 package Database;
 
+import Model.Bill;
+import Model.FilmDetail;
+import Model.ScreenSeat;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,6 +53,39 @@ public class TicketDB implements DatabaseInfo {
         }
 
         return bookedSeats;
+    }
+
+    public static ArrayList<Ticket> getTicketsByBillID(int billID) {
+        ArrayList<Ticket> ticketList = new ArrayList<>();
+
+        try (Connection con = getConnect(); PreparedStatement pst = con.prepareStatement("SELECT * FROM Ticket WHERE BillId = ?")) {
+            pst.setInt(1, billID);
+
+            try (java.sql.ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    int ticketID = rs.getInt("ID");
+                    int filmDetailID = rs.getInt("FilmDetailId");
+                    int screenSeatID = rs.getInt("ScreenSeatId");
+
+                    // Retrieve Bill object
+                    Bill bill = BillDB.getBill(billID); // Assuming you have a method in BillDB to get a bill by ID
+
+                    // Retrieve FilmDetail object
+                    FilmDetail filmDetail = FilmDetailDB.getFilmDetail(filmDetailID); // Assuming you have a method in FilmDetailDB to get a film detail by ID
+
+                    // Retrieve ScreenSeat object
+                    ScreenSeat screenSeat = ScreenSeatDB.getScreenSeat(screenSeatID); // Assuming you have a method in ScreenSeatDB to get a screen seat by ID
+
+                    // Create Ticket object and add it to the list
+                    Ticket ticket = new Ticket(ticketID, bill, filmDetail, screenSeat);
+                    ticketList.add(ticket);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+
+        return ticketList;
     }
 
     public static void main(String[] args) {
