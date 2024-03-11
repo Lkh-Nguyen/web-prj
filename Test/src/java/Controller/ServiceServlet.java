@@ -7,6 +7,7 @@ package Controller;
 import Database.ServiceDB;
 import Model.FilmDetail;
 import Model.Service;
+import Model.ServiceUsage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -93,9 +96,10 @@ public class ServiceServlet extends HttpServlet {
         //Handle ordererd service
         String listServiceSizeString = request.getParameter("listServiceSize");
         int listServiceSize = Integer.parseInt(listServiceSizeString);
-        HashMap<Service, Integer> orderedService = new HashMap<>();
+        List<ServiceUsage> orderedService = new ArrayList<>();
         for (int i = 1; i <= listServiceSize; i++) {
             String foodDrink = request.getParameter("full_FD" + i);
+            System.out.println("foodDrink:" + foodDrink);
             String[] foodDrinkStrings = foodDrink.split(":");
             if ("0".equals(foodDrinkStrings[1])) {
                 continue;
@@ -103,7 +107,8 @@ public class ServiceServlet extends HttpServlet {
             Integer serviceID = Integer.valueOf(foodDrinkStrings[0]);
             Service service = ServiceDB.getServiceById(serviceID);
             Integer amount = Integer.valueOf(foodDrinkStrings[1]);
-            orderedService.put(service, amount);
+            ServiceUsage su = new ServiceUsage(service, amount, null);
+            orderedService.add(su);
         }
         session.setAttribute("orderedService", orderedService);
         //Send to payment

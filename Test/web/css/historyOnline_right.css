@@ -100,12 +100,12 @@
     position: relative;
     color: #000000;
 }
-.movie-details h1{
+.movie-details h4{
     color: red; 
     padding-bottom: 3px;    
 }
-.movie-details h2 {
-    font-size: 20px;
+.movie-details h5 {
+    font-weight: bold;
     margin-bottom: 3px;
     margin-top: -10px;
 }

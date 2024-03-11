@@ -80,6 +80,10 @@
         <servlet-name>HistoryOnlineServlet</servlet-name>
         <servlet-class>Controller.HistoryOnlineServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BillDetailServlet</servlet-name>
+        <servlet-class>Controller.BillDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -135,5 +139,9 @@
     <servlet-mapping>
         <servlet-name>HistoryOnlineServlet</servlet-name>
         <url-pattern>/historyOnline</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillDetailServlet</servlet-name>
+        <url-pattern>/billDetail</url-pattern>
     </servlet-mapping>
 </web-app>

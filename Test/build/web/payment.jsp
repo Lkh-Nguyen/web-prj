@@ -198,9 +198,9 @@
                     <tr>
                         <td class="first">Dịch vụ:</td>
                         <td>
-                            <c:forEach var="serviceEntry" items="${sessionScope.orderedService}">
-                                <c:set var="service" value="${serviceEntry.key}" />
-                                <c:set var="amount" value="${serviceEntry.value}" />
+                            <c:forEach var="su" items="${sessionScope.orderedService}">
+                                <c:set var="service" value="${su.service}" />
+                                <c:set var="amount" value="${su.amount}" />
                                 ${service.name} - ${amount} <br>
                             </c:forEach>
                         </td>

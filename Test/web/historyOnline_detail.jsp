@@ -18,7 +18,7 @@
         <c:set var="filmDetail" value="${requestScope.filmDetail}"/>
         <c:set var="ticketList" value="${requestScope.ticketList}"/>
         <c:set var="orderedService" value="${requestScope.orderedService}"/>
-
+        
         <%int rowNum = 1;%>
         <div class="history">
             <div class="right_header">
@@ -69,14 +69,14 @@
 
                                 </tr>
                             </c:forEach>
-                            <c:forEach var="entry" items="${orderedService}">
+                            <c:forEach var="su" items="${orderedService}">
                                 <tr>
                                     <td><%=rowNum++%></td>
-                                    <td>${entry.key.name}</td>
+                                    <td>${su.service.name}</td>
                                     <td>Combo</td>
-                                    <td>${entry.value}</td>
-                                    <td>${entry.key.price}</td>
-                                    <td>${entry.key.price * entry.value}</td>
+                                    <td>${su.amount}</td>
+                                    <td>${su.service.price}</td>
+                                    <td>${su.service.price * su.amount}</td>
                                 </tr>
                             </c:forEach>
                             <tfoot>

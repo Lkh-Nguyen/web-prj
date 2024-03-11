@@ -68,7 +68,6 @@ public class HistoryOnlineServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         List<Bill> billList = BillDB.getBillsByUserID(user.getId());
-
         // Create a map to associate each bill with its list of tickets
         Map<Bill, List<Ticket>> billTicketMap = new HashMap<>();
 
@@ -77,14 +76,13 @@ public class HistoryOnlineServlet extends HttpServlet {
             int billID = bill.getId();
             // Get all tickets for the current bill
             ArrayList<Ticket> tickets = TicketDB.getTicketsByBillID(billID);
-            System.out.println(tickets);
             // Associate the bill with its list of tickets in the map
             billTicketMap.put(bill, tickets);
         }
 
         // Add billTicketMap to the request attribute
         request.setAttribute("billTicketMap", billTicketMap);
-        
+
         // Forward the request to full_historyOnline.jsp
         request.getRequestDispatcher("full_historyOnline.jsp").forward(request, response);
     }
