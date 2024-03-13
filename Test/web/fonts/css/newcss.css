@@ -1,0 +1,165 @@
+
+
+.container {
+    border-radius: 5px;
+    width: 600px;
+    margin: 0 auto;
+    background-color:#e8e8e8 ;
+}
+
+.header-content {
+    /* Ngày đặt */
+    margin-left: -15px;
+    width: 600px;
+    background-color: red;
+    color: white;
+    height: 50px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Hotline */
+.header-content::after {
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+.content {
+    /* Xác nhận đặt vé thành công */
+    display: flex;
+    height: 360px;
+    margin-top: -10px;
+    background-color: #e8e8e8;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Thông tin phim */
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.content p{
+    margin-top:-10px;
+}
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f0f0f0;
+}
+
+/* Thông tin các mặt hàng */
+.product-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.footer-content {
+    /* Số điện thoại */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #888;
+}
+
+/* Link web phim */
+.footer-content a {
+    color: #333;
+    text-decoration: none;
+}
+.hotline {
+    margin-left: 63%;
+}
+.date {
+    margin-left: 3%;
+}
+.left-content p {
+    padding-bottom: 10px;
+}
+.left-content {
+    width: 50%;
+}
+.right-content {
+    width: 50%;
+}
+/* Chỉnh sửa CSS cho phân trang */
+.bottom-content {
+    margin-top: 40px;
+    width: 100%;
+    background-color: #e8e8e8;
+    padding: 20px;
+}
+
+.product-table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.product-table th,
+.product-table td {
+    border: none;
+    padding: 10px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f0f0f0;
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Ẩn các nút phân trang khi không cần thiết */
+.pagination {
+    display: none;
+}
+
+/* Chỉ hiển thị các hàng cho trang cụ thể */
+/* Chỉ hiển thị tất cả các hàng trong bảng */
+.product-table tr {
+    display: table-row;
+}
+
+
+/* Chỉ hiển thị các hàng cho trang đầu tiên */
+.product-table tr:nth-child(-n+5) {
+    display: table-row;
+}
+
+.product-table th , tfoot{
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    font-weight: 100px;
+}
+.middle-content {
+    display: flex;
+    margin-top: 30px;
+}
+.footer-content {
+    margin-left: -15px;
+    width: 600px;
+    background-color: red;
+    height: 50px;
+}
