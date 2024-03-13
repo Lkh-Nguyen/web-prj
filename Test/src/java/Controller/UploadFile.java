@@ -32,9 +32,13 @@ public class UploadFile extends HttpServlet {
 
             part.write(uploadPath);
             request.setAttribute("uploadedFilePath", fileName);
+            break;
         }
-        request.setAttribute("message", "Upload File Success!");
-        getServletContext().getRequestDispatcher("/full_admin_service.jsp").forward(request, response);
+        if(request.getParameter("check").equals("1")){
+            getServletContext().getRequestDispatcher("/full_admin_service.jsp").forward(request, response);
+        }else{
+            getServletContext().getRequestDispatcher("/full_admin_film.jsp").forward(request, response);
+        }
     }
     private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");

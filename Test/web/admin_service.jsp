@@ -98,13 +98,14 @@
                                     <p>Thêm file ảnh ở dưới</p>
                                     <c:if test="${not empty uploadedFilePath}">
                                         <div>
-                                            <img src="nameFile/${uploadedFilePath}" style="width: 200px;height: 200px;">
+                                            <img src="nameFile/${uploadedFilePath}" style="width: 190px;height: 270px;">
                                         </div>                   
                                     </c:if>
                                     <c:if test="${empty uploadedFilePath}">
                                         <form method="post" action="UploadFile" enctype="multipart/form-data">
                                             <input type="file" name="file" size="60"/><br/>
-                                            <input type="submit" value="Upload"/>
+                                            <input type="submit"  value="Upload"/>
+                                            <input type="hidden" name="check" value="1"/>
                                         </form>
                                     </c:if>                                   
                                 </div>
