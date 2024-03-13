@@ -85,10 +85,6 @@
         <servlet-class>Controller.BillDetailServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UploadService</servlet-name>
-        <servlet-class>Controller.UploadService</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UploadFile</servlet-name>
         <servlet-class>Controller.UploadFile</servlet-class>
     </servlet>
@@ -151,10 +147,6 @@
     <servlet-mapping>
         <servlet-name>BillDetailServlet</servlet-name>
         <url-pattern>/billDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UploadService</servlet-name>
-        <url-pattern>/UploadService</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
