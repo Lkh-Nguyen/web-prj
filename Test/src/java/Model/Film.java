@@ -38,6 +38,21 @@ public class Film {
         this.rate = rate;
     }
 
+    public Film(String director, String language, String url, String name, String type, int duration, Date startDate, String actor, String detail, String trailer, String rate) {
+        this.director = director;
+        this.language = language;
+        this.url = url;
+        this.name = name;
+        this.type = type;
+        this.duration = duration;
+        this.startDate = startDate;
+        this.actor = actor;
+        this.detail = detail;
+        this.trailer = trailer;
+        this.rate = rate;
+    }
+    
+
     
 
     public Film() {

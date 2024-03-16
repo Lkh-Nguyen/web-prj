@@ -2,7 +2,10 @@ package Database;
 
 import Model.Slot;
 import java.sql.*;
+import java.sql.ResultSet;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SlotDB implements DatabaseInfo {
 
@@ -45,6 +48,33 @@ public class SlotDB implements DatabaseInfo {
             }
         }
         return null;
+    }
+
+    public static List<Slot> getAllSlots() {
+        List<Slot> slots = new ArrayList<>();
+        Connection con = getConnect();
+        if (con != null) {
+            try {
+                String query = "SELECT id, startTime, endTime FROM Slot";
+                PreparedStatement statement = con.prepareStatement(query);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    LocalTime startTime = rs.getTime("startTime").toLocalTime();
+                    LocalTime endTime = rs.getTime("endTime").toLocalTime();
+                    slots.add(new Slot(id, startTime, endTime));
+                }
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            } finally {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println("Error closing connection: " + e);
+                }
+            }
+        }
+        return slots;
     }
 
     public static void main(String[] args) {

@@ -83,4 +83,116 @@ public class ServiceDB implements DatabaseInfo {
 
         return service;
     }
+
+    public static boolean updateService(Service oldService, Service newService) {
+        String sql = "UPDATE Service SET name=?, price=?, url=? WHERE id=?";
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            con = getConnect();
+            pstmt = con.prepareStatement(sql);
+
+            // Set parameters for the prepared statement
+            pstmt.setString(1, newService.getName());
+            pstmt.setDouble(2, newService.getPrice());
+            pstmt.setString(3, newService.getUrl());
+            pstmt.setInt(4, oldService.getId());
+
+            // Execute the SQL statement
+            int rowsAffected = pstmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+
+        } finally {
+            // Close resources in finally block to ensure they are always closed
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean addService(Service newService) {
+        String sql = "INSERT INTO Service (name, price, url) VALUES (?, ?, ?)";
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            con = getConnect();
+            pstmt = con.prepareStatement(sql);
+
+            // Set parameters for the prepared statement
+            pstmt.setString(1, newService.getName());
+            pstmt.setDouble(2, newService.getPrice());
+            pstmt.setString(3, newService.getUrl());
+
+            // Execute the SQL statement
+            int rowsAffected = pstmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+
+        } finally {
+            // Close resources in finally block to ensure they are always closed
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    public static boolean deleteService(int serviceId) {
+    String sql = "DELETE FROM Service WHERE id=?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+
+    try {
+        con = getConnect();
+        pstmt = con.prepareStatement(sql);
+
+        // Set parameter for the prepared statement
+        pstmt.setInt(1, serviceId);
+
+        // Execute the SQL statement
+        int rowsAffected = pstmt.executeUpdate();
+
+        return rowsAffected > 0;
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        return false;
+
+    } finally {
+        // Close resources in finally block to ensure they are always closed
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
 }

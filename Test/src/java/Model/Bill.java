@@ -22,6 +22,13 @@ public class Bill {
         this.totalPrice = totalPrice;
     }
 
+    public Bill(User user, Date date, float totalPrice) {
+        this.user = user;
+        this.date = date;
+        this.totalPrice = totalPrice;
+    }
+    
+
     // Getters and Setters
     public int getId() {
         return id;

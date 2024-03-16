@@ -2,6 +2,9 @@ package Database;
 
 import Model.User;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.ResultSet;
 
 public class UserDB implements DatabaseInfo {
 
@@ -59,6 +62,37 @@ public class UserDB implements DatabaseInfo {
         }
 
         return null;
+    }
+
+    public static boolean doesUserExist(String email) {
+        Connection con = getConnect();
+        boolean userExists = false;
+
+        try {
+            PreparedStatement st = con.prepareStatement("SELECT COUNT(*) AS count FROM [User] WHERE Email = ?");
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                userExists = (count > 0);
+            }
+        } catch (SQLException ex) {
+            // Handle exceptions appropriately (log or throw)
+            ex.printStackTrace();
+        } finally {
+            // Close resources in a finally block
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                // Handle exceptions appropriately (log or throw)
+                ex.printStackTrace();
+            }
+        }
+
+        return userExists;
     }
 
     public static boolean insertUser(User u) {
@@ -195,7 +229,7 @@ public class UserDB implements DatabaseInfo {
             }
         }
     }
-    
+
     public static User getUser(int userID) {
         Connection con = getConnect();
         try {
@@ -235,10 +269,87 @@ public class UserDB implements DatabaseInfo {
         }
 
         return null;
-    }    
+    }
+
+    public static List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnect();
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [User]");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("ID"));
+                user.setName(rs.getString("Name"));
+                user.setGender(rs.getString("Gender"));
+                user.setDateOfBirth(rs.getDate("DateOfBirth"));
+                user.setCmnd(rs.getString("CMND"));
+                user.setPhoneNumber(rs.getString("PhoneNumber"));
+                user.setEmail(rs.getString("Email"));
+                user.setPassword(rs.getString("Password"));
+                user.setAddress(rs.getString("Address"));
+                user.setRole(rs.getInt("Role"));
+
+                userList.add(user);
+            }
+
+            // Close resources
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle database error appropriately
+        } finally {
+            // Close resources in a finally block
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace(); // Handle database error appropriately
+            }
+        }
+
+        return userList;
+    }
+
+    public static boolean deleteUser(int userID) {
+        Connection con = getConnect();
+
+        try {
+            PreparedStatement st = con.prepareStatement("DELETE FROM [User] WHERE ID = ?");
+            st.setInt(1, userID);
+
+            int rowsDeleted = st.executeUpdate();
+
+            // Kiểm tra xem có bản ghi nào bị xóa không
+            return rowsDeleted > 0;
+        } catch (SQLException ex) {
+            // Xử lý các ngoại lệ một cách thích hợp (ghi log hoặc ném ra)
+            ex.printStackTrace();
+        } finally {
+            // Đóng các nguồn tài nguyên trong khối finally
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                // Xử lý các ngoại lệ một cách thích hợp (ghi log hoặc ném ra)
+                ex.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
 
+        UserDB.deleteUser(1);
+        for (User u : UserDB.getAllUsers()) {
+            System.out.println(u.toString());
+        }
     }
 
 }

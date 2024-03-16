@@ -8,7 +8,8 @@ import Model.Bill;
 import Model.User;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.ResultSet;
+import java.sql.Date;
 public class BillDB implements DatabaseInfo {
 
     public static Connection getConnect() throws SQLException {
@@ -119,6 +120,51 @@ public class BillDB implements DatabaseInfo {
         return bill;
     }
 
+    public static List<Bill> getAllBills() {
+        List<Bill> billList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnect();
+            String query = "SELECT * FROM Bill";
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int billID = rs.getInt("Id");
+                Date date = rs.getDate("Date");
+                float totalPrice = rs.getFloat("TotalPrice");
+                User user = UserDB.getUser(rs.getInt("UserID"));
+
+                Bill bill = new Bill(date, totalPrice, user);
+                bill.setId(billID);
+
+                billList.add(bill);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            // Close resources in finally block
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
+        }
+
+        return billList;
+    }
+
     public static List<Bill> getBillsByUserID(int userID) {
         List<Bill> bills = new ArrayList<>();
         Connection con = null;
@@ -160,5 +206,10 @@ public class BillDB implements DatabaseInfo {
         }
 
         return bills;
+    }
+    public static void main(String[] args) {
+        for(Bill b : BillDB.getAllBills()){
+            System.out.println(b.toString());
+        }
     }
 }

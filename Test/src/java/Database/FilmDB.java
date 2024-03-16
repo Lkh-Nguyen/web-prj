@@ -127,26 +127,135 @@ public class FilmDB implements DatabaseInfo {
         return film;
     }
 
-    public static void main(String[] args) {
-        // Test getFilm method
-        int filmID = 1; // Provide the desired film ID
-        Film film = getFilm(filmID);
-        if (film != null) {
-            System.out.println("Film details:");
-            System.out.println("ID: " + film.getId());
-            System.out.println("Director: " + film.getDirector());
-            System.out.println("Language: " + film.getLanguage());
-            System.out.println("URL: " + film.getUrl());
-            System.out.println("Name: " + film.getName());
-            System.out.println("Type: " + film.getType());
-            System.out.println("Duration: " + film.getDuration());
-            System.out.println("Start Date: " + film.getStartDate());
-            System.out.println("Actor: " + film.getActor());
-            System.out.println("Detail: " + film.getDetail());
-            System.out.println("Trailer: " + film.getTrailer());
-            System.out.println("Rate: " + film.getRate());
-        } else {
-            System.out.println("Film not found!");
+    public static boolean deleteFilm(int filmID) {
+        Connection con = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = getConnect();
+            String query = "DELETE FROM Film WHERE id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, filmID);
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0; // Return true if at least one row was deleted
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return false;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
         }
+    }
+
+    public static void addFilm(Film film) {
+        Connection con = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = getConnect();
+            String query = "INSERT INTO Film (director, language, url, name, type, duration, startDate, actor, detail, trailer, rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            pst = con.prepareStatement(query);
+            pst.setString(1, film.getDirector());
+            pst.setString(2, film.getLanguage());
+            pst.setString(3, film.getUrl());
+            pst.setString(4, film.getName());
+            pst.setString(5, film.getType());
+            pst.setInt(6, film.getDuration());
+            pst.setDate(7, new java.sql.Date(film.getStartDate().getTime()));
+            pst.setString(8, film.getActor());
+            pst.setString(9, film.getDetail());
+            pst.setString(10, film.getTrailer());
+            pst.setString(11, film.getRate());
+
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resources: " + e);
+            }
+        }
+    }
+
+    public static void updateFilm(Film film,int id) {
+    Connection con = null;
+    PreparedStatement pst = null;
+
+    try {
+        con = getConnect();
+        String query = "UPDATE Film SET director=?, language=?, url=?, name=?, type=?, duration=?, startDate=?, actor=?, detail=?, trailer=?, rate=? WHERE id=?";
+        pst = con.prepareStatement(query);
+        pst.setString(1, film.getDirector());
+        pst.setString(2, film.getLanguage());
+        pst.setString(3, film.getUrl());
+        pst.setString(4, film.getName());
+        pst.setString(5, film.getType());
+        pst.setInt(6, film.getDuration());
+        pst.setDate(7, new java.sql.Date(film.getStartDate().getTime()));
+        pst.setString(8, film.getActor());
+        pst.setString(9, film.getDetail());
+        pst.setString(10, film.getTrailer());
+        pst.setString(11, film.getRate());
+        pst.setInt(12, id); // Sử dụng filmId để xác định bộ phim cần cập nhật
+
+        pst.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println("Error: " + e);
+    } finally {
+        try {
+            if (pst != null) {
+                pst.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing resources: " + e);
+        }
+    }
+}
+
+    public static void main(String[] args) {
+//        // Test getFilm method
+//        int filmID = 1; // Provide the desired film ID
+//        Film film = getFilm(filmID);
+//        if (film != null) {
+//            System.out.println("Film details:");
+//            System.out.println("ID: " + film.getId());
+//            System.out.println("Director: " + film.getDirector());
+//            System.out.println("Language: " + film.getLanguage());
+//            System.out.println("URL: " + film.getUrl());
+//            System.out.println("Name: " + film.getName());
+//            System.out.println("Type: " + film.getType());
+//            System.out.println("Duration: " + film.getDuration());
+//            System.out.println("Start Date: " + film.getStartDate());
+//            System.out.println("Actor: " + film.getActor());
+//            System.out.println("Detail: " + film.getDetail());
+//            System.out.println("Trailer: " + film.getTrailer());
+//            System.out.println("Rate: " + film.getRate());
+//        } else {
+//            System.out.println("Film not found!");
+//        }
+        String dateString = "2024-03-15"; // Chuỗi định dạng yyyy-[m]m-[d]d
+        java.sql.Date date = java.sql.Date.valueOf(dateString);
+        Film film = new Film("12312", "123", "123", "123", "123", 123,date, "123", "123", "123", "123");
+         FilmDB.updateFilm(film, 1020);
+
     }
 }

@@ -5,6 +5,7 @@ import Model.Screen;
 import Model.ScreenSeat;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
 
 public class ScreenSeatDB implements DatabaseInfo {
 
@@ -148,6 +149,50 @@ public class ScreenSeatDB implements DatabaseInfo {
         }
         return screenSeat;
     }
+    public static List<ScreenSeat> getAllScreenSeats() {
+    List<ScreenSeat> screenSeatList = new ArrayList<>();
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    try {
+        con = getConnect();
+        String query = "SELECT * FROM ScreenSeat";
+        pst = con.prepareStatement(query);
+        rs = pst.executeQuery();
+
+        while (rs.next()) {
+            int screenSeatID = rs.getInt("Id");
+            String name = rs.getString("Name");
+            String type = rs.getString("Type");
+            double price = rs.getDouble("Price");
+            int screenID = rs.getInt("ScreenId");
+            Screen screen = ScreenDB.getScreen(screenID);
+
+            ScreenSeat screenSeat = new ScreenSeat(screenSeatID, name, type, price, screen);
+            screenSeatList.add(screenSeat);
+        }
+    } catch (SQLException e) {
+        System.out.println("Error: " + e);
+    } finally {
+        // Close resources in finally block
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing resources: " + e);
+        }
+    }
+
+    return screenSeatList;
+}
 
     public static void main(String[] args) {
 

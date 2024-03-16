@@ -17,6 +17,14 @@ public class FilmDetail {
         this.movieDate = movieDate;
     }
 
+    public FilmDetail(Screen screen, Film film, Slot filmSlot, Date movieDate) {
+        this.screen = screen;
+        this.film = film;
+        this.filmSlot = filmSlot;
+        this.movieDate = movieDate;
+    }
+    
+
     public FilmDetail() {
     }
 

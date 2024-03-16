@@ -1,16 +1,16 @@
 ﻿CREATE TABLE [User] (
-    ID INT PRIMARY KEY IDENTITY(1,1),
-    Name NVARCHAR(255) NOT NULL,
-    Gender NVARCHAR(10) CHECK (Gender IN ('Male', 'Female')) NOT NULL,
-    DateOfBirth DATE NOT NULL,
-    CMND CHAR(12) CHECK (LEN(CMND) = 12),
-    PhoneNumber NVARCHAR(15) CHECK (LEN(PhoneNumber) = 10) NOT NULL,
-    Email NVARCHAR(255) UNIQUE NOT NULL,
-    Password NVARCHAR(255) NOT NULL,
-    Address NVARCHAR(255),
-    Role INT CHECK (Role IN (1, 2)), -- Restricting values to 1 or 2
-    CONSTRAINT CHK_Email CHECK (Email LIKE '%@%.%'), -- Basic email format validation
-    CONSTRAINT CHK_Password_Length CHECK (LEN(Password) >= 8) -- Minimum password length
+ID INT PRIMARY KEY IDENTITY(1,1),
+Name NVARCHAR(255) NOT NULL,
+Gender NVARCHAR(10) CHECK (Gender IN ('Male', 'Female')) NOT NULL,
+DateOfBirth DATE NOT NULL,
+CMND CHAR(12) CHECK (LEN(CMND) = 12),
+PhoneNumber NVARCHAR(15) CHECK (LEN(PhoneNumber) = 10) NOT NULL,
+Email NVARCHAR(255) UNIQUE NOT NULL,
+Password NVARCHAR(255) NOT NULL,
+Address NVARCHAR(255),
+Role INT CHECK (Role IN (1, 2)), -- Restricting values to 1 or 2
+CONSTRAINT CHK_Email CHECK (Email LIKE '%@%.%'), -- Basic email format validation
+CONSTRAINT CHK_Password_Length CHECK (LEN(Password) >= 8) -- Minimum password length
 );
 INSERT INTO [User] (Name, Gender, DateOfBirth, CMND, PhoneNumber, Email, Password, Address, Role) 
 VALUES 
@@ -227,7 +227,7 @@ CREATE TABLE ScreenSeat (
     Type NVARCHAR(50) NOT NULL, -- Type of the seat (e.g., double, vip, standard)
     Price DECIMAL(10, 2) NOT NULL, -- Price of the seat
     ScreenId INT NOT NULL,
-    FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
+    FOREIGN KEY (ScreenId) REFERENCES Screen (Id) ON DELETE CASCADE,
     CONSTRAINT UC_ScreenSeat_Name UNIQUE (Name, ScreenId)
 );
 -- Insert seats for Screen 1
@@ -327,72 +327,72 @@ CREATE TABLE Slot (
 INSERT INTO Slot (startTime, endTime)
 VALUES
     ('09:00', '10:30'),
-    ('10:15', '11:45'),
-    ('11:30', '13:00'),
-    ('12:45', '14:15'),
-    ('13:45', '15:15'),
-    ('14:45', '16:15'),
-    ('15:45', '17:15'),
-    ('16:45', '18:15'),
-    ('17:45', '19:15'),
-    ('18:45', '20:15');
+    ('10:30', '12:00'),
+    ('12:00', '13:30'),
+    ('13:30', '15:00'),
+    ('15:00', '16:30'),
+    ('16:30', '18:00'),
+    ('18:00', '19:30'),
+    ('19:30', '21:00'),
+    ('21:00', '22:30'),
+    ('22:30', '00:00');
 CREATE TABLE FilmDetail (
     Id INT PRIMARY KEY IDENTITY(1,1),
     ScreenId INT NOT NULL,
     FilmId INT NOT NULL,
     FilmSlotId INT NOT NULL,
     MovieDate DATE NOT NULL,
-    FOREIGN KEY (ScreenId) REFERENCES Screen (Id),
-    FOREIGN KEY (FilmId) REFERENCES Film (Id),
-    FOREIGN KEY (FilmSlotId) REFERENCES Slot (Id),
+    FOREIGN KEY (ScreenId) REFERENCES Screen (Id) ON DELETE CASCADE,
+    FOREIGN KEY (FilmId) REFERENCES Film (Id) ON DELETE CASCADE,
+    FOREIGN KEY (FilmSlotId) REFERENCES Slot (Id) ON DELETE CASCADE,
     CONSTRAINT UC_FilmDetail UNIQUE (ScreenId, FilmSlotId, MovieDate) -- Unique constraint to ensure a film can't be shown on the same screen, slot, and date
 );
 INSERT INTO FilmDetail (ScreenId, FilmId, FilmSlotId, MovieDate)
 VALUES 
     -- Film details for date 2024-03-06
-    (1, 1, 1, '2024-03-06'), -- Screen 1 showing Film 1 on Slot 1 on 2024-03-06
-    (2, 2, 2, '2024-03-06'), -- Screen 2 showing Film 2 on Slot 2 on 2024-03-06
-    (3, 3, 3, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
-    (4, 4, 4, '2024-03-06'), -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
+    (1, 1, 11, '2024-03-06'), -- Screen 1 showing Film 1 on Slot 1 on 2024-03-06
+    (2, 2, 12, '2024-03-06'), -- Screen 2 showing Film 2 on Slot 2 on 2024-03-06
+    (3, 3, 13, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
+    (4, 4, 14, '2024-03-06'), -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
     -- Film details for other dates
     -- Film 9 on Screen 1, Slot 9 (17:45 - 19:15), Date 2024-03-14
-    (1, 9, 9, '2024-03-14'),
+    (1, 9, 19, '2024-03-14'),
     -- Film 10 on Screen 2, Slot 10 (18:45 - 20:15), Date 2024-03-14
-    (2, 10, 10, '2024-03-14'),
+    (2, 10, 20, '2024-03-14'),
     -- Film 11 on Screen 3, Slot 1 (09:00 - 10:30), Date 2024-03-15
-    (3, 11, 1, '2024-03-15'),
+    (3, 11, 11, '2024-03-15'),
     -- Film 12 on Screen 4, Slot 2 (10:15 - 11:45), Date 2024-03-15
-    (4, 12, 2, '2024-03-15'),
+    (4, 12, 12, '2024-03-15'),
     -- Film 1 on Screen 1, Slot 3 (11:30 - 13:00), Date 2024-03-15
-    (1, 1, 3, '2024-03-15'),
+    (1, 1, 13, '2024-03-15'),
     -- Film 2 on Screen 2, Slot 4 (12:45 - 14:15), Date 2024-03-15
-    (2, 2, 4, '2024-03-15'),
+    (2, 2, 14, '2024-03-15'),
     -- Film 3 on Screen 3, Slot 5 (13:45 - 15:15), Date 2024-03-16
-    (3, 3, 5, '2024-03-16'),
+    (3, 3, 15, '2024-03-16'),
     -- Film 4 on Screen 4, Slot 6 (14:45 - 16:15), Date 2024-03-16
-    (4, 4, 6, '2024-03-16'),
+    (4, 4, 16, '2024-03-16'),
     -- Film 1 on Screen 1, Slot 7 (15:45 - 17:15), Date 2024-03-16
-    (1, 1, 7, '2024-03-16'),
+    (1, 1, 17, '2024-03-16'),
     -- Film 1 on Screen 2, Slot 8 (16:45 - 18:15), Date 2024-03-16
-    (2, 1, 8, '2024-03-16'),
+    (2, 1, 18, '2024-03-16'),
     -- Film 1 on Screen 3, Slot 9 (17:45 - 19:15), Date 2024-03-16
-    (3, 1, 9, '2024-03-16'),
+    (3, 1, 19, '2024-03-16'),
     -- Film 1 on Screen 4, Slot 10 (18:45 - 20:15), Date 2024-03-16
-    (4, 1, 10, '2024-03-16'),
+    (4, 1, 20, '2024-03-16'),
     -- Film 3 on Screen 1, Slot 1 (09:00 - 10:30), Date 2024-03-17
-    (1, 3, 1, '2024-03-17'),
+    (1, 3, 11, '2024-03-17'),
     -- Film 3 on Screen 2, Slot 2 (10:15 - 11:45), Date 2024-03-17
-    (2, 3, 2, '2024-03-17'),
+    (2, 3, 12, '2024-03-17'),
     -- Film 3 on Screen 3, Slot 3 (11:30 - 13:00), Date 2024-03-17
-    (3, 3, 3, '2024-03-17'),
+    (3, 3, 13, '2024-03-17'),
     -- Film 3 on Screen 4, Slot 4 (12:45 - 14:15), Date 2024-03-17
-    (4, 3, 4, '2024-03-17');
+    (4, 3,14, '2024-03-17');
 CREATE TABLE Bill (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     UserId INT NOT NULL,
     Date DATE NOT NULL,
     TotalPrice FLOAT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES [User](Id)
+    FOREIGN KEY (UserId) REFERENCES [User](Id) ON DELETE CASCADE
 );
 
 INSERT INTO Bill (UserId, Date, TotalPrice)
@@ -404,18 +404,12 @@ CREATE TABLE Ticket (
     BillId INT NOT NULL,
     FilmDetailId INT NOT NULL,
     ScreenSeatId INT NOT NULL,
-    FOREIGN KEY (BillId) REFERENCES Bill(Id),
-    FOREIGN KEY (FilmDetailId) REFERENCES FilmDetail(Id),
-    FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id),
+    FOREIGN KEY (BillId) REFERENCES Bill(Id) ON DELETE CASCADE,
+    FOREIGN KEY (FilmDetailId) REFERENCES FilmDetail(Id) ON DELETE CASCADE,
+    FOREIGN KEY (ScreenSeatId) REFERENCES ScreenSeat(Id) ,
     CONSTRAINT UC_Ticket UNIQUE (FilmDetailId, ScreenSeatId)
 );
-INSERT INTO Ticket (BillId, FilmDetailId, ScreenSeatId)
-VALUES
-(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'A1')),
-(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'A2')),
-(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'B3')),
-(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'C4')),
-(1, 2, (SELECT Id FROM ScreenSeat WHERE ScreenId = 2 AND Name = 'D5'));
+
 CREATE TABLE Service (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
@@ -436,3 +430,16 @@ VALUES
 (N'1 bắp rang bơ', 35000.00, 'nameService/bap.png'),
 (N'1 ly nước ngọt coca size L và 1 bắp rang bơ', 55000.00, 'nameService/combo3.png'),
 (N'2 ly nước ngọt coca size L và 1 bắp rang bơ', 80000.00, 'nameService/combo4.png');
+
+go
+CREATE TRIGGER DeleteBillOnTicketDelete
+ON Ticket
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Bill
+    WHERE Id IN (SELECT BillId FROM deleted);
+END;
+go

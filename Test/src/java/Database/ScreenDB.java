@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScreenDB implements DatabaseInfo {
 
@@ -23,7 +25,7 @@ public class ScreenDB implements DatabaseInfo {
         }
         return null;
     }
-    
+
     public static Screen getScreen(int screenID) {
         Connection con = getConnect();
         if (con != null) {
@@ -49,7 +51,33 @@ public class ScreenDB implements DatabaseInfo {
         }
         return null;
     }
-    
+
+    public static List<Screen> getAllScreens() {
+        List<Screen> screens = new ArrayList<>();
+        Connection con = getConnect();
+        if (con != null) {
+            try {
+                String query = "SELECT id, name FROM Screen";
+                PreparedStatement statement = con.prepareStatement(query);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    screens.add(new Screen(id, name));
+                }
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+            } finally {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println("Error closing connection: " + e);
+                }
+            }
+        }
+        return screens;
+    }
+
     public static void main(String[] args) {
         // Test getScreen method
         int screenID = 3; // Provide the desired screen ID
@@ -61,5 +89,5 @@ public class ScreenDB implements DatabaseInfo {
         } else {
             System.out.println("Screen not found!");
         }
-    }    
+    }
 }

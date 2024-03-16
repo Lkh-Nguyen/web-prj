@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,12 +24,12 @@
                 <div class="left_list">
                     <table>
                         <tr class="list2">
-                            <td class="listName1"><a href="full_admin_user.jsp">QUẢN LÝ NGƯỜI DÙNG</a></td>
+                            <td class="listName1"><a href="adminListUser">QUẢN LÝ NGƯỜI DÙNG</a></td>
                             <td class="listIcon1"><a href="full_admin_user.jsp"><i class='bx bx-user'></i></a></td>
                         </tr>
 
                         <tr class="list1">
-                            <td class="listName1"><a href="full_admin_film.jsp">QUẢN LÝ THÔNG TIN PHIM</a></td>
+                            <td class="listName1"><a href="adminListFilm">QUẢN LÝ THÔNG TIN PHIM</a></td>
                             <td class="listIcon1"><a href="full_admin_film.jsp"><i class='bx bx-film' ></i></a></td>
                         </tr>
                         <tr class="list0">
@@ -37,11 +38,11 @@
                         </tr>
 
                         <tr class="list1">
-                            <td class="listName1"><a href="full_admin_ticket.jsp">QUẢN LÝ VÉ XEM PHIM</a></td>
+                            <td class="listName1"><a href="adminListTicket">QUẢN LÝ VÉ XEM PHIM</a></td>
                             <td class="listIcon1"><a href="full_admin_ticket.jsp"><i class='bx bx-detail'></i></a></td>
                         </tr>
                         <tr class="list1">
-                            <td class="listName1"><a href="full_admin_service.jsp">QUẢN LÝ DỊCH VỤ BẮP NƯỚC</a></td>
+                            <td class="listName1"><a href="adminListService">QUẢN LÝ DỊCH VỤ BẮP NƯỚC</a></td>
                             <td class="listIcon1"><a href="full_admin_service.jsp"><i class='bx bx-food-menu'></i></a></td>
                         </tr>
                     </table>
@@ -59,57 +60,35 @@
                         <table id="product-table-id" class="product-table">
                             <tr>
                                 <th>ID</th>
-                                <th>ScreenID</th>
-                                <th>FilmID</th>
-                                <th>FilmSlotID</th>
-                                <th>MovieDate</th>
+                                <th>Screen ID</th>
+                                <th>Film ID</th>
+                                <th>FilmSlot ID</th>
+                                <th>Movie Date</th>
                                 <th>Chức năng</th>
                             </tr>
-                            <form action="" method="">
+                            <c:forEach items="${filmDetailList}" var="filmDetail">
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>2024-03-06</td>
+                                    <td>${filmDetail.id}</td>
+                                    <td>${filmDetail.screen.id}</td>
+                                    <td>${filmDetail.film.id}</td>
+                                    <td>${filmDetail.filmSlot.id}</td>
+                                    <td>${filmDetail.movieDate}</td>
                                     <td>
-                                        <input type="submit" value="Cập nhật" style="width: 100px">
-                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                        <form action="adminUpdateFilmDetail" method="get">
+                                            <c:set var="filmDetailId" value="${filmDetail.id}" />
+                                            <input type="hidden" name="filmDetailId" value="${filmDetailId}" />
+                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                        </form>
+                                        <form action="adminDeleteFilmDetail" method="post">
+                                            <c:set var="filmDetailId" value="${filmDetail.id}" />
+                                            <input type="hidden" name="filmDetailId" value="${filmDetailId}" />
+                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                        </form>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2024-03-06</td>
-                                    <td>
-                                        <input type="submit" value="Cập nhật" style="width: 100px">
-                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>2024-03-06</td>
-                                    <td>
-                                        <input type="submit" value="Cập nhật" style="width: 100px">
-                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>2024-03-07</td>
-                                    <td>
-                                        <input type="submit" value="Cập nhật" style="width: 100px">
-                                        <input type="submit" value="Xóa dữ liệu" style="width: 100px">
-                                    </td>
-                                </tr>
+                            </c:forEach>
+
+
                             </form>
                         </table> 
                     </div>
@@ -117,35 +96,107 @@
                 <h1 style="margin-left: 0px;font-size: 25px;">Tạo thêm hoặc chỉnh sửa lịch chiếu:</h1>
                 <div class="container" id="list">
                     <div id="register">
-                        <form action="" method="post">
+                        <c:set var="filmDetail" value="${requestScope.filmDetail}"></c:set>
+                        <c:if test="${not empty filmDetail}">
+                            <c:set var="actionValue" value="adminUpdateFilmDetail"></c:set>
+                        </c:if>
+                        <c:if test="${empty filmDetail}">
+                            <c:set var="actionValue" value="adminAddFilmDetail"></c:set>
+                        </c:if>
+                        <form action="${actionValue}" method="post">
                             <div class="form_register">
                                 <div class ="row">
-                                    <div class="col-md-4 register">
-                                        <p>Film ID</p>
-                                        <input type="text" name="idFIlm"  placeholder="Nhập ID Film Ở Đây" value="${param.filmID}" required>
-                                    </div>
-                                    <div class="col-md-4 register">
-                                        <p>Screen ID</p>
-                                        <input type="text" name="idScreen"  placeholder="Nhập ID Screen Ở Đây" value="${param.screenID}" required>
-                                    </div
+                                    <c:if test="${not empty filmDetail}">
+                                        <div class="col-md-4 register">
+                                            <p>Film </p>
+                                            <select name="idFilm">
+                                                <option value="${filmDetail.film.id}">${filmDetail.film.name}</option>
+                                                <c:forEach items="${sessionScope.filmList}" var="film">
+                                                    <option value="${film.id}">${film.name}</option>
+                                                </c:forEach>
+                                            </select> 
+                                           
+                                        </div>
+                                        <div class="col-md-4 register">
+                                            <p>Screen </p>
+                                            <select name="idScreen">
+                                               <option value="${filmDetail.screen.id}">${filmDetail.screen.name}</option>
+                                                <c:forEach items="${sessionScope.screenList}" var="screen">
+                                                    <option value="${screen.id}">${screen.name}</option>
+                                                </c:forEach>
+                                            </select> 
+                                        </div
+                                    </c:if>
+                                    <c:if test="${empty filmDetail}">
+                                        <div class="col-md-4 register">
+                                            <p>Film </p>
+                                            <select name="idFilm">
+                                                <option>Hãy Chọn Film : </option>
+                                                <c:forEach items="${sessionScope.filmList}" var="film">
+                                                    <option value="${film.id}">${film.name}</option>
+                                                </c:forEach>
+                                            </select> 
+                                        </div>
+                                        <div class="col-md-4 register">
+                                            <p>Screen </p>
+                                             <select name="idScreen">
+                                                <option>Hãy Chọn Screen : </option>
+                                               <c:forEach items="${sessionScope.screenList}" var="screen">
+                                                    <option value="${screen.id}">${screen.name}</option>
+                                                </c:forEach>
+                                            </select> 
+                                        </div
+                                    </c:if>
+
                                 </div>
                             </div>
                             <div class ="row">
-                                <div class="col-md-4 register">
-                                    <p>Film Slot ID</p>
-                                    <input type="text" name="filmSlotID"  placeholder="Nhập ID Slot Ở Đây" value="${param.screenID}" required>
-                                </div>
-                                <div class="col-md-4 register">
-                                    <p>Movie Date</p>
-                                    <input type="text" name="dateMoive"  placeholder="Nhập Ngày Chiếu Ở Đây" value="${param.screenID}" required>
-                                </div>
+                                <c:if test="${not empty filmDetail}">
+                                    <div class="col-md-4 register">
+                                        <p>Film Slot </p>
+                                        <select name="filmSlotID">
+                                                <option value="${filmDetail.filmSlot.id}">${filmDetail.filmSlot.startTime}-${filmDetail.filmSlot.endTime}</option>
+                                                <c:forEach items="${sessionScope.slotList}" var="slot">
+                                                    <option value="${slot.id}">${slot.startTime}-${slot.endTime}</option>
+                                                </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 register">
+                                        <p>Movie Date</p>
+                                        <input type="date" name="dateMoive"  placeholder="Nhập Ngày Chiếu Ở Đây" value="${filmDetail.movieDate}" required>
+                                    </div>
+                                </c:if>
+                                <c:if test="${empty filmDetail}">
+                                    <div class="col-md-4 register">
+                                       <p>Film Slot </p>
+                                        <select name="filmSlotID">
+                                                <option>Hãy Chọn Slot Film</option>
+                                                <c:forEach items="${sessionScope.slotList}" var="slot">
+                                                    <option value="${slot.id}">${slot.startTime}-${slot.endTime}</option>
+                                                </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 register">
+                                        <p>Movie Date</p>
+                                        <input type="date" name="dateMoive"  placeholder="Nhập Ngày Chiếu Ở Đây" value="${param.movieDate}" required>
+                                    </div>
+                                </c:if>
+
                             </div>
-                            <div id="submit_register">
-                                <input type="submit" value="THÊM LỊCH CHIẾU">
-                            </div>
-                            <div id="submit_register">
-                                <input type="submit" value="CẬP NHẬT LỊCH CHIẾU">
-                            </div>                
+                            <c:if test="${not empty filmDetail}">
+                                <div id="submit_register">
+                                    <input type="hidden" name="filmDetailId" value="${filmDetailId}" />
+                                    <input type="submit" value="CẬP NHẬT LỊCH CHIẾU">
+
+                                </div>
+                            </c:if>
+                            <c:if test="${empty filmDetail}">
+                                <div id="submit_register">
+                                    <input type="submit" value="THÊM LỊCH CHIẾU">
+                                </div>
+                            </c:if>
+
+
                     </div>
                     </form>
                 </div>

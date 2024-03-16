@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 @WebServlet("/UploadFileServlet")
@@ -29,15 +30,15 @@ public class UploadFile extends HttpServlet {
             }
            
             String uploadPath = getServletContext().getRealPath("/nameFile") + File.separator + fileName;
-
-            part.write(uploadPath);
-            request.setAttribute("uploadedFilePath", fileName);
+            part.write(uploadPath);    
+            HttpSession session = request.getSession();
+            session.setAttribute("uploadedFilePath", fileName);
             break;
         }
         if(request.getParameter("check").equals("1")){
             getServletContext().getRequestDispatcher("/full_admin_service.jsp").forward(request, response);
         }else{
-            getServletContext().getRequestDispatcher("/full_admin_film.jsp").forward(request, response);
+            response.sendRedirect("adminListFilm");
         }
     }
     private String extractFileName(Part part) {
