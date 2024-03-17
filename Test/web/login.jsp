@@ -40,6 +40,8 @@
                     <div id="submit_login">
                         <input type="submit" value="ĐĂNG NHẬP">
                     </div>
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/Test/LoginGoogleHandler&response_type=code
+                       &client_id=154620528176-dab78bgpn5itt22a22n6d5rljqjavcqg.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
                     <div class="move_lookpass">
                         <a href="#">Tìm lại mật khẩu →</a>
                     </div>

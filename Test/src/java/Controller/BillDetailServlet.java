@@ -44,7 +44,7 @@ public class BillDetailServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BillDetailServlet</title>");            
+            out.println("<title>Servlet BillDetailServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BillDetailServlet at " + request.getContextPath() + "</h1>");
@@ -70,11 +70,14 @@ public class BillDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Bill bill = BillDB.getBill(billID);
+
         //Bill không phải của người dùng
-        if (user.getId() != bill.getUser().getId()) response.sendRedirect("home");
+        if (bill==null || user.getId() != bill.getUser().getId()) {
+            response.sendRedirect("home");
+        }
         List<Ticket> ticketList = TicketDB.getTicketsByBillID(billID);
         FilmDetail filmDetail = null;
-        if (ticketList !=null && !ticketList.isEmpty()){
+        if (ticketList != null && !ticketList.isEmpty()) {
             filmDetail = ticketList.get(0).getFilmDetail();
         }
         List<ServiceUsage> orderedService = ServiceUsageDB.getAllServiceUsagesByBillID(billID);

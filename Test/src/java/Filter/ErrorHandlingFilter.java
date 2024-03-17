@@ -29,7 +29,7 @@ public class ErrorHandlingFilter implements Filter {
             // Handle exception
             t.printStackTrace();
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("home"); // Redirect to error page
+            httpResponse.sendRedirect("error.jsp"); // Redirect to error page
         }
     }
 

@@ -60,6 +60,8 @@ public class UpdateAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String passwordError = (String) request.getAttribute("passwordError");
+        request.setAttribute("passwordError", passwordError);
         request.getRequestDispatcher("full_updateAccount.jsp").forward(request, response);
     }
 
@@ -71,67 +73,66 @@ public class UpdateAccountServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    //Taking user input
-    String name = request.getParameter("name");
-    String gender = request.getParameter("gender"); // Assuming this is the name of the gender radio button group
-    String dobStr = request.getParameter("DOB"); // Assuming this is the name of the date of birth input field
-    String cmnd = request.getParameter("CMND");
-    String phoneNumber = request.getParameter("phone");
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
-    String repassword = request.getParameter("repassword");
-    String address = request.getParameter("address");
-    
-    //Parsing String to java.util.Date
-    java.sql.Date dateOfBirth = null;
-    try {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateOfBirth = new java.sql.Date(dateFormat.parse(dobStr).getTime());
-    } catch (ParseException e) {
-        e.printStackTrace(); // Handle parsing exception appropriately
-    }
-    
-    // Retrieve current user from session
-    HttpSession session = request.getSession();
-    User sessionUser = (User) session.getAttribute("user");
-    
-    // Create new User object with updated information
-    User newUser = new User(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address);
-    
-    boolean hasError = false;
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //Taking user input
+        String name = request.getParameter("name");
+        String gender = request.getParameter("gender"); // Assuming this is the name of the gender radio button group
+        String dobStr = request.getParameter("DOB"); // Assuming this is the name of the date of birth input field
+        String cmnd = request.getParameter("CMND");
+        String phoneNumber = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
+        String address = request.getParameter("address");
 
-    // Check if passwords match
-    if (!password.equals(repassword)) {
-        request.setAttribute("repasswordError", "Mật khẩu không khớp!");
-        hasError = true;
-    } // Check password
-    else if (!sessionUser.getPassword().equals(password)) {
-        request.setAttribute("passwordError", "Sai mật khẩu!");
-        hasError = true;
-    }
+        //Parsing String to java.util.Date
+        java.sql.Date dateOfBirth = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateOfBirth = new java.sql.Date(dateFormat.parse(dobStr).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle parsing exception appropriately
+        }
 
-    // If there's an error, forward to update page
-    if (hasError) {
+        // Retrieve current user from session
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+
+        // Create new User object with updated information
+        User newUser = new User(name, gender, dateOfBirth, cmnd, phoneNumber, email, password, address);
+
+        boolean hasError = false;
+
+        // Check if passwords match
+        if (!password.equals(repassword)) {
+            request.setAttribute("repasswordError", "Mật khẩu không khớp!");
+            hasError = true;
+        } // Check password
+        else if (!sessionUser.getPassword().equals(password)) {
+            request.setAttribute("passwordError", "Sai mật khẩu!");
+            hasError = true;
+        }
+
+        // If there's an error, forward to update page
+        if (hasError) {
+            request.getRequestDispatcher("full_updateAccount.jsp").forward(request, response);
+            return;
+        }
+
+        // Update the user's information
+        if (UserDB.updateUser(sessionUser, newUser)) {
+            request.setAttribute("updateStatus", "Cập nhật thành công!");
+            // Update the session with the new user information
+            session.setAttribute("user", newUser);
+        } else {
+            request.setAttribute("updateStatus", "Cập nhật không thành công!");
+        }
+
+        // Forward to the update page
         request.getRequestDispatcher("full_updateAccount.jsp").forward(request, response);
-        return;
     }
-
-    // Update the user's information
-    if (UserDB.updateUser(sessionUser, newUser)) {
-        request.setAttribute("updateStatus", "Cập nhật thành công!");
-        // Update the session with the new user information
-        session.setAttribute("user", newUser);
-    } else {
-        request.setAttribute("updateStatus", "Cập nhật không thành công!");
-    }
-    
-    // Forward to the update page
-    request.getRequestDispatcher("full_updateAccount.jsp").forward(request, response);
-}
-
 
     /**
      * Returns a short description of the servlet.

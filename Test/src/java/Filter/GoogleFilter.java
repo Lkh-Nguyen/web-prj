@@ -4,14 +4,17 @@
  */
 package Filter;
 
+import Model.User;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -21,7 +24,7 @@ import java.io.StringWriter;
  *
  * @author ASUS
  */
-public class HomeFilter implements Filter {
+public class GoogleFilter implements Filter {
 
     private static final boolean debug = true;
 
@@ -30,13 +33,13 @@ public class HomeFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public HomeFilter() {
+    public GoogleFilter() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HomeFilter:DoBeforeProcessing");
+            log("GoogleFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -64,7 +67,7 @@ public class HomeFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HomeFilter:DoAfterProcessing");
+            log("GoogleFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -99,47 +102,29 @@ public class HomeFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
 
-        if (debug) {
-            log("HomeFilter:doFilter()");
-        }
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        String url = req.getServletPath();
+        // Get the session
+        HttpSession session = httpRequest.getSession(false);
 
-        // Skip filtering if the request is for error.jsp
-        if (url.endsWith("error.jsp")) {
-            chain.doFilter(request, response);
-            return;
-        }
+        if (session != null && session.getAttribute("user") != null) {
+            // Assuming you have a method to get the user object from session
+            User user = (User) session.getAttribute("user");
 
-        doBeforeProcessing(request, response);
-
-        if (url.endsWith(".jsp")) {
-            res.sendRedirect("home");
-            return;
-        }
-
-        Throwable problem = null;
-        try {
-            chain.doFilter(request, response);
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-
-        doAfterProcessing(request, response);
-
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-        if (problem != null) {
-            if (problem instanceof ServletException) {
-                throw (ServletException) problem;
+            // Check if user's phone number is "0000000000"
+            if ("0000000000".equals(user.getPhoneNumber())) {
+                // Forward to updateAccount with error message
+                String passwordError = "Xin hãy cập nhật tài khoản!";
+                httpRequest.setAttribute("passwordError", passwordError);
+                RequestDispatcher dispatcher = httpRequest.getRequestDispatcher("/updateAccount");
+                dispatcher.forward(httpRequest, httpResponse);
+                return;
             }
-            if (problem instanceof IOException) {
-                throw (IOException) problem;
-            }
-            sendProcessingError(problem, response);
         }
+
+        // If user's phone number is not "0000000000" or session user is null, continue with filter chain
+        chain.doFilter(request, response);
     }
 
     /**
@@ -171,7 +156,7 @@ public class HomeFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("HomeFilter:Initializing filter");
+                log("GoogleFilter:Initializing filter");
             }
         }
     }
@@ -182,9 +167,9 @@ public class HomeFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("HomeFilter()");
+            return ("GoogleFilter()");
         }
-        StringBuffer sb = new StringBuffer("HomeFilter(");
+        StringBuffer sb = new StringBuffer("GoogleFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
