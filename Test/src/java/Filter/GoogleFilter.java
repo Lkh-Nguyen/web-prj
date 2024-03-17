@@ -105,6 +105,15 @@ public class GoogleFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+        // Get the requested URI
+        String requestURI = httpRequest.getRequestURI();
+
+        // Allow access to /logout
+        if (requestURI.endsWith("/logout")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        
         // Get the session
         HttpSession session = httpRequest.getSession(false);
 
