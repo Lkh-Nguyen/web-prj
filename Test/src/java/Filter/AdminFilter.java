@@ -4,6 +4,7 @@
  */
 package Filter;
 
+import Model.User;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -12,6 +13,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -21,7 +23,7 @@ import java.io.StringWriter;
  *
  * @author ASUS
  */
-public class HomeFilter implements Filter {
+public class AdminFilter implements Filter {
 
     private static final boolean debug = true;
 
@@ -30,13 +32,13 @@ public class HomeFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public HomeFilter() {
+    public AdminFilter() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HomeFilter:DoBeforeProcessing");
+            log("AdminFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -64,7 +66,7 @@ public class HomeFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HomeFilter:DoAfterProcessing");
+            log("AdminFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -95,50 +97,29 @@ public class HomeFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
+    private static final int ADMIN_ROLE = 2;
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        if (debug) {
-            log("HomeFilter:doFilter()");
-        }
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpSession session = httpRequest.getSession(false); // Don't create session if it doesn't exist
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        String url = req.getServletPath();
+        if (session != null && session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
 
-        // Skip filtering if the request is for error.jsp
-        if (url.endsWith("error.jsp")) {
-            chain.doFilter(request, response);
-            return;
-        }
-
-        doBeforeProcessing(request, response);
-
-        if (url.endsWith(".jsp")) {
-            res.sendRedirect("home");
-            return;
-        }
-
-        Throwable problem = null;
-        try {
-            chain.doFilter(request, response);
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-
-        doAfterProcessing(request, response);
-
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-        if (problem != null) {
-            if (problem instanceof ServletException) {
-                throw (ServletException) problem;
+            if (user.getRole() == ADMIN_ROLE) {
+                // User is admin, continue with the request
+                chain.doFilter(request, response);
+            } else {
+                // User is not admin, redirect to home page
+                HttpServletResponse httpResponse = (HttpServletResponse) response;
+                httpResponse.sendRedirect("home");
             }
-            if (problem instanceof IOException) {
-                throw (IOException) problem;
-            }
-            sendProcessingError(problem, response);
+        } else {
+            // No user session found, redirect to home page
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.sendRedirect("home");
         }
     }
 
@@ -171,7 +152,7 @@ public class HomeFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("HomeFilter:Initializing filter");
+                log("AdminFilter:Initializing filter");
             }
         }
     }
@@ -182,9 +163,9 @@ public class HomeFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("HomeFilter()");
+            return ("AdminFilter()");
         }
-        StringBuffer sb = new StringBuffer("HomeFilter(");
+        StringBuffer sb = new StringBuffer("AdminFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

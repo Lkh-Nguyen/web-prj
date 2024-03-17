@@ -11,19 +11,74 @@
     <filter>
         <filter-name>ErrorHandlingFilter</filter-name>
         <filter-class>Filter.ErrorHandlingFilter</filter-class>
-    </filter>
+    </filter>    
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>Filter.AdminFilter</filter-class>
+    </filter>       
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
-        <url-pattern>/home.jsp</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>ErrorHandlingFilter</filter-name>
-        <url-pattern>/home.jsp</url-pattern>
-    </filter-mapping>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>    
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/updateAccount</url-pattern>
+        <url-pattern>/changePass</url-pattern>
+        <url-pattern>/historyOnline</url-pattern>
+        <url-pattern>/adminFunction</url-pattern>
+        <url-pattern>/adminListUser</url-pattern>
+        <url-pattern>/adminListFilm</url-pattern>
+        <url-pattern>/adminListFilmDetail</url-pattern>
+        <url-pattern>/adminListTicket</url-pattern>
+        <url-pattern>/adminListService</url-pattern>
+        <url-pattern>/adminUpdateUser</url-pattern>
+        <url-pattern>/adminUpdateFilm</url-pattern>
+        <url-pattern>/adminUpdateFilmDetail</url-pattern>
+        <url-pattern>/adminUpdateTicket</url-pattern>
+        <url-pattern>/adminUpdateService</url-pattern>
+        <url-pattern>/adminAddUser</url-pattern>
+        <url-pattern>/adminAddFilm</url-pattern>
+        <url-pattern>/adminAddFilmDetail</url-pattern>
+        <url-pattern>/adminAddTicket</url-pattern>
+        <url-pattern>/adminAddService</url-pattern>
+        <url-pattern>/adminDeleteUser</url-pattern>
+        <url-pattern>/adminDeleteFilm</url-pattern>
+        <url-pattern>/adminDeleteFilmDetail</url-pattern>
+        <url-pattern>/adminDeleteTicket</url-pattern>
+        <url-pattern>/adminDeleteService</url-pattern>
+        <url-pattern>/booking</url-pattern>
+        <url-pattern>/service</url-pattern>
+        <url-pattern>/payment</url-pattern>
+        <url-pattern>/billDetail</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/adminFunction</url-pattern>
+        <url-pattern>/adminListUser</url-pattern>
+        <url-pattern>/adminListFilm</url-pattern>
+        <url-pattern>/adminListFilmDetail</url-pattern>
+        <url-pattern>/adminListTicket</url-pattern>
+        <url-pattern>/adminListService</url-pattern>
+        <url-pattern>/adminUpdateUser</url-pattern>
+        <url-pattern>/adminUpdateFilm</url-pattern>
+        <url-pattern>/adminUpdateFilmDetail</url-pattern>
+        <url-pattern>/adminUpdateTicket</url-pattern>
+        <url-pattern>/adminUpdateService</url-pattern>
+        <url-pattern>/adminAddUser</url-pattern>
+        <url-pattern>/adminAddFilm</url-pattern>
+        <url-pattern>/adminAddFilmDetail</url-pattern>
+        <url-pattern>/adminAddTicket</url-pattern>
+        <url-pattern>/adminAddService</url-pattern>
+        <url-pattern>/adminDeleteUser</url-pattern>
+        <url-pattern>/adminDeleteFilm</url-pattern>
+        <url-pattern>/adminDeleteFilmDetail</url-pattern>
+        <url-pattern>/adminDeleteTicket</url-pattern>
+        <url-pattern>/adminDeleteService</url-pattern>
+    </filter-mapping>     
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Controller.LoginServlet</servlet-class>
