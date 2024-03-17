@@ -32,10 +32,6 @@
                             <td class="listName0"><a href="#">THAY ĐỔI MẬT KHẨU</a></td>
                             <td class="listIcon0"><a href="#"><i class='bx bxs-lock-open-alt'></i></a></td>
                         </tr>
-                        <tr class="list1">
-                            <td class="listName1"><a href="inforCard">THÔNG TIN THẺ THÀNH VIÊN</a></td>
-                            <td class="listIcon1"><a href="inforCard"><i class='bx bxs-id-card' ></i></i></a></td>
-                        </tr>
 
                         <tr class="list1">
                             <td class="listName1"><a href="historyOnline">LỊCH SỬ GIAO DỊCH ONLINE</a></td>

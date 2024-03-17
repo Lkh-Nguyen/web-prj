@@ -33,7 +33,7 @@
                             <td class="listIcon0"><a href="#"><i class='bx bx-film' ></i></a></td>
                         </tr>
                         <tr class="list1">
-                            <td class="listName1"><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></td>
+                            <td class="listName1"><a href=" dminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></td>
                             <td class="listIcon1"><a href="full_admin_filmDetail.jsp"><i class='bx bx-screenshot' ></i></a></td>
                         </tr>
 

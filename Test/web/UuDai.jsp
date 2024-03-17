@@ -31,7 +31,7 @@
           <div class="row mt-3">
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim6.jpg" alt="Phim1" />
+                  <img src="nameFilm/Vangod.jpg" alt="Phim1" />
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim14.jpg" alt="Phim15">
+                  <img src="nameFilm/bathimbt.jpg" alt="Phim15">
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
@@ -51,7 +51,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim7.jpg" alt="Phim1" />
+                  <img src="nameFilm/boidem.jpg" alt="Phim1" />
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim20.jpg" alt="Phim15">
+                  <img src="nameFilm/cuncungdainao.jpg" alt="Phim15">
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
@@ -69,7 +69,7 @@
           <div class="row mt-3">
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim3.jpg" alt="Phim1" />
+                  <img src="nameFilm/dune.jpg" alt="Phim1" />
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-6">
               <div class="img-container">
-                <img src="images/phim17.jpg" alt="Phim15">
+                  <img src="nameFilm/gaplaichibau.jpg" alt="Phim15">
                 <div class="info">
                   <h3>Chi tiết</h3>
               </div>
