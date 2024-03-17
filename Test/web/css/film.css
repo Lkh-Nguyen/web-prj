@@ -1,0 +1,70 @@
+#film_h1{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 24%;
+    margin-left: 24%;
+    font-size: 25px;
+    font-weight: 545;
+}
+
+.film{
+    margin-right: 21%;
+    margin-left: 24%;
+    margin-bottom: 2%;
+}
+
+.infor{
+    text-align: center;
+    height: 430px;
+    margin-bottom: 4%;
+}
+.infor img{
+    width: 80%;
+    height: 280px;
+}
+.infor h1{
+    margin-top: 4%;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;         /* Ngăn chặn quá trình xuống dòng */
+    overflow: hidden;            /* Ẩn phần vượt quá khung chứa */
+    text-overflow: ellipsis;     /* Hiển thị dấu "..." khi vượt quá */
+    max-width: 250px; 
+}
+.infor p{
+    margin-bottom: -1%;
+    white-space: nowrap;         /* Ngăn chặn quá trình xuống dòng */
+    overflow: hidden;            /* Ẩn phần vượt quá khung chứa */
+    text-overflow: ellipsis;     /* Hiển thị dấu "..." khi vượt quá */
+    max-width: 250px; 
+}
+.infor button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 9%;
+    background-color: rgb(15, 29, 47);
+    color: white;
+    padding: 4%;
+    border-radius: 20px;
+    font-size: 14px;
+    border: rgb(15, 29, 47);
+    font-weight: bold;
+    transition: box-shadow 0.3s, transform 0.3s; /* Thêm transition cho hiệu ứng smooth */
+}
+
+.infor button:hover {
+    background-color: orangered;
+    border: orangered;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Thêm hiệu ứng bóng nhấn xuống */
+    transform: translateY(-2px); /* Dịch chuyển nút lên trên khi hover */
+}
+
+
+
+.infor a{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-weight: bold;
+}
+.infor a:hover{
+    text-decoration: none;
+}

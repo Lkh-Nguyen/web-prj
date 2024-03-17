@@ -1,0 +1,155 @@
+
+  .container {
+    font-family: "SairaSemiCondensed-Medium", sans-serif;
+    margin: 0;
+    background-color: #f7f7f7;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .movie-title {
+    font-weight: 900;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .date-picker {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .date-picker label {
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .date-picker input {
+    width: 200px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .movie-list {
+    display: block;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .movie {
+    margin-top: 15px;
+    background-color: #fff;
+    border: 1px solid #d46012;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  .movie-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .movie:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+  
+  .movie p {
+    font-size: 16px;
+    color: #777;
+    margin: 0;
+  }
+  
+  .movie .time {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .movie .description {
+    font-style: normal;
+    color: #555;
+  }
+  .no-movie {
+    background-color: #f3d0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-left: 39%;
+    height: 60px;
+    width: 280px;
+  }
+  .movie-image {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+    float: left;
+  }
+  .time-option {
+    width: 180px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+
+.time-btn {
+    height: 80px;
+    background-color: white;
+    color: black;
+    border: 0.5px solid rgb(197, 194, 194);
+    margin: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 5px 10px;
+}
+
+.time-btn::after {
+    position: absolute;
+    right: 5px;
+}
+
+.time-btn:hover {
+    background-color: #d46012;
+    color: #fff;
+}
+.movie-details {
+    display: flex;
+}
+
+.movie p {
+    border-top: 0.5px solid rgb(197, 194, 194);
+    font-size: 17px;
+    color: #777;
+    margin: 0;
+}
+.time-link{
+    color:black;
+}
+.time-btn p:hover{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.time-link:hover{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
