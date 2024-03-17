@@ -103,7 +103,7 @@ Author     : HELLO
             </div>
         </div>
         <div class="back_film">
-            <a href="film"><i class='bx bx-arrow-back'></i> Đổi phim</a>
+            <a href="film">Đổi Phim</a>
         </div>
         <script>
             function showDetail() {

@@ -29,12 +29,14 @@
             color: rgb(111,98,71);
             font-size: 20px;
             align-items: center;
+            text-decoration: none;
         }
         .back_film a:hover{
             margin-left: 5px;
             color: rgb(111,98,71);
             font-size: 20px;
             align-items: center;
+            text-decoration: none;
         }
     </style>
     <body>

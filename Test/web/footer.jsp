@@ -44,7 +44,7 @@
                         <a href="https://www.google.com/maps/place/%C4%90%E1%BA%A1i+h%E1%BB%8Dc+FPT+%C4%90%C3%A0+N%E1%BA%B5ng/@16.0210554,108.1677695,13z/data=!4m10!1m2!2m1!1zZnB0IMSRw6AgbuG6tW5uZw!3m6!1s0x3142116949840599:0x365b35580f52e8d5!8m2!3d15.9688859!4d108.2608913!15sCg9mcHQgxJHDoCBu4bq1bmciA4gBAZIBEnByaXZhdGVfdW5pdmVyc2l0eeABAA!16s%2Fg%2F11fl0yz7tc?hl=vi-VN&entry=ttu">
                             <img src="images/logo2.png" alt="">
                         </a>
-<a href="https://www.google.com/maps/place/%C4%90%E1%BA%A1i+h%E1%BB%8Dc+FPT+%C4%90%C3%A0+N%E1%BA%B5ng/@16.0210554,108.1677695,13z/data=!4m10!1m2!2m1!1zZnB0IMSRw6AgbuG6tW5uZw!3m6!1s0x3142116949840599:0x365b35580f52e8d5!8m2!3d15.9688859!4d108.2608913!15sCg9mcHQgxJHDoCBu4bq1bmciA4gBAZIBEnByaXZhdGVfdW5pdmVyc2l0eeABAA!16s%2Fg%2F11fl0yz7tc?hl=vi-VN&entry=ttu"><label>XEM BẢN ĐỒ</label></a>
+                        <a href="https://www.google.com/maps/place/%C4%90%E1%BA%A1i+h%E1%BB%8Dc+FPT+%C4%90%C3%A0+N%E1%BA%B5ng/@16.0210554,108.1677695,13z/data=!4m10!1m2!2m1!1zZnB0IMSRw6AgbuG6tW5uZw!3m6!1s0x3142116949840599:0x365b35580f52e8d5!8m2!3d15.9688859!4d108.2608913!15sCg9mcHQgxJHDoCBu4bq1bmciA4gBAZIBEnByaXZhdGVfdW5pdmVyc2l0eeABAA!16s%2Fg%2F11fl0yz7tc?hl=vi-VN&entry=ttu"><label>XEM BẢN ĐỒ</label></a>
                     </div>
                 </div>
                 <div class="row footer3_infor">
@@ -81,8 +81,8 @@
                 // Xác định chức năng khi yêu cầu được gửi thành công
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        // In ra nội dung trả về từ ruleAccount.jsp
-                        document.write(this.responseText);
+                        // Thay đổi nội dung của phần tử có id là "sectionContent" bằng nội dung trả về từ ruleAccount.jsp
+                        document.getElementById("sectionContent").innerHTML = this.responseText;
 
                         // Tự động nhấn vào nút tương ứng
                         var link = document.querySelector('.cell[onclick="showText(\'' + sectionName + '\')"]');

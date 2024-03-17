@@ -22,11 +22,11 @@
     </filter>                  
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/home.jsp</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>ErrorHandlingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/home.jsp</url-pattern>
     </filter-mapping>    
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>

@@ -8,18 +8,22 @@
     background-color: rgb(205,193,151);
     padding-top: 12px;
     align-items: center;
+    text-decoration: none;
+    text-align: center;
 }
 .back_film a{
     margin-left: 5px;
     color: rgb(111,98,71);
     font-size: 20px;
     align-items: center;
+    text-decoration: none;
 }
 .back_film a:hover{
     margin-left: 5px;
     color: rgb(111,98,71);
     font-size: 20px;
     align-items: center;
+    text-decoration: none;
 }
 .container {
     display: flex;

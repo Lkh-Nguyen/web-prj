@@ -109,17 +109,16 @@
                                     <c:if test="${not empty filmDetail}">
                                         <div class="col-md-4 register">
                                             <p>Film </p>
-                                            <select name="idFilm">
+                                            <select name="idFilm" class="select-btn">
                                                 <option value="${filmDetail.film.id}">${filmDetail.film.name}</option>
                                                 <c:forEach items="${sessionScope.filmList}" var="film">
                                                     <option value="${film.id}">${film.name}</option>
                                                 </c:forEach>
                                             </select> 
-                                           
                                         </div>
                                         <div class="col-md-4 register">
                                             <p>Screen </p>
-                                            <select name="idScreen">
+                                            <select name="idScreen" class="select-btn">
                                                <option value="${filmDetail.screen.id}">${filmDetail.screen.name}</option>
                                                 <c:forEach items="${sessionScope.screenList}" var="screen">
                                                     <option value="${screen.id}">${screen.name}</option>
@@ -130,7 +129,7 @@
                                     <c:if test="${empty filmDetail}">
                                         <div class="col-md-4 register">
                                             <p>Film </p>
-                                            <select name="idFilm">
+                                            <select name="idFilm" class="select-btn">
                                                 <option>Hãy Chọn Film : </option>
                                                 <c:forEach items="${sessionScope.filmList}" var="film">
                                                     <option value="${film.id}">${film.name}</option>
@@ -139,22 +138,20 @@
                                         </div>
                                         <div class="col-md-4 register">
                                             <p>Screen </p>
-                                             <select name="idScreen">
+                                            <select name="idScreen" class="select-btn">
                                                 <option>Hãy Chọn Screen : </option>
                                                <c:forEach items="${sessionScope.screenList}" var="screen">
                                                     <option value="${screen.id}">${screen.name}</option>
                                                 </c:forEach>
                                             </select> 
-                                        </div
+                                        </div>
                                     </c:if>
-
-                                </div>
                             </div>
                             <div class ="row">
                                 <c:if test="${not empty filmDetail}">
                                     <div class="col-md-4 register">
                                         <p>Film Slot </p>
-                                        <select name="filmSlotID">
+                                            <select name="filmSlotID" class="select-btn">
                                                 <option value="${filmDetail.filmSlot.id}">${filmDetail.filmSlot.startTime}-${filmDetail.filmSlot.endTime}</option>
                                                 <c:forEach items="${sessionScope.slotList}" var="slot">
                                                     <option value="${slot.id}">${slot.startTime}-${slot.endTime}</option>
@@ -169,7 +166,7 @@
                                 <c:if test="${empty filmDetail}">
                                     <div class="col-md-4 register">
                                        <p>Film Slot </p>
-                                        <select name="filmSlotID">
+                                       <select name="filmSlotID" class="select-btn">
                                                 <option>Hãy Chọn Slot Film</option>
                                                 <c:forEach items="${sessionScope.slotList}" var="slot">
                                                     <option value="${slot.id}">${slot.startTime}-${slot.endTime}</option>
@@ -181,7 +178,7 @@
                                         <input type="date" name="dateMoive"  placeholder="Nhập Ngày Chiếu Ở Đây" value="${param.movieDate}" required>
                                     </div>
                                 </c:if>
-
+                            </div>
                             </div>
                             <c:if test="${not empty filmDetail}">
                                 <div id="submit_register">

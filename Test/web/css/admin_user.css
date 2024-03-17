@@ -148,6 +148,11 @@
 .update-button:hover {
     opacity: 0.8;
 }
-
+.select-btn {
+    border-radius: 5px;
+    border: 2px solid #c2c0c0;
+    width: 120%;
+    height: 35px;
+}
 
 /* Ẩn các nút phân trang khi không cần thiết */
