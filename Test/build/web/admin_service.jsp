@@ -66,7 +66,7 @@
                                 <tr>
                                     <td>${service.name}</td>
                                     <td>${service.price}</td>
-                                    <td><img src="nameService/${service.url}" style="width: 50px;height: 50px;"></td>
+                                    <td><img src="${service.url}" style="width: 80px;height: 80px;"></td>
                                     <td>
                                         <form action="adminUpdateService" method="get">
                                             <input type="hidden" name="serviceId" value="${service.id}" />

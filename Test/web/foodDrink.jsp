@@ -105,7 +105,8 @@
             document.getElementById('listSeat').value = document.getElementById('string_seat').textContent;
             document.getElementById('price').value = document.getElementById('sum_money').textContent;
             // JavaScript để xử lý sự kiện khi nút được nhấn
-            <c:forEach var="i" begin="1" end="4" step="1">
+            <c:set var="i" value="1"/>
+            <c:forEach var="c" items="${listService}">
             function increaseQuantity${i}() {
                 var quantityElement = document.getElementById('quantity${i}');
                 var currentQuantity = parseInt(quantityElement.textContent);
@@ -121,7 +122,7 @@
                 }
                 updateSumMoney();
             }
-
+            <c:set var="i" value="${i+1}"/>
 
 
             </c:forEach>
@@ -130,13 +131,15 @@
                 var sumMoneyElement = parseInt(document.getElementById('sum').value);
 
                 // Loop through each combo to calculate the total sum
-            <c:forEach var="i" begin="1" end="4" step="1">
+            <c:set var="i" value="1"/>
+            <c:forEach var="c" items="${listService}">
                 var quantity = parseInt(document.getElementById('quantity${i}').textContent);
                 var price = parseInt(document.getElementById('price${i}').value);
                 sumMoneyElement += quantity * price;
                 var id = document.getElementById('id${i}').value;
                 var number = document.getElementById('quantity${i}').textContent;
                 document.getElementById('full_FD${i}').value = id + ":" + number;
+                <c:set var="i" value="${i+1}"/>
             </c:forEach>
 
                 // Update the sum_money label with the calculated total sum

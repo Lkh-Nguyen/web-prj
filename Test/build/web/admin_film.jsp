@@ -33,7 +33,7 @@
                             <td class="listIcon0"><a href="#"><i class='bx bx-film' ></i></a></td>
                         </tr>
                         <tr class="list1">
-                            <td class="listName1"><a href=" dminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></td>
+                            <td class="listName1"><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></td>
                             <td class="listIcon1"><a href="full_admin_filmDetail.jsp"><i class='bx bx-screenshot' ></i></a></td>
                         </tr>
 
@@ -79,7 +79,7 @@
                                     <td>${film.rate}</td>
                                     <td>${film.director}</td>
                                     <td>${film.language}</td>
-                                    <td>${film.url}</td>
+                                    <td><img src="${film.url}" style="width: 190px;height: 280px;"></td>
 
                                     <td>
                                         <form action="adminUpdateFilm" method="get">
