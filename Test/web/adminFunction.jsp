@@ -1,10 +1,5 @@
-<%-- 
-    Document   : history_online
-    Created on : Feb 6, 2024, 8:55:58 AM
-    Author     : HELLO
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +10,9 @@
 
     </head>
     <body>
+        <c:set var="user" value="${sessionScope.user}" />
+        <c:set var="role" value="${user.role}" />
+
         <!-- history_online -->
         <div class="row infor_account">
             <div class="inforAccount_left">
@@ -32,6 +30,7 @@
                             <td class="listName1"><a href="changePass">THAY ĐỔI MẬT KHẨU</a></td>
                             <td class="listIcon1"><a href="changePass"><i class='bx bxs-lock-open-alt'></i></a></td>
                         </tr>
+
                         <tr class="list1">
                             <td class="listName1"><a href="full_historyOnline.jsp">LỊCH SỬ GIAO DỊCH ONLINE</a></td>
                             <td class="listIcon1"><a href="full_historyOnline.jsp"><i class='bx bx-history' ></i></a></td>
@@ -43,39 +42,49 @@
                     </table>
                 </div>
             </div>
-            <div class="inforAccount_right">
-                <div class="right_header">
-                    <h1>CHỨC NĂNG ADMIN</h1>
+
+            
+                <div class="inforAccount_right">
+                    <div class="right_header">
+                        <h1>CHỨC NĂNG ADMIN</h1>
+                    </div>
+                        <c:if test="${role eq '2'}">
+                    <div class="container" id="movieList">
+                        <!-- Trong phần container của movieList -->
+                        <div class="block" id="userBlock">
+                            <h2><a href="adminListUser">QUẢN LÝ NGƯỜI DÙNG</a></h2>
+                            <!-- Nội dung khối User -->
+                        </div>
+
+                        <div class="block" id="filmBlock">
+                            <h2><a href="adminListFilm">QUẢN LÝ THÔNG TIN PHIM</a></h2>
+                            <!-- Nội dung khối Film -->
+                        </div>
+
+                        <div class="block" id="filmDetailBlock">
+                            <h2><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></h2>
+                            <!-- Nội dung khối Film Detail -->
+                        </div>
+
+                        <div class="block" id="ticketBlock">
+                            <h2><a href="adminListTicket">QUẢN LÝ VÉ XEM PHIM</a></h2>
+                            <!-- Nội dung khối Ticket -->
+                        </div>
+
+                        <div class="block" id="serviceBlock">
+                            <h2><a href="adminListService">QUẢN LÝ DỊCH VỤ BẮP NƯỚC</a></h2>
+                            <!-- Nội dung khối Service -->
+                        </div>
+                    </div>
+
+                    
+            </c:if>
+            <c:if test="${role eq '1'}">
+                <div id="noHistory" style="color:red;text-align: center">
+                    <h3>Bạn không có quyền truy cập</h3>
                 </div>
-                <div class="container" id="movieList">
-                    <!-- Trong phần container của movieList -->
-                    <div class="block" id="userBlock">
-                        <h2><a href="adminListUser">QUẢN LÝ NGƯỜI DÙNG<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></a></h2>
-                        <!-- Nội dung khối User -->
-                    </div>
-
-                    <div class="block" id="filmBlock">
-                        <h2><a href="adminListFilm">QUẢN LÝ THÔNG TIN PHIM<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></a></h2>
-                        <!-- Nội dung khối Film -->
-                    </div>
-
-                    <div class="block" id="filmDetailBlock">
-                        <h2><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></a></h2>
-                        <!-- Nội dung khối Film Detail -->
-                    </div>
-
-                    <div class="block" id="ticketBlock">
-                        <h2><a href="adminListTicket">QUẢN LÝ VÉ XEM PHIM<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></a></h2>
-                        <!-- Nội dung khối Ticket -->
-                    </div>
-
-                    <div class="block" id="serviceBlock">
-                        <h2><a href="adminListService">QUẢN LÝ DỊCH VỤ BẮP NƯỚC<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></a></h2>
-                        <!-- Nội dung khối Service -->
-                    </div>
-                </div>
-
-            </div>     
+            </c:if>
+            </div> 
         </div>
     </body>
 </html>

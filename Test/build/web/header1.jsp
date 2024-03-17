@@ -110,7 +110,7 @@
                 <ul>
                     <li><a  href="calendar">LỊCH CHIẾU</a></li>
                     <li><a  href="film">PHIM</a></li>
-                    <li><a href="#">ƯU ĐÃI</a></li>
+                    <li><a href="home">ƯU ĐÃI</a></li>
                     <li><a  href="ruleAccount.jsp">ĐIỀU KHOẢN</a></li>
                     <li><a href="full_updateAccount.jsp">THÀNH VIÊN</a></li>
                 </ul>
