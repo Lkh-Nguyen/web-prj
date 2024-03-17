@@ -15,7 +15,7 @@
     <filter>
         <filter-name>AdminFilter</filter-name>
         <filter-class>Filter.AdminFilter</filter-class>
-    </filter>       
+    </filter>          
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -78,7 +78,7 @@
         <url-pattern>/adminDeleteFilmDetail</url-pattern>
         <url-pattern>/adminDeleteTicket</url-pattern>
         <url-pattern>/adminDeleteService</url-pattern>
-    </filter-mapping>     
+    </filter-mapping>      
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Controller.LoginServlet</servlet-class>
