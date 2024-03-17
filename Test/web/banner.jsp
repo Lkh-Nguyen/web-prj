@@ -17,7 +17,11 @@
         }
         body {
             height: 100vh;
-            background-color: #0F1D2F !important;
+/*            background-color: #0F1D2F !important;*/
+            background-image: url('images/627ce237-5602-47a6-b782-137c2e7660fb.jfif') !important;
+            background-repeat: no-repeat;
+            background-size: cover; /* Phủ toàn bộ không lặp lại */
+            background-position: center; /* Canh giữa */
         }
         .container {
             width: 80%;

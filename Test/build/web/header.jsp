@@ -39,8 +39,8 @@
                                     <li class="dropdown"><a class="dropdown-toggle" href="calendar">LỊCH CHIẾU</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" href="film">PHIM</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" href="home">ƯU ĐÃI</a></li>
-                                    <li class="dropdown"><a class="dropdown-toggle" href="ruleAccount.jsp">ĐIỀU KHOẢN</a></li>
-                                    <li class="dropdown"><a class="dropdown-toggle" href="full_updateAccount.jsp">THÀNH VIÊN</a></li>
+                                    <li class="dropdown"><a class="dropdown-toggle" href="ruleAccount">ĐIỀU KHOẢN</a></li>
+                                    <li class="dropdown"><a class="dropdown-toggle" href="updateAccount">THÀNH VIÊN</a></li>
                                     <ul class="nav navbar-nav navbar-right col-md-4 sign">   
                                         <c:set var="user" value="${sessionScope.user}" scope="session"/>
                                         <c:choose>

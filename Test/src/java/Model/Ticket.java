@@ -1,6 +1,8 @@
 package Model;
 
-public class Ticket {
+import java.io.Serializable;
+
+public class Ticket implements Serializable{
     private int id;
     private Bill bill;
     private FilmDetail filmDetail;

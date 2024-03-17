@@ -46,7 +46,7 @@
     </style>
     <body>
         <div style="clear: both">
-            <h1 id="film_h1">PHIM ĐANG CHIẾU</h1>
+            <h1 id="film_h1 "style="margin-left: 435px; font-size: 30px; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);"">PHIM ĐANG CHIẾU</h1>
             <div class="searchBox">
                 <input class="searchInput" onkeyup="searchFilm()" type="text" id="search" placeholder="Search">
                 <button class="searchButton" href="#">

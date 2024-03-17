@@ -14,6 +14,28 @@
         <link rel="stylesheet" href="css/full_admin.css">
         <link rel="stylesheet" href="css/admin_user.css">
     </head>
+        <style>
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #00A8FF;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+            opacity: 0.1;
+            transition: opacity 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            opacity: 1;
+        }
+    </style>
     <body>
         <!-- history_online -->
         <div class="row infor_account">
@@ -199,6 +221,30 @@
                 </div>
             </div>
         </div>
-    </div>     
+    </div>   
+    
+<button id = "scrollToTopBtn" hidden> Scroll to Top </button>
+<script>
+    const btnScrollToTop = document.getElementById("scrollToTopBtn");
+    const docEL = document.documentElement;
+
+    document.addEventListener("scroll",()=> {
+        const scrollToTal = docEL.scrollHeight - docEL.clientHeight;
+        if ((docEL.scrollTop/scrollToTal)>= 0.4){
+            btnScrollToTop.hidden = false;
+        }   
+        else{
+btnScrollToTop.hidden = true;
+        }
+    }
+    );
+    
+    btnScrollToTop.addEventListener('click',()=>{
+        docEL.scrollTo({
+            top :0,
+            behavior:'smooth'
+        });
+    });
+</script> 
 </body>
 </html>

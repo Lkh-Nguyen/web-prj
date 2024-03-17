@@ -52,27 +52,27 @@
                     <div class="container" id="movieList">
                         <!-- Trong phần container của movieList -->
                         <div class="block" id="userBlock">
-                            <h2><a href="adminListUser">QUẢN LÝ NGƯỜI DÙNG</a></h2>
+                            <h2><a href="adminListUser">QUẢN LÝ NGƯỜI DÙNG<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></h2>
                             <!-- Nội dung khối User -->
                         </div>
 
                         <div class="block" id="filmBlock">
-                            <h2><a href="adminListFilm">QUẢN LÝ THÔNG TIN PHIM</a></h2>
+                            <h2><a href="adminListFilm">QUẢN LÝ THÔNG TIN PHIM<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></h2>
                             <!-- Nội dung khối Film -->
                         </div>
 
                         <div class="block" id="filmDetailBlock">
-                            <h2><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU</a></h2>
+                            <h2><a href="adminListFilmDetail">QUẢN LÝ LỊCH CHIẾU<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></h2>
                             <!-- Nội dung khối Film Detail -->
                         </div>
 
                         <div class="block" id="ticketBlock">
-                            <h2><a href="adminListTicket">QUẢN LÝ VÉ XEM PHIM</a></h2>
+                            <h2><a href="adminListTicket">QUẢN LÝ VÉ XEM PHIM<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></h2>
                             <!-- Nội dung khối Ticket -->
                         </div>
 
                         <div class="block" id="serviceBlock">
-                            <h2><a href="adminListService">QUẢN LÝ DỊCH VỤ BẮP NƯỚC</a></h2>
+                            <h2><a href="adminListService">QUẢN LÝ DỊCH VỤ BẮP NƯỚC<div style="text-align: end;margin-top: -18px;"><i class='bx bxs-right-arrow'></i></div></a></h2>
                             <!-- Nội dung khối Service -->
                         </div>
                     </div>

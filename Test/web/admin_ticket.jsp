@@ -13,6 +13,28 @@
         <link rel="stylesheet" href="css/full_admin.css">
         <link rel="stylesheet" href="css/admin_user.css">
     </head>
+        <style>
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #00A8FF;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+            opacity: 0.1;
+            transition: opacity 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            opacity: 1;
+        }
+    </style>
     <body>
         <!-- history_online -->
         <div class="row infor_account">
@@ -83,7 +105,7 @@
                                 </tr>
                             </c:forEach>
 
-                         
+
                         </table> 
                     </div>
                 </div> 
@@ -104,10 +126,9 @@
                                     <c:if test="${not empty ticket}">                                       
                                         <div class="col-md-4 register">
                                             <p>Bill ID</p>
-                                            <select name="billId">
+                                            <select name="billId" class="select-btn">
                                                 <option value="${ticket.bill.id}">${ticket.bill.id}</option>
                                                 <c:forEach items="${sessionScope.billList}" var="bill">
-
                                                     <option value="${bill.id}">${bill.id}</option>
                                                 </c:forEach>
                                             </select>                                         
@@ -117,7 +138,7 @@
                                         <div class="col-md-4 register">
                                             <p>Bill ID</p>
 
-                                            <select name="billId">
+                                            <select name="billId" class="select-btn">
                                                 <option>Hãy Chọn Bill Id : </option>
                                                 <c:forEach items="${sessionScope.billList}" var="bill">
                                                     <option value="${bill.id}">${bill.id}</option>
@@ -131,7 +152,7 @@
                                     <c:if test="${not empty ticket}">
                                         <div class="col-md-4 register">
                                             <p>Film Detail ID</p>
-                                            <select name="filmDetailId">
+                                            <select name="filmDetailId" class="select-btn">
                                                 <option value="${ticket.filmDetail.id}">${ticket.filmDetail.id}</option>
                                                 <c:forEach items="${sessionScope.filmDetailList}" var="filmDetail">
                                                     <option value="${filmDetail.id}">${filmDetail.id}</option>
@@ -140,8 +161,8 @@
                                         </div>
                                         <div class="col-md-4 register">
                                             <p>Screen Seat ID</p>
-                                            <select name="screenSeatId">
-                                                 <option value="${ticket.screenSeat.id}">${ticket.screenSeat.id}</option>
+                                            <select name="screenSeatId" class="select-btn">
+                                                <option value="${ticket.screenSeat.id}">${ticket.screenSeat.id}</option>
                                                 <c:forEach items="${sessionScope.screenSeatList}" var="screenSeat">
                                                     <option value="${screenSeat.id}">${screenSeat.id}</option>
                                                 </c:forEach>
@@ -151,7 +172,7 @@
                                     <c:if test="${empty ticket}">
                                         <div class="col-md-4 register">
                                             <p>Film Detail ID</p>
-                                            <select name="filmDetailId">
+                                            <select name="filmDetailId" class="select-btn">
                                                 <option>  Hãy Chọn Film Detail Id  </option>
                                                 <c:forEach items="${sessionScope.filmDetailList}" var="filmDetail">
                                                     <option value="${filmDetail.id}">${filmDetail.id}</option>
@@ -160,7 +181,7 @@
                                         </div>
                                         <div class="col-md-4 register">
                                             <p>Screen Seat ID</p>
-                                            <select name="screenSeatId">
+                                            <select name="screenSeatId" class="select-btn">
                                                 <option>  Hãy Chọn Screen Seat Id : </option>
                                                 <c:forEach items="${sessionScope.screenSeatList}" var="screenSeat">
                                                     <option value="${screenSeat.id}">${screenSeat.id}</option>
@@ -189,5 +210,29 @@
                 </div>
             </div>     
         </div>
+                            
+<button id = "scrollToTopBtn" hidden> Scroll to Top </button>
+<script>
+    const btnScrollToTop = document.getElementById("scrollToTopBtn");
+    const docEL = document.documentElement;
+
+    document.addEventListener("scroll",()=> {
+        const scrollToTal = docEL.scrollHeight - docEL.clientHeight;
+        if ((docEL.scrollTop/scrollToTal)>= 0.4){
+            btnScrollToTop.hidden = false;
+        }   
+        else{
+btnScrollToTop.hidden = true;
+        }
+    }
+    );
+    
+    btnScrollToTop.addEventListener('click',()=>{
+        docEL.scrollTo({
+            top :0,
+            behavior:'smooth'
+        });
+    });
+</script> 
     </body>
 </html>

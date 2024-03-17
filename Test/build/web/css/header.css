@@ -1,6 +1,7 @@
 /* header */
 header{
-    background-color: rgb(15, 29, 47);
+/*    background-color: rgb(15, 29, 47);*/
+    background-image: url('../images/627ce237-5602-47a6-b782-137c2e7660fb.jfif');
     height: 60px;
     display: flex;
     color: white;
