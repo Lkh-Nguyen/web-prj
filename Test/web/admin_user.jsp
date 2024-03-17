@@ -52,7 +52,7 @@
                 <div class="right_header">
                     <h1>QUẢN LÝ NGƯỜI DÙNG</h1>
                 </div>
-                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị thông tin người dùng:</h1>
+                <h1 style="margin-left: 0px; font-size: 25px; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Hiển thị thông tin người dùng:</h1>
                 <div class="bottom-content">
                     <!--Table-->
                     <div class="contain-table">
@@ -90,22 +90,21 @@
                                             <form action="adminUpdateUser" method="get">
                                             <c:set var="userId" value="${user.id}" />
                                             <input type="hidden" name="userId" value="${userId}" />
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                            <button type="submit" class="update-button">Cập nhật</button>
                                         </form>
                                         <form action="adminDeleteUser" method="post">
                                             <c:set var="userId" value="${user.id}" />
                                             <input type="hidden" name="userId" value="${userId}" />
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                            <button type="submit" class="add-button">Xóa dữ liệu</button>
                                         </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </table> 
-                     
                     </div>
                 </div>
                 <div class="container" id="list"> 
-                    <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm hoặc chỉnh sửa người dùng:</h1>
+                    <h1 style="margin-left: -75px; font-size: 25px; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Tạo thêm hoặc chỉnh sửa người dùng:</h1>
                     <c:set var="user" value="${requestScope.user}"></c:set>
                     <c:if test="${not empty user}">
                         <c:set var="actionValue" value="adminUpdateUser"></c:set>
@@ -137,22 +136,22 @@
                                     <div class="col-md-4 register">
                                         <p>Ngày Sinh</p>
                                         <c:if test="${not empty user}">
-                                           <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây" required value="${user.dateOfBirth}">
+                                            <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây" required value="${user.dateOfBirth}">
                                         </c:if>
                                         <c:if test="${empty user}">
                                             <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây" required value="${param.DOB}">
                                         </c:if>
-                                        
+
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>Số CMND</p>
                                         <c:if test="${not empty user}">
-                                             <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${user.cmnd}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
+                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${user.cmnd}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
                                         </c:if>
                                         <c:if test="${empty user}">
-                                             <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${param.CMND}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
+                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${param.CMND}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
                                         </c:if>
-                                       
+
                                     </div>
                                 </div>
                                 <div class ="row">
@@ -164,18 +163,18 @@
                                         <c:if test="${empty user}">
                                             <input type="text" name="phone" placeholder="Nhập Số Điện Thoại Ở Đây" required value="${param.phone}" pattern="[0-9]{10}" title="Số điện thoại phải gồm 10 chữ số.">
                                         </c:if>
-                                        
+
                                     </div>
                                     <!-- Receive error message here -->
                                     <div class="col-md-4 register">
                                         <p>Email</p>
                                         <c:if test="${not empty user}">
-                                             <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${user.email}">
+                                            <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${user.email}">
                                         </c:if>
                                         <c:if test="${empty user}">
-                                             <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${param.email}">
+                                            <input type="email" name="email" placeholder="Nhập Email Ở Đây" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập địa chỉ email hợp lệ. Ví dụ: example@example.com" value="${param.email}">
                                         </c:if>
-                                       
+
                                         <h5 style="color:red">${requestScope.emailError}</h5>
                                     </div>
                                 </div>
@@ -188,7 +187,7 @@
                                         <c:if test="${empty user}">
                                             <input type="password" name="password" placeholder="Nhập Mật Khẩu Ở Đây" minlength="8" required value="${param.password}">
                                         </c:if>
-                                        
+
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>Xác Nhận Mật Khẩu</p>
@@ -198,7 +197,7 @@
                                         <c:if test="${empty user}">
                                             <input type="password" name="repassword" placeholder="Nhập Lại Mật Khẩu" required value="${param.repassword}">
                                         </c:if>
-                                        
+
                                         <h5 style="color:red">${requestScope.repasswordError}</h5>
                                     </div>
                                 </div>
@@ -206,12 +205,7 @@
                                     <div class="col-md-5">
                                         <div class="address_register">
                                             <p>Địa Chỉ</p>
-                                            <c:if test="${not empty user}">
-                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${user.address}</textarea>
-                                            </c:if>
-                                            <c:if test="${empty user}">
-                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
-                                            </c:if>
+                                            <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-7">
@@ -231,23 +225,19 @@
                                 <c:if test="${not empty user}">
                                     <div id="submit_register">
                                         <input type="hidden" name="userId" value="${user.id}">
-                                        <input type="submit" value="CẬP NHẬT THÔNG TIN">
+                                        <button type="submit" class="update-button-large">CẬP NHẬT THÔNG TIN</button>
                                     </div> 
                                 </c:if>
                                 <c:if test="${empty user}">
                                     <div id="submit_register">
-                                        <input type="submit" value="THÊM NGƯỜI DÙNG">
+                                        <button type="submit" class="add-button-large">THÊM NGƯỜI DÙNG</button>
                                     </div>
                                 </c:if>                
-
-
                             </div>
                         </form>
-
                     </div>
-
                 </div>     
             </div>
-        </div>
+        </div>z
     </body>
 </html>

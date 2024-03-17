@@ -52,7 +52,7 @@
                 <div class="right_header">
                     <h1>QUẢN LÝ THÔNG TIN PHIM</h1>
                 </div>
-                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị thông tin phim:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Hiển thị thông tin phim:</h1>
                 <div class="bottom-content">
                     <!--Table-->
                     <div class="contain-table">
@@ -85,12 +85,12 @@
                                         <form action="adminUpdateFilm" method="get">
                                             <c:set var="filmId" value="${film.id}" />
                                             <input type="hidden" name="filmId" value="${filmId}" />
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                            <button type="submit" class="update-button">Cập nhật</button>
                                         </form>
                                         <form action="adminDeleteFilm" method="post">
                                             <c:set var="filmId" value="${film.id}" />
                                             <input type="hidden" name="filmId" value="${filmId}" />
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                            <button type="submit" class="add-button">Xóa dữ liệu</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="container" id="list"> 
-                    <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm hoặc chỉnh sửa phim:</h1>
+                    <h1 style="margin-left: -80px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Tạo thêm hoặc chỉnh sửa phim:</h1>
                     <div id="register">
                         <c:set var="film" value="${requestScope.film}"></c:set>
                         <c:if test="${not empty film}">
@@ -127,7 +127,7 @@
                                     </c:if>                                   
                                 </div>
                                 <form action="${actionValue}" method="post">
-                                    <div class="col-md-4 register">
+                                    <div class="col-md-4 register" style="margin-left: 120px">
                                         <p>URL Ảnh Film </p>
                                         <c:if test="${not empty film}">
                                             <c:if test="${not empty uploadedFilePath}">                                  
@@ -278,8 +278,7 @@
                             </c:if>
                             <c:if test="${empty film}">
                                 <div id="submit_register">
-
-                                    <input type="submit" value="THÊM FILM">
+                                    <button type="submit" class="add-button-large">THÊM FILM</button>
                                 </div>
                             </c:if>                    
                         </div>

@@ -51,7 +51,7 @@
                 <div class="right_header">
                     <h1>QUẢN LÝ VÉ XEM PHIM</h1>
                 </div>
-                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị thông tin vé xem phim:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Hiển thị thông tin vé xem phim:</h1>
                 <div class="bottom-content">
                     <!--Table-->
                     <div class="contain-table">
@@ -73,11 +73,11 @@
                                     <td>
                                         <form action="adminUpdateTicket" method="get">
                                             <input type="hidden" name="ticketId" value="${ticket.id}" />
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                            <button type="submit" class="update-button">Cập nhật</button>
                                         </form>
                                         <form action="adminDeleteTicket" method="post">
                                             <input type="hidden" name="ticketId" value="${ticket.id}" />
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                            <button type="submit" class="add-button">Xóa dữ liệu</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@
                         </table> 
                     </div>
                 </div> 
-                <h1 style="margin-left: 0px;font-size: 25px">Tạo thêm và chỉnh sử vé xem phim:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Tạo thêm và chỉnh sử vé xem phim:</h1>
                 <div class="container" id="movieList">  
                     <div id="register">
                         <c:set var="ticket" value="${requestScope.ticket}"></c:set>
@@ -179,7 +179,7 @@
                                 </c:if>
                                 <c:if test="${empty ticket}">
                                     <div id="submit_register">
-                                        <input type="submit" value="THÊM KIẾM VÉ">
+                                        <button type="submit" class="add-button-large">THÊM VÉ</button>
                                     </div>
                                 </c:if>
 

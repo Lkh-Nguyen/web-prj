@@ -53,7 +53,7 @@
                     <h1>QUẢN LÝ LỊCH CHIẾU</h1>
                 </div>
 
-                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị lịch chiếu:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Hiển thị lịch chiếu:</h1>
                 <div class="bottom-content">
                     <!--Table-->
                     <div class="contain-table">
@@ -77,12 +77,12 @@
                                         <form action="adminUpdateFilmDetail" method="get">
                                             <c:set var="filmDetailId" value="${filmDetail.id}" />
                                             <input type="hidden" name="filmDetailId" value="${filmDetailId}" />
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                            <button type="submit" class="update-button">Cập nhật</button>
                                         </form>
                                         <form action="adminDeleteFilmDetail" method="post">
                                             <c:set var="filmDetailId" value="${filmDetail.id}" />
                                             <input type="hidden" name="filmDetailId" value="${filmDetailId}" />
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                            <button type="submit" class="add-button">Xóa dữ liệu</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -93,7 +93,7 @@
                         </table> 
                     </div>
                 </div> 
-                <h1 style="margin-left: 0px;font-size: 25px;">Tạo thêm hoặc chỉnh sửa lịch chiếu:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Tạo thêm hoặc chỉnh sửa lịch chiếu:</h1>
                 <div class="container" id="list">
                     <div id="register">
                         <c:set var="filmDetail" value="${requestScope.filmDetail}"></c:set>
@@ -192,7 +192,7 @@
                             </c:if>
                             <c:if test="${empty filmDetail}">
                                 <div id="submit_register">
-                                    <input type="submit" value="THÊM LỊCH CHIẾU">
+                                    <button type="submit" class="add-button-large">THÊM LỊCH CHIẾU</button>
                                 </div>
                             </c:if>
 

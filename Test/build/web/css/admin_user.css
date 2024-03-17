@@ -1,4 +1,3 @@
-
 #register{
     margin-left: -80px;
     width: 1300px;
@@ -9,6 +8,7 @@
     border: solid 1px rgb(209, 209, 209);
     padding: 3% 5%;
     border-radius: 5px;
+    background-color: ghostwhite;
 }
 
 #submit_register{
@@ -108,11 +108,45 @@
 }
 
 .product-table th {
-    background-color: #f0f0f0;
+    background-color: #4CAF50; /* Green */
+    color: white;
 }
 
+/* CSS for even rows */
 .product-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f2f2f2; /* Light gray */
+}
+/* CSS cho các nút */
+.add-button,
+.update-button,
+.add-button-large,
+.update-button-large{
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.add-button,.add-button-large {
+    background-color: #FF5733; /* Màu đỏ */
+}
+
+.update-button,.update-button-large {
+    background-color: #007BFF; /* Màu xanh */
+}
+.add-button-large,
+.update-button-large{
+    width: fit-content;
+}
+
+/* Hover effect */
+.add-button:hover,
+.update-button:hover {
+    opacity: 0.8;
 }
 
 

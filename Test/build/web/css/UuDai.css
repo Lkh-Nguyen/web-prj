@@ -58,3 +58,11 @@
     word-wrap: break-word;
     margin: 48px;
   }
+  
+  .info a{
+      color: white;
+      text-decoration: none;
+  }
+  .info a:hover{
+      color: orangered;
+  }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-     <filter>
+    <filter>
         <filter-name>HomeFilter</filter-name>
         <filter-class>Filter.HomeFilter</filter-class>
     </filter>
@@ -176,6 +176,10 @@
         <servlet-name>WaitServlet</servlet-name>
         <servlet-class>Controller.WaitServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UuDaiFilm</servlet-name>
+        <servlet-class>Controller.UuDaiFilm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -327,5 +331,9 @@
     <servlet-mapping>
         <servlet-name>WaitServlet</servlet-name>
         <url-pattern>/wait</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UuDaiFilm</servlet-name>
+        <url-pattern>/UuDaiFilm</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -51,7 +51,7 @@
                 <div class="right_header">
                     <h1>QUẢN LÝ DỊCH VỤ BẮP NƯỚC</h1>
                 </div>
-                <h1 style="margin-left: 0px;font-size: 25px;">Hiển thị thông tin dịch vụ:</h1>
+                <h1 style="margin-left: 0px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Hiển thị thông tin dịch vụ:</h1>
                 <div class="bottom-content">
                     <!--Table-->
                     <div class="contain-table">
@@ -70,11 +70,11 @@
                                     <td>
                                         <form action="adminUpdateService" method="get">
                                             <input type="hidden" name="serviceId" value="${service.id}" />
-                                            <input type="submit" value="Cập nhật" style="width: 100px">
+                                            <button type="submit" class="update-button">Cập nhật</button>
                                         </form>
                                         <form action="adminDeleteService" method="post">
                                             <input type="hidden" name="serviceId" value="${service.id}" />
-                                            <input type="submit" value="Xóa dữ liệu" style="width: 100px">
+                                            <button type="submit" class="add-button">Xóa dữ liệu</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="container" id="list"> 
-                    <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm hoặc chỉnh sửa dịch vụ:</h1>
+                    <h1 style="margin-left: -80px;font-size: 25px ; color: #007BFF; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Tạo thêm hoặc chỉnh sửa dịch vụ:</h1>
                     <div id="register">
                         <div class="form_register">
                             <div class ="row">
@@ -109,8 +109,8 @@
                                 <c:if test="${empty service}">
                                     <c:set var="actionValue" value="adminAddService"></c:set>
                                 </c:if>
-                                <form action="${actionValue}" method="post">
-                                    <div class="col-md-4 register">
+                                    <form action="${actionValue}"  method="post">
+                                    <div class="col-md-4 register" style="margin-left: 120px">
                                         <p>URL Ảnh Service</p>
                                         <c:if test="${not empty service}">
                                             <c:if test="${not empty uploadedFilePath}">
@@ -162,7 +162,7 @@
                             </c:if>
                             <c:if test="${empty service}">
                                 <div id="submit_register">
-                                    <input type="submit" value="THÊM DỊCH VỤ">
+                                    <button type="submit" class="add-button-large">THÊM DỊCH VỤ</button>
                                 </div>
                             </c:if>
 
