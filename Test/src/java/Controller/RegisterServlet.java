@@ -121,6 +121,8 @@ public class RegisterServlet extends HttpServlet {
             // Insert the user into the database
             boolean success = UserDB.insertUser(u);
             if (success) {
+                SendEmail mail = new SendEmail();
+                mail.sendMail(email, name); 
                 request.setAttribute("registerStatus", "Đăng ký thành công!");
             } else {
                 request.setAttribute("registerStatus", "Đăng ký không thành công!");

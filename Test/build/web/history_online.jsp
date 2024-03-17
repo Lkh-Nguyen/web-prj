@@ -13,7 +13,32 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/history_online.css">
         <link rel="stylesheet" href="css/historyOnline_right.css">
+        <style>
+            .listPage {
+                padding: 10px;
+                text-align: center;
+                list-style: none;
+            }
 
+            .listPage li {
+                background: linear-gradient(120deg, #000000, #FF5733);
+                color:#FF5733;
+                padding: 15px 20px;
+                display: inline-block;
+                margin: 0 10px;
+                cursor: pointer;
+                border-radius: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease;
+            }
+            .listPage li:hover {
+                transform: translateY(2px);
+            }
+            .listPage .active {
+                background-color: #B192EF;
+                color: #fff;
+            }
+        </style>
 
     </head>
     <body>
@@ -57,7 +82,9 @@
                 <div class="container" id="movieList">
                     <!-- Danh sách phim sẽ được tạo bằng JavaScript và thêm vào đây -->
                 </div>
-
+                <!-- Phân trang -->
+                <ul class="listPage">
+                </ul>
             </div>     
         </div>
         <c:set var="billTicketMap" value="${requestScope.billTicketMap}" />
@@ -81,7 +108,6 @@
                 </c:forEach>
             </c:forEach>
             ];
-
             const movieList = document.getElementById("movieList");
             function renderMovies() {
             const groupedMovies = {};
@@ -89,7 +115,7 @@
             movies.forEach(movie => {
             if (!(movie.id_user in groupedMovies) && !(movie.bill_id in groupedMovies)) {
             groupedMovies[movie.id_user, movie.bill_id] = {
-                    bill_id: movie.bill_id,
+            bill_id: movie.bill_id,
                     title: movie.title,
                     date: movie.date,
                     date_put: movie.date_put,
@@ -133,6 +159,55 @@
             }
             }
             renderMovies();
+            // Phân trang
+            let thisPage = 1;
+            let limit = 3;
+            let list = document.querySelectorAll(".movie");
+            function loadItem() {
+            let beginGet = limit * (thisPage - 1);
+            let endGet = limit * thisPage - 1;
+            list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+            item.style.display = "block";
+            } else {
+            item.style.display = "none";
+            }
+            });
+            listPage();
+            }
+            loadItem();
+            function listPage() {
+            let count = Math.ceil(list.length / limit);
+            document.querySelector('.listPage').innerHTML = '';
+            if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerText = 'PREV';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+            }
+            for (i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+            newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+            }
+
+            if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerText = 'NEXT';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+            }
+            }
+            function changePage(i) {
+            thisPage = i;
+            loadItem();
+            let scrollPosition = window.scrollY;
+            window.scrollTo(0, scrollPosition);
+            }
         </script>
     </body>
 </html>
