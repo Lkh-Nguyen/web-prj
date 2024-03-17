@@ -24,8 +24,9 @@
         }
 
         .listPage li {
-            background: linear-gradient(120deg, #000000, #FF5733);
-            color:#FF5733;
+            background: white;
+            font-weight: bold;
+            color: grey;
             padding: 15px 20px;
             display: inline-block;
             margin: 0 10px;
@@ -38,8 +39,8 @@
             transform: translateY(2px);
         }
         .listPage .active {
-            background-color: #B192EF;
-            color: #fff;
+            background-color: orangered;
+            color: white;
         }
 
     </style>
@@ -95,10 +96,11 @@
                         </div>
                     </c:if>
                 </c:forEach>
-                <ul class="listPage">
-                </ul>
+                
             </div>
         </div>
+                <ul class="listPage">
+                </ul>
         <script>
             let thisPage = 1;
             let limit = 8;

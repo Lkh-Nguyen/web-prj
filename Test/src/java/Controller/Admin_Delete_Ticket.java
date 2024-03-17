@@ -55,7 +55,7 @@ public class Admin_Delete_Ticket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("full_admin_ticket.jsp").forward(request, response);
     } 
 
     /** 

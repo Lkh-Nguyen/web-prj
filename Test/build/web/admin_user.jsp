@@ -206,7 +206,12 @@
                                     <div class="col-md-5">
                                         <div class="address_register">
                                             <p>Địa Chỉ</p>
-                                            <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
+                                            <c:if test="${not empty user}">
+                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${user.address}</textarea>
+                                            </c:if>
+                                            <c:if test="${empty user}">
+                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
+                                            </c:if>
                                         </div>
                                     </div>
                                     <div class="col-md-7">
