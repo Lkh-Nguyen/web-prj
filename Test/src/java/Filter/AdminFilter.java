@@ -114,7 +114,10 @@ public class AdminFilter implements Filter {
             } else {
                 // User is not admin, redirect to home page
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.sendRedirect("home");
+//                httpResponse.sendRedirect("home");
+                String script = "<script>alert('Chỉ có admin mới được quyền truy cập vào trang này!'); window.location.href='updateAccount';</script>";
+                httpResponse.setContentType("text/html");
+                httpResponse.getWriter().write(script);
             }
         } else {
             // No user session found, redirect to home page
