@@ -350,43 +350,43 @@ CREATE TABLE FilmDetail (
 INSERT INTO FilmDetail (ScreenId, FilmId, FilmSlotId, MovieDate)
 VALUES 
     -- Film details for date 2024-03-06
-    (1, 1, 11, '2024-03-06'), -- Screen 1 showing Film 1 on Slot 1 on 2024-03-06
-    (2, 2, 12, '2024-03-06'), -- Screen 2 showing Film 2 on Slot 2 on 2024-03-06
-    (3, 3, 13, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
-    (4, 4, 14, '2024-03-06'), -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
+    (1, 1, 1, '2024-03-06'), -- Screen 1 showing Film 1 on Slot 1 on 2024-03-06
+    (2, 2, 2, '2024-03-06'), -- Screen 2 showing Film 2 on Slot 2 on 2024-03-06
+    (3, 3, 3, '2024-03-06'), -- Screen 3 showing Film 3 on Slot 3 on 2024-03-06
+    (4, 4, 4, '2024-03-06'), -- Screen 4 showing Film 4 on Slot 4 on 2024-03-06
     -- Film details for other dates
     -- Film 9 on Screen 1, Slot 9 (17:45 - 19:15), Date 2024-03-14
-    (1, 9, 19, '2024-03-14'),
+    (1, 9, 9, '2024-03-14'),
     -- Film 10 on Screen 2, Slot 10 (18:45 - 20:15), Date 2024-03-14
-    (2, 10, 20, '2024-03-14'),
+    (2, 10, 10, '2024-03-14'),
     -- Film 11 on Screen 3, Slot 1 (09:00 - 10:30), Date 2024-03-15
-    (3, 11, 11, '2024-03-15'),
+    (3, 11, 1, '2024-03-15'),
     -- Film 12 on Screen 4, Slot 2 (10:15 - 11:45), Date 2024-03-15
-    (4, 12, 12, '2024-03-15'),
+    (4, 12, 2, '2024-03-15'),
     -- Film 1 on Screen 1, Slot 3 (11:30 - 13:00), Date 2024-03-15
-    (1, 1, 13, '2024-03-15'),
+    (1, 1, 3, '2024-03-15'),
     -- Film 2 on Screen 2, Slot 4 (12:45 - 14:15), Date 2024-03-15
-    (2, 2, 14, '2024-03-15'),
+    (2, 2, 4, '2024-03-15'),
     -- Film 3 on Screen 3, Slot 5 (13:45 - 15:15), Date 2024-03-16
-    (3, 3, 15, '2024-03-16'),
+    (3, 3, 5, '2024-03-16'),
     -- Film 4 on Screen 4, Slot 6 (14:45 - 16:15), Date 2024-03-16
-    (4, 4, 16, '2024-03-16'),
+    (4, 4, 6, '2024-03-16'),
     -- Film 1 on Screen 1, Slot 7 (15:45 - 17:15), Date 2024-03-16
-    (1, 1, 17, '2024-03-16'),
+    (1, 1, 7, '2024-03-16'),
     -- Film 1 on Screen 2, Slot 8 (16:45 - 18:15), Date 2024-03-16
-    (2, 1, 18, '2024-03-16'),
+    (2, 1, 8, '2024-03-16'),
     -- Film 1 on Screen 3, Slot 9 (17:45 - 19:15), Date 2024-03-16
-    (3, 1, 19, '2024-03-16'),
+    (3, 1, 9, '2024-03-16'),
     -- Film 1 on Screen 4, Slot 10 (18:45 - 20:15), Date 2024-03-16
-    (4, 1, 20, '2024-03-16'),
+    (4, 1, 10, '2024-03-16'),
     -- Film 3 on Screen 1, Slot 1 (09:00 - 10:30), Date 2024-03-17
-    (1, 3, 11, '2024-03-17'),
+    (1, 3, 1, '2024-03-17'),
     -- Film 3 on Screen 2, Slot 2 (10:15 - 11:45), Date 2024-03-17
-    (2, 3, 12, '2024-03-17'),
+    (2, 3, 2, '2024-03-17'),
     -- Film 3 on Screen 3, Slot 3 (11:30 - 13:00), Date 2024-03-17
-    (3, 3, 13, '2024-03-17'),
+    (3, 3, 3, '2024-03-17'),
     -- Film 3 on Screen 4, Slot 4 (12:45 - 14:15), Date 2024-03-17
-    (4, 3,14, '2024-03-17');
+    (4, 3,4, '2024-03-17');
 CREATE TABLE Bill (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     UserId INT NOT NULL,
