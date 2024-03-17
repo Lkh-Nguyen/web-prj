@@ -31,14 +31,13 @@ public class UploadFile extends HttpServlet {
            
             String uploadPath = getServletContext().getRealPath("/nameFile") + File.separator + fileName;
             part.write(uploadPath);    
-            HttpSession session = request.getSession();
-            session.setAttribute("uploadedFilePath", fileName);
+            request.setAttribute("uploadedFilePath", fileName);
             break;
         }
         if(request.getParameter("check").equals("1")){
             getServletContext().getRequestDispatcher("/full_admin_service.jsp").forward(request, response);
         }else{
-            response.sendRedirect("adminListFilm");
+            getServletContext().getRequestDispatcher("/full_admin_film.jsp").forward(request, response);
         }
     }
     private String extractFileName(Part part) {

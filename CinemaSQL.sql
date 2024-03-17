@@ -431,15 +431,4 @@ VALUES
 (N'1 ly nước ngọt coca size L và 1 bắp rang bơ', 55000.00, 'nameService/combo3.png'),
 (N'2 ly nước ngọt coca size L và 1 bắp rang bơ', 80000.00, 'nameService/combo4.png');
 
-go
-CREATE TRIGGER DeleteBillOnTicketDelete
-ON Ticket
-AFTER DELETE
-AS
-BEGIN
-    SET NOCOUNT ON;
 
-    DELETE FROM Bill
-    WHERE Id IN (SELECT BillId FROM deleted);
-END;
-go

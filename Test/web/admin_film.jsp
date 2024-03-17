@@ -103,7 +103,6 @@
                     <h1 style="margin-left: -80px;font-size: 25px">Tạo thêm hoặc chỉnh sửa phim:</h1>
                     <div id="register">
                         <c:set var="film" value="${requestScope.film}"></c:set>
-                        <c:set var="uploadedFilePath" value="${requestScope.urlId}"></c:set>
                         <c:if test="${not empty film}">
                             <c:set var="actionValue" value="adminUpdateFilm"></c:set>
                         </c:if>
@@ -177,7 +176,7 @@
                                 <c:if test="${not empty film}">
                                     <div class="col-md-4 register">
                                         <p>Duration Film</p>
-                                        <input type="number" name="duration"  placeholder="Nhập Thời Lượng Ở Đây" value="${film.duration}" required>
+                                        <input type="number" min="0"name="duration"  placeholder="Nhập Thời Lượng Ở Đây" value="${film.duration}" required>
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>StartDate Film</p>
@@ -187,7 +186,7 @@
                                 <c:if test="${empty film}">
                                     <div class="col-md-4 register">
                                         <p>Duration Film</p>
-                                        <input type="number" name="duration"  placeholder="Nhập Thời Lượng Ở Đây" value="" required>
+                                        <input type="number" min="0"name="duration"  placeholder="Nhập Thời Lượng Ở Đây" value="" required>
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>StartDate Film</p>
@@ -235,7 +234,7 @@
                                 <c:if test="${empty film}">
                                     <div class="col-md-4 register">
                                         <p>Director Film</p>
-                                        <input type="text" name="direction"  placeholder="Nhập Đạo Diễn Ở Đây" value="" required>
+                                        <input type="text" name="director"  placeholder="Nhập Đạo Diễn Ở Đây" value="" required>
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>Language Film</p>
@@ -250,7 +249,13 @@
                                 <div class="col-md-5">
                                     <div class="address_register">
                                         <p>Detail Film</p>
-                                        <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;">${param.address}</textarea>
+                                        <c:if test="${not empty film}">
+                                             <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;">${film.detail}</textarea>
+                                        </c:if>
+                                        <c:if test="${empty film}">
+                                             <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;">${param.detail}</textarea>
+                                        </c:if>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-md-4 register">
