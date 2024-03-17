@@ -42,7 +42,7 @@ public class LoginGoogleHandler extends HttpServlet {
         UserGoogleDto userGoogle = getUserInfo(accessToken);
         System.out.println(userGoogle);
         User user = UserDB.getUser(userGoogle.getEmail());
-        if (user == null) {
+        if (user == null || "0000000000".equals(user.getPhoneNumber())) {
             user = new User();
             user.setEmail(userGoogle.getEmail());
             user.setName(userGoogle.getName());
