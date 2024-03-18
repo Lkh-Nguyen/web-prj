@@ -1,0 +1,60 @@
+/* header */
+header{
+/*    background-color: rgb(15, 29, 47);*/
+    background-image: url('../images/627ce237-5602-47a6-b782-137c2e7660fb.jfif');
+    height: 60px;
+    display: flex;
+    color: white;
+    font-weight: 400;
+}
+header p{
+    margin-top: 1%;
+    margin-left: 71%;
+}
+header label{
+    margin-top: 1%;
+    margin-left: 1%;
+    color: white;
+    font-weight: 400;
+}
+.header{
+    background-color: #0F1D2F;
+}
+.menu{
+    width: 100%;
+}
+.main-nav{
+    padding-top: 3%;
+}
+.main-nav .sub-nav{
+    margin-left: 5%;
+}
+.logo{
+    padding-left: 4.7%;
+    width: fit-content;
+}
+.logo a img{
+    width: 35%;
+    border-radius:100%;
+}
+.dropdown{
+    margin-left: 20px;
+}
+.sign a {
+    font-size: 16px !important; 
+    color: rgb(81, 117, 150) !important; 
+    font-weight: 600 !important;
+    white-space: nowrap;         /* Ngăn chặn quá trình xuống dòng */
+    overflow: hidden;            /* Ẩn phần vượt quá khung chứa */
+    text-overflow: ellipsis;     /* Hiển thị dấu "..." khi vượt quá */
+    max-width: 200px;                /* Đặt chiều rộng tùy ý cho khung chứa */
+}
+.sign span {
+    font-size: 35px; 
+    color: #17599E;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+
+/* header */

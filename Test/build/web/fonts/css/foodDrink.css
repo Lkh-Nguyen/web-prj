@@ -1,0 +1,132 @@
+.full_FoodDrink{
+    margin-left:24%;
+    margin-right: 24%;
+    margin-bottom: 50px
+}
+
+
+#choose_FoodDrink{
+    margin-top: 3%;
+    margin-bottom: 2%;
+    font-size: 25px;
+    font-weight: bold;
+}
+.chair_left {
+    width: 75%;
+    height: auto;
+}
+
+
+.chair_right{
+    width: 25%;
+    margin-left:1%;
+    padding-left: 2%;
+    border-left: grey dotted 1px;
+}
+.chair_right img{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 300px;
+}
+.chair_right p{
+    color: rgb(116,119,112);
+    font-size: 15px;
+}
+.chair_right label{
+    color: rgb(116,119,112);
+    font-size: 15px;
+}
+.chair_right b{
+    color: rgb(116,119,112);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+#bt_datve{
+    margin-left: 330px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+#bt_datve:hover{
+    background-color: orangered;
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.movie-container {
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#movieList{
+    margin-bottom: 30px;
+    width: 100%;
+}
+.movie {
+    display: flex;
+    padding: 15px;
+}
+
+.contain-movie {
+    display: flex;
+    align-items: center;
+    border: none;
+    border: solid 1px grey;
+    border-radius: 10px;
+}
+
+
+.movie-image {
+    width: 120px;
+    height: 180px;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+
+
+
+.movie-image {
+    width: 80%;
+    border-radius: 8px;
+    margin-right: 35px;
+    object-fit: cover;
+}
+.movie-contain-img {
+    width: 25%;
+}
+
+
+.movie-details h2 {
+    font-size: 25px;
+    color: grey;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.movie-details p {
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: black;
+}
+.movie-details label{
+    color: black;
+}
+.movie-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.movie-info {
+    margin: 5px 0;
+}
