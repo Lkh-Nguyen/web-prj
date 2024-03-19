@@ -275,7 +275,7 @@
                                              <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;">${film.detail}</textarea>
                                         </c:if>
                                         <c:if test="${empty film}">
-                                             <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;">${param.detail}</textarea>
+                                             <textarea id="address" name="detail" rows="6" cols="60" placeholder="Nhập Chi Tiết Phim Ở Đây" style="resize: none;border: solid 1px grey;"></textarea>
                                         </c:if>
                                        
                                     </div>

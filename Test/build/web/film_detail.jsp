@@ -15,7 +15,35 @@ Author     : HELLO
         <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        
     </head>
+    <style>
+            .back_film{
+                margin-left: 20%;
+                margin-right: 20%;
+                margin-top: 4%;
+                margin-bottom: 2%;
+                width: 60%;
+                height: 50px;
+                background-color: rgb(205,193,151);
+                padding-top: 12px;
+                align-items: center;
+            }
+            .back_film a{
+                margin-left: 5px;
+                color: rgb(111,98,71);
+                font-size: 20px;
+                align-items: center;
+                text-decoration: none;
+            }
+            .back_film a:hover{
+                margin-left: 5px;
+                color: rgb(111,98,71);
+                font-size: 20px;
+                align-items: center;
+                text-decoration: none;
+            }
+        </style>
     <body>
         <c:set var="film" value="${requestScope.film}"></c:set>
             <div class="film_detail" style="margin-bottom: 50px">
@@ -68,7 +96,7 @@ Author     : HELLO
                         <button class="sub-button" onclick="showReview()">ĐÁNH GIÁ</button>
                     </div>
                 </div>
-                    <div><button class="order-btn"><a href="calendar?fid=${film.id}">ĐẶT VÉ</a></button></div> 
+                <div><button class="order-btn"><a href="calendar?fid=${film.id}">ĐẶT VÉ</a></button></div> 
             </div>
             <div class="hidden-container" id="hiddenDetail">
                 <div id="detail" class="hidden1">
@@ -103,7 +131,7 @@ Author     : HELLO
             </div>
         </div>
         <div class="back_film">
-            <a href="film">Đổi Phim</a>
+            <a href="film"><i class='bx bx-arrow-back'></i>Đổi Phim</a>
         </div>
         <script>
             function showDetail() {

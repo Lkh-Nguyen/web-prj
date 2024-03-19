@@ -144,14 +144,20 @@
                                             <input type="text" name="name"  placeholder="Nhập Họ Tên Ở Đây"  value="${User.name}" required>
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="text" name="name"  placeholder="Nhập Họ Tên Ở Đây" value="${param.name}" required>
+                                            <input type="text" name="name"  placeholder="Nhập Họ Tên Ở Đây" value="" required>
                                         </c:if>
 
                                     </div>
                                     <div class="col-md-4 register_radio">
                                         <p>Giới tính</p>
-                                        <input type="radio" name="gender" value="Male" ${param.gender == null || param.gender == 'Male' ? 'checked' : ''}> Nam 
-                                        <input type="radio" name="gender" value="Female" ${param.gender == 'Female' ? 'checked' : ''}> Nữ
+                                        <c:if test="${not empty User}">
+                                            <input type="radio" name="gender" value="Male" ${User.gender == 'Male' ? 'checked' : ''}> Nam 
+                                            <input type="radio" name="gender" value="Female" ${User.gender == 'Female' ? 'checked' : ''}> Nữ
+                                        </c:if>
+                                        <c:if test="${empty User}">
+                                            <input type="radio" name="gender" value="Male" ${param.gender == 'Male' ? 'checked' : ''}> Nam 
+                                            <input type="radio" name="gender" value="Female" ${param.gender == 'Female' ? 'checked' : ''}> Nữ
+                                        </c:if>
                                     </div>
                                 </div>
                                 <div class ="row">
@@ -161,17 +167,17 @@
                                             <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây"  value="${User.dateOfBirth}" required>
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây"  value="${param.DOB}" required>
+                                            <input type="date" name="DOB" placeholder="Chọn Ngày Sinh Ở Đây"  value="" required>
                                         </c:if>
 
                                     </div>
                                     <div class="col-md-4 register">
                                         <p>Số CMND</p>
                                         <c:if test="${not empty User}">
-                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${User.cmnd}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số." required>
+                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${User.cmnd}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="${param.CMND}" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số." required>
+                                            <input type="text" name="CMND" placeholder="Nhập Số CMND Ở Đây" value="" pattern="[0-9]{12}" title="Số CMND phải gồm 12 chữ số.">
                                         </c:if>
 
                                     </div>
@@ -183,7 +189,7 @@
                                             <input type="text" name="phone" placeholder="Nhập Số Điện Thoại Ở Đây"  value="${User.phoneNumber}" pattern="[0-9]{10}" title="Số điện thoại phải gồm 10 chữ số." required>
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="text" name="phone" placeholder="Nhập Số Điện Thoại Ở Đây"  value="${param.phone}" pattern="[0-9]{10}" title="Số điện thoại phải gồm 10 chữ số." required>
+                                            <input type="text" name="phone" placeholder="Nhập Số Điện Thoại Ở Đây"  value="" pattern="[0-9]{10}" title="Số điện thoại phải gồm 10 chữ số." required>
                                         </c:if>
 
                                     </div>
@@ -207,7 +213,7 @@
                                             <input type="password" name="password" placeholder="Nhập Mật Khẩu Ở Đây" minlength="8" required value="${User.password}">
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="password" name="password" placeholder="Nhập Mật Khẩu Ở Đây" minlength="8" required value="${param.password}">
+                                            <input type="password" name="password" placeholder="Nhập Mật Khẩu Ở Đây" minlength="8" required value="">
                                         </c:if>
 
                                     </div>
@@ -217,7 +223,7 @@
                                             <input type="password" name="repassword" placeholder="Nhập Lại Mật Khẩu" required value="${User.password}">
                                         </c:if>
                                         <c:if test="${empty User}">
-                                            <input type="password" name="repassword" placeholder="Nhập Lại Mật Khẩu" required value="${param.repassword}">
+                                            <input type="password" name="repassword" placeholder="Nhập Lại Mật Khẩu" required value="">
                                         </c:if>
 
                                         <h5 style="color:red">${requestScope.repasswordError}</h5>
@@ -228,25 +234,37 @@
                                         <div class="address_register">
                                             <p>Địa Chỉ</p>
                                             <c:if test="${not empty User}">
-                                                 <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${User.address}</textarea>
+                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${User.address}</textarea>
                                             </c:if>
                                             <c:if test="${empty User}">
-                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none">${param.address}</textarea>
+                                                <textarea id="address" name="address" rows="4" cols="60" placeholder="Nhập Địa Chỉ Ở Đây" style="resize: none"></textarea>
                                             </c:if>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="col-md-12 register_radio">
                                             <p>Vai Trò</p>
-                                            <label class="radio-container">
-                                                <input type="radio" name="role" value="Guest" ${param.role == null || param.role == 'Guest' ? 'checked' : ''}>Guest
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="radio-container" style="margin-left: 40px">
-                                                <input type="radio" name="role" value="Admin" ${param.role == 'Admin' ? 'checked' : ''}>Admin 
-                                                <span class="checkmark"></span>
-                                            </label>         
+                                            <c:if test="${not empty User}">
+                                                <label class="radio-container">
+                                                    <input type="radio" name="role" value="Guest" ${User.role == '1' ? 'checked' : ''}>Guest
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container" style="margin-left: 40px">
+                                                    <input type="radio" name="role" value="Admin" ${User.role == '2' ? 'checked' : ''}>Admin 
+                                                    <span class="checkmark"></span>
+                                                </label>   
+                                            </c:if>
+                                            <c:if test="${empty User}">
+                                                <label class="radio-container">
+                                                    <input type="radio" name="role" value="Guest" ${param.role == null || param.role == 'Guest' ? 'checked' : ''}>Guest
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="radio-container" style="margin-left: 40px">
+                                                    <input type="radio" name="role" value="Admin" ${param.role == 'Admin' ? 'checked' : ''}>Admin 
+                                                    <span class="checkmark"></span>
+                                                </label>   
+                                            </c:if>      
                                         </div>
                                     </div>
                                 </div>      

@@ -146,7 +146,7 @@
                                                     <option value="${screen.id}">${screen.name}</option>
                                                 </c:forEach>
                                             </select> 
-                                        </div
+                                        </div>
                                     </c:if>
                                     <c:if test="${empty filmDetail}">
                                         <div class="col-md-4 register">
